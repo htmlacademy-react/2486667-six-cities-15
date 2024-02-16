@@ -1,7 +1,11 @@
 import MainPage from '../../pages/main-page/main-page';
 
-export default function App() {
+type AppProps = {
+  cards: string[];
+}
+
+export default function App({ cards }: AppProps): JSX.Element {
   return (
-    <MainPage />
+    <MainPage cards={cards}/>
   );
 }
