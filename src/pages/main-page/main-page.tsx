@@ -7,7 +7,7 @@ type MainPageProps = {
 
 export default function MainPage({ cards }: MainPageProps): JSX.Element {
   return (
-    <Container extraClass={'page--gray page--main'} mainClass={'page__main--index'}>
+    <Container extraClass="page--gray page--main" mainClass="page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
