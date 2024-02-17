@@ -9,10 +9,10 @@ type ContainerProps = {
 
 export default function Container({ children, extraClass, mainClass }: ContainerProps): JSX.Element {
   return (
-    <div className={`page ${extraClass}`}>
+    <div className={`page ${extraClass ? extraClass : ''}`}>
       <Header />
 
-      <main className={`page__main ${mainClass}`}>
+      <main className={`page__main ${mainClass ? mainClass : ''}`}>
         {children}
       </main>
     </div>
