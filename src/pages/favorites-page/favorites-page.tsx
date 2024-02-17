@@ -1,6 +1,6 @@
 import Container from '../../components/container/container';
 
-export default function Favorites(): JSX.Element {
+export default function FavoritesPage(): JSX.Element {
   return (
     <Container mainClass="page__main--favorites">
       <div className="page__favorites-container container">
