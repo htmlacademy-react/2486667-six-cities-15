@@ -2,7 +2,7 @@ import Container from '../../components/container/container';
 
 export default function FavoritesPage(): JSX.Element {
   return (
-    <Container mainClass="page__main--favorites" isFooter>
+    <Container mainClass="page__main--favorites" isFooter footerClass="container">
       <div className="page__favorites-container container">
         <section className="favorites">
           <h1 className="favorites__title">Saved listing</h1>

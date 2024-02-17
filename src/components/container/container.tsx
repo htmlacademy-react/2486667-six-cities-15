@@ -7,9 +7,10 @@ type ContainerProps = {
   extraClass?: string;
   mainClass?: string;
   isFooter: boolean;
+  footerClass?: string;
 }
 
-export default function Container({ children, extraClass, mainClass, isFooter }: ContainerProps): JSX.Element {
+export default function Container({ children, extraClass, mainClass, isFooter, footerClass }: ContainerProps): JSX.Element {
   return (
     <div className={`page ${extraClass ? extraClass : ''}`}>
       <Header />
@@ -18,7 +19,7 @@ export default function Container({ children, extraClass, mainClass, isFooter }:
         {children}
       </main>
 
-      {isFooter && <Footer />}
+      {isFooter && <Footer footerClass={footerClass} />}
     </div>
   );
 }
