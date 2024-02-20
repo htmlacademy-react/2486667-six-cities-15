@@ -1,8 +1,8 @@
-import Container from '../../components/container/container';
+import Container from '../../components/common/container/container';
 
 export default function MainEmptyPage(): JSX.Element {
   return (
-    <Container extraClass="page--gray page--main" mainClass="page__main--index page__main--index-empty">
+    <Container extraClass="page__main--index page__main--index-empty">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">

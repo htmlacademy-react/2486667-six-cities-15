@@ -1,8 +1,8 @@
-import Container from '../../components/container/container';
+import Container from '../../components/common/container/container';
 
 export default function LoginPage() {
   return (
-    <Container extraClass="page--gray page--login" mainClass="page__main--login" isLoginHeader>
+    <Container extraClass="page__main--login">
       <div className="page__login-container container">
         <section className="login">
           <h1 className="login__title">Sign in</h1>

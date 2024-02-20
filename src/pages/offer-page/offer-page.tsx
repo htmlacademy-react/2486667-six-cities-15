@@ -1,8 +1,8 @@
-import Container from '../../components/container/container';
+import Container from '../../components/common/container/container';
 
 export default function OfferPage(): JSX.Element {
   return (
-    <Container mainClass="page__main--offer">
+    <Container extraClass="page__main--offer">
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">

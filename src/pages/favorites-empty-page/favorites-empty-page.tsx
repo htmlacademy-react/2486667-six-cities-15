@@ -1,8 +1,8 @@
-import Container from '../../components/container/container';
+import Container from '../../components/common/container/container';
 
 export default function FavoritesEmptyPage(): JSX.Element {
   return (
-    <Container extraClass="page--favorites-empty" mainClass="page__main--favorites page__main--favorites-empty" isFooter>
+    <Container extraClass="page__main--favorites page__main--favorites-empty">
       <div className="page__favorites-container container">
         <section className="favorites favorites--empty">
           <h1 className="visually-hidden">Favorites (empty)</h1>
