@@ -1,9 +1,8 @@
-import {ReactNode} from 'react';
 import {Navigate} from 'react-router-dom';
 
 type ProtectedRouteProps = {
   hasAccess: boolean;
-  children: ReactNode;
+  children: JSX.Element;
 }
 
 export default function ProtectedRoute({ hasAccess, children }: ProtectedRouteProps): JSX.Element {
