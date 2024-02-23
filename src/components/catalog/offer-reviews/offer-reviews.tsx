@@ -1,5 +1,5 @@
 type OfferReviewsProps = {
-  isForm: boolean;
+  isForm?: boolean;
 }
 
 export default function OfferReviews({ isForm }: OfferReviewsProps): JSX.Element {

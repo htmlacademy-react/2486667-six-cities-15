@@ -2,7 +2,11 @@ import {NavLink} from 'react-router-dom';
 import {AppRoute} from '../../../const';
 
 export default function Tabs(): JSX.Element {
-  const getClasses = ({ isActive }) => isActive
+  type getClassesProps = {
+    isActive: boolean;
+  }
+
+  const getClasses = ({ isActive }: getClassesProps) => isActive
     ? 'locations__item-link tabs__item tabs__item--active'
     : 'locations__item-link tabs__item';
 
