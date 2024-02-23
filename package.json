@@ -5,7 +5,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx",
+    "lint": "eslint src --ext ts,tsx --fix",
     "preview": "vite preview",
     "test": "vitest --passWithNoTests"
   },
@@ -37,6 +37,7 @@
     "@typescript-eslint/parser": "6.7.4",
     "@vitejs/plugin-react": "4.1.0",
     "axios-mock-adapter": "1.22.0",
+    "clsx": "2.1.0",
     "eslint": "8.51.0",
     "eslint-config-htmlacademy": "9.1.1",
     "eslint-plugin-react-hooks": "4.6.0",
