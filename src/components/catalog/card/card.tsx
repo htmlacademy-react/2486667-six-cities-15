@@ -1,13 +1,15 @@
-export default function Card() {
+import {Link} from 'react-router-dom';
+
+export default function Card(): JSX.Element {
   return (
     <article className="cities__card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="2486667-six-cities-15/src/components/catalog/card#">
+        <Link to="2486667-six-cities-15/src/components/catalog/card#">
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -29,7 +31,9 @@ export default function Card() {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="2486667-six-cities-15/src/components/catalog/card#">Beautiful &amp; luxurious apartment at great location</a>
+          <Link to="2486667-six-cities-15/src/components/catalog/card#">
+            Beautiful &amp; luxurious apartment at great location
+          </Link>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>

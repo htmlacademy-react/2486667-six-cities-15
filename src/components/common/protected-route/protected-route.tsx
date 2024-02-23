@@ -1,14 +1,15 @@
 import {Navigate} from 'react-router-dom';
+import {AppRoute, AuthStatus} from '../../../const';
 
 type ProtectedRouteProps = {
-  hasAccess: boolean;
+  authStatus: AuthStatus;
   children: JSX.Element;
 }
 
-export default function ProtectedRoute({ hasAccess, children }: ProtectedRouteProps): JSX.Element {
-  if (hasAccess) {
-    return children;
-  }
-
-  return <Navigate to="/login" />;
+export default function ProtectedRoute({ authStatus, children }: ProtectedRouteProps): JSX.Element {
+  return (
+    authStatus === AuthStatus.Auth
+      ? children
+      : <Navigate to={AppRoute.Login} />
+  );
 }

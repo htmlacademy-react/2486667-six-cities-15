@@ -2,10 +2,14 @@ import Container from '../../components/common/container/container';
 import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Header from '../../components/common/header/header';
 import Footer from '../../components/common/footer/footer';
+import {Helmet} from 'react-helmet-async';
 
 export default function FavoritesEmptyPage(): JSX.Element {
   return (
     <ExtraContainer extraClass="page--favorites-empty">
+      <Helmet>
+        <title>6 cities: favorites empty</title>
+      </Helmet>
       <Header />
       <Container extraClass="page__main--favorites page__main--favorites-empty">
         <div className="page__favorites-container container">

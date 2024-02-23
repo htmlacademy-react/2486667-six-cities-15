@@ -1,10 +1,15 @@
 import Container from '../../components/common/container/container';
 import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Header from '../../components/common/header/header';
+import {Helmet} from 'react-helmet-async';
+import {Link} from 'react-router-dom';
 
 export default function LoginPage() {
   return (
     <ExtraContainer extraClass="page--gray page--login">
+      <Helmet>
+        <title>6 cities: authorization</title>
+      </Helmet>
       <Header />
       <Container extraClass="page__main--login">
         <div className="page__login-container container">
@@ -17,16 +22,16 @@ export default function LoginPage() {
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" type="password" name="password" placeholder="Password" required />
+                <input className="login__input form__input" type="password" name="password" placeholder="Password" required autoComplete="on" />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link className="locations__item-link" to="#">
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>

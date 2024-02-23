@@ -2,6 +2,7 @@ import Card from '../../components/catalog/card/card';
 import Container from '../../components/common/container/container';
 import Header from '../../components/common/header/header';
 import ExtraContainer from '../../components/common/extra-container/extra-container';
+import Tabs from '../../components/common/tabs/tabs';
 
 type MainPageProps = {
   cards: string[];
@@ -13,42 +14,8 @@ export default function MainPage({ cards }: MainPageProps): JSX.Element {
       <Header />
       <Container extraClass="page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
-        </div>
+
+        <Tabs />
 
         <div className="cities">
           <div className="cities__places-container container">
@@ -80,6 +47,7 @@ export default function MainPage({ cards }: MainPageProps): JSX.Element {
 
               </div>
             </section>
+
             <div className="cities__right-section">
               <section className="cities__map map"></section>
             </div>
