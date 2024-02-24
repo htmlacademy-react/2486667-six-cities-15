@@ -6,7 +6,7 @@ import OfferGallary from '../../components/catalog/offer-gallary/offer-gallary';
 import OfferDescription from '../../components/catalog/offer-description/offer-description';
 import OfferReviews from '../../components/catalog/offer-reviews/offer-reviews';
 import OfferMap from '../../components/catalog/offer-map/offer-map';
-import OfferOtherPaces from '../../components/catalog/offer-other-paces/offer-other-paces';
+import OfferOtherPlaces from '../../components/catalog/offer-other-places/offer-other-places';
 
 export default function OfferNotLoggedPage(): JSX.Element {
   return (
@@ -32,7 +32,7 @@ export default function OfferNotLoggedPage(): JSX.Element {
           <OfferMap />
         </section>
 
-        <OfferOtherPaces />
+        <OfferOtherPlaces />
       </Container>
     </ExtraContainer>
   );

@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-export default function OfferOtherPaces(): JSX.Element {
+export default function OfferOtherPlaces(): JSX.Element {
   return (
     <div className="container">
       <section className="near-places places">
