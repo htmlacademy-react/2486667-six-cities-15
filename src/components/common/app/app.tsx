@@ -6,17 +6,18 @@ import NotFoundPage from '../../../pages/not-found-page/not-found-page';
 import ProtectedRoute from '../protected-route/protected-route';
 import {AppRoute, AuthStatus} from '../../../const';
 import OfferPage from '../../../pages/offer-page/offer-page';
+import {Offer} from '../../../types/offer';
 
 type AppProps = {
-  cards: string[];
+  offers: Offer[];
 }
 
-export default function App({ cards }: AppProps): JSX.Element {
+export default function App({ offers }: AppProps): JSX.Element {
   return (
     <Routes>
       <Route
         path={AppRoute.Root}
-        element={<MainPage cards={cards} />}
+        element={<MainPage offers={offers} />}
       />
       <Route
         path={AppRoute.Login}

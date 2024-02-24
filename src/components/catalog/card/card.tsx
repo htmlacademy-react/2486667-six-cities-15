@@ -1,6 +1,12 @@
 import {Link} from 'react-router-dom';
+import {Offer} from '../../../types/offer';
 
-export default function Card(): JSX.Element {
+type CardProps = {
+  offer: Offer;
+}
+
+export default function Card({ offer }: CardProps): JSX.Element {
+
   return (
     <article className="cities__card place-card">
       <div className="place-card__mark">

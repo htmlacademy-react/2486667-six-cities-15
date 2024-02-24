@@ -3,12 +3,13 @@ import Container from '../../components/common/container/container';
 import Header from '../../components/common/header/header';
 import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Tabs from '../../components/common/tabs/tabs';
+import {Offer} from '../../types/offer';
 
 type MainPageProps = {
-  cards: string[];
+  offers: Offer[];
 }
 
-export default function MainPage({ cards }: MainPageProps): JSX.Element {
+export default function MainPage({ offers }: MainPageProps): JSX.Element {
   return (
     <ExtraContainer extraClass="page--gray page--main">
       <Header />
@@ -21,7 +22,7 @@ export default function MainPage({ cards }: MainPageProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{cards.length} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -39,11 +40,9 @@ export default function MainPage({ cards }: MainPageProps): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
 
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {offers && offers.map((offer) => (
+                  <Card key={offer.id} offer={offer} />
+                ))}
 
               </div>
             </section>
