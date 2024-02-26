@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import {AppRoute} from "../../../const";
 
 export default function OfferOtherPlaces(): JSX.Element {
   return (
@@ -8,7 +9,7 @@ export default function OfferOtherPlaces(): JSX.Element {
         <div className="near-places__list places__list">
           <article className="near-places__card place-card">
             <div className="near-places__image-wrapper place-card__image-wrapper">
-              <Link to="#">
+              <Link to={AppRoute.Offer + '/' + 'ID'}>
                 <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
               </Link>
             </div>
@@ -32,7 +33,7 @@ export default function OfferOtherPlaces(): JSX.Element {
                 </div>
               </div>
               <h2 className="place-card__name">
-                <Link to="#">Wood and stone place</Link>
+                <Link to={AppRoute.Offer + '/' + 'ID'}>Wood and stone place</Link>
               </h2>
               <p className="place-card__type">Room</p>
             </div>
@@ -40,7 +41,7 @@ export default function OfferOtherPlaces(): JSX.Element {
 
           <article className="near-places__card place-card">
             <div className="near-places__image-wrapper place-card__image-wrapper">
-              <Link to="#">
+              <Link to={AppRoute.Offer + '/' + 'ID'}>
                 <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200" alt="Place image" />
               </Link>
             </div>
@@ -64,7 +65,7 @@ export default function OfferOtherPlaces(): JSX.Element {
                 </div>
               </div>
               <h2 className="place-card__name">
-                <Link to="#">Canal View Prinsengracht</Link>
+                <Link to={AppRoute.Offer + '/' + 'ID'}>Canal View Prinsengracht</Link>
               </h2>
               <p className="place-card__type">Apartment</p>
             </div>
@@ -75,7 +76,7 @@ export default function OfferOtherPlaces(): JSX.Element {
               <span>Premium</span>
             </div>
             <div className="near-places__image-wrapper place-card__image-wrapper">
-              <Link to="#">
+              <Link to={AppRoute.Offer + '/' + 'ID'}>
                 <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />
               </Link>
             </div>
@@ -99,7 +100,7 @@ export default function OfferOtherPlaces(): JSX.Element {
                 </div>
               </div>
               <h2 className="place-card__name">
-                <Link to="#">Nice, cozy, warm big bed apartment</Link>
+                <Link to={AppRoute.Offer + '/' + 'ID'}>Nice, cozy, warm big bed apartment</Link>
               </h2>
               <p className="place-card__type">Apartment</p>
             </div>

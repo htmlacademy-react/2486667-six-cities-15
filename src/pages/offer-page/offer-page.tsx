@@ -7,8 +7,13 @@ import OfferDescription from '../../components/catalog/offer-description/offer-d
 import OfferReviews from '../../components/catalog/offer-reviews/offer-reviews';
 import OfferMap from '../../components/catalog/offer-map/offer-map';
 import OfferOtherPlaces from '../../components/catalog/offer-other-places/offer-other-places';
+import {useParams} from "react-router-dom";
+import {Offers} from '../../mocks/offers';
 
 export default function OfferPage(): JSX.Element {
+  const { id } = useParams();
+  const offer = Offers.find((offer) => offer.id === id);
+
   return (
     <ExtraContainer>
       <Helmet>
@@ -19,13 +24,13 @@ export default function OfferPage(): JSX.Element {
 
       <Container extraClass="page__main--offer">
         <section className="offer">
-          <OfferGallary />
+          <OfferGallary images={offer.images} />
 
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <OfferDescription />
+              <OfferDescription offer={offer} />
 
-              <OfferReviews isForm />
+              <OfferReviews isAuth />
             </div>
           </div>
 

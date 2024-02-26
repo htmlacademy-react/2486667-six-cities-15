@@ -1,8 +1,8 @@
 type OfferReviewsProps = {
-  isForm?: boolean;
+  isAuth?: boolean;
 }
 
-export default function OfferReviews({ isForm }: OfferReviewsProps): JSX.Element {
+export default function OfferReviews({ isAuth }: OfferReviewsProps): JSX.Element {
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
@@ -32,7 +32,7 @@ export default function OfferReviews({ isForm }: OfferReviewsProps): JSX.Element
         </li>
       </ul>
 
-      {isForm && (
+      {isAuth && (
         <form className="reviews__form form" action="#" method="post">
           <label className="reviews__label form__label" htmlFor="review">Your review</label>
           <div className="reviews__rating-form form__rating">
