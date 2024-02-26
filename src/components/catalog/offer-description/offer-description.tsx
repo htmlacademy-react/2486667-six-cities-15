@@ -1,4 +1,4 @@
-import {Offer} from "../../../types/offer";
+import {Offer} from '../../../types/offer';
 
 type OfferDescriptionProps = {
   offer: Offer;
@@ -10,8 +10,7 @@ export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.E
       {offer.isPremium &&
         <div className="offer__mark">
           <span>Premium</span>
-        </div>
-      }
+        </div>}
       <div className="offer__name-wrapper">
         <h1 className="offer__name">
           {offer.title}
@@ -25,7 +24,7 @@ export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.E
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
-          <span style={{width: ((offer.rating / 5) * 100).toFixed(1) + '%'}}></span>
+          <span style={{width: `${((offer.rating / 5) * 100).toFixed(1) }%`}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
         <span className="offer__rating-value rating__value">{offer.rating}</span>
@@ -67,8 +66,7 @@ export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.E
           {offer.host.isPro &&
             <span className="offer__user-status">
               Pro
-            </span>
-          }
+            </span>}
         </div>
         <div className="offer__description">
           <p className="offer__text">

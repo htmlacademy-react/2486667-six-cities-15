@@ -11,8 +11,7 @@ export default function OfferPreview({ offer }: CardProps): JSX.Element {
       {offer.isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
-        </div>
-      }
+        </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt={offer.title} />
@@ -33,7 +32,7 @@ export default function OfferPreview({ offer }: CardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: ((offer.rating / 5) * 100).toFixed(1) + '%'}}></span>
+            <span style={{width: `${((offer.rating / 5) * 100).toFixed(1) }%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
