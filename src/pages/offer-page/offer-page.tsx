@@ -8,11 +8,15 @@ import OfferReviews from '../../components/catalog/offer-reviews/offer-reviews';
 import OfferMap from '../../components/catalog/offer-map/offer-map';
 import OfferOtherPlaces from '../../components/catalog/offer-other-places/offer-other-places';
 import {useParams} from 'react-router-dom';
-import {Offers} from '../../mocks/offers';
+import {Offer} from '../../types/offer';
 
-export default function OfferPage(): JSX.Element {
+type OfferPageProps = {
+  offers: Offer[];
+}
+
+export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
   const { id } = useParams();
-  const offer = Offers.find((item) => item.id === id);
+  const offer = offers.find((item) => item.id === id);
 
   return (
     <ExtraContainer>

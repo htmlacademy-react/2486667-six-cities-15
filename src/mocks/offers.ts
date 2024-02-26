@@ -46,7 +46,7 @@ export const Offers: Offer[] = [
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
     isPremium: true,
-    isFavorite: false,
+    isFavorite: true,
     rating: 4.7,
     bedrooms: 2,
     maxAdults: 6,
@@ -94,7 +94,7 @@ export const Offers: Offer[] = [
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
     isPremium: false,
-    isFavorite: false,
+    isFavorite: true,
     rating: 3.4,
     bedrooms: 3,
     maxAdults: 2
@@ -115,7 +115,7 @@ export const Offers: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/10.jpg'
     ],
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
         latitude: 48.85661,
         longitude: 2.351499,
@@ -164,7 +164,7 @@ export const Offers: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/12.jpg'
     ],
     city: {
-      name: 'Paris',
+      name: 'Cologne',
       location: {
         latitude: 48.85661,
         longitude: 2.351499,
@@ -194,7 +194,7 @@ export const Offers: Offer[] = [
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
     isPremium: false,
-    isFavorite: false,
+    isFavorite: true,
     rating: 2.8,
     bedrooms: 3,
     maxAdults: 10

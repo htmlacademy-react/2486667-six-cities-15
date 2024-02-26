@@ -1,10 +1,9 @@
-import OfferCard from '../../components/catalog/offer-card/offer-card';
 import Container from '../../components/common/container/container';
 import Header from '../../components/common/header/header';
 import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Tabs from '../../components/common/tabs/tabs';
 import {Offer} from '../../types/offer';
-import OfferList from "../../components/catalog/offer-list/offer-list";
+import OfferList from '../../components/catalog/offer-list/offer-list';
 
 type MainPageProps = {
   offers: Offer[];
