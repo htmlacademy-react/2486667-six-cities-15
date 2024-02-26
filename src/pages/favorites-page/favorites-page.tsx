@@ -5,7 +5,7 @@ import Header from '../../components/common/header/header';
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offer';
-import {AppRoute} from "../../const";
+import {AppRoute} from '../../const';
 
 type FavoritesPagePops = {
   offers: Offer[];
@@ -57,10 +57,9 @@ export default function FavoritesPage({ offers }: FavoritesPagePops): JSX.Elemen
                         {item.isPremium &&
                           <div className="place-card__mark">
                             <span>Premium</span>
-                          </div>
-                        }
+                          </div>}
                         <div className="favorites__image-wrapper place-card__image-wrapper">
-                          <Link to={AppRoute.Offer + '/' + item.id}>
+                          <Link to={`${AppRoute.Offer }/${ item.id}`}>
                             <img className="place-card__image" src={item.previewImage} width="150" height="110" alt="Place image" />
                           </Link>
                         </div>
@@ -84,7 +83,7 @@ export default function FavoritesPage({ offers }: FavoritesPagePops): JSX.Elemen
                             </div>
                           </div>
                           <h2 className="place-card__name">
-                            <Link to={AppRoute.Offer + '/' + item.id}>
+                            <Link to={`${AppRoute.Offer }/${ item.id}`}>
                               {item.title}
                             </Link>
                           </h2>
