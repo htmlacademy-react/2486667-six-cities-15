@@ -1,4 +1,4 @@
-import Card from '../../components/catalog/card/card';
+import OfferPreview from '../../components/catalog/offer-preview/offer-preview';
 import Container from '../../components/common/container/container';
 import Header from '../../components/common/header/header';
 import ExtraContainer from '../../components/common/extra-container/extra-container';
@@ -41,7 +41,7 @@ export default function MainPage({ offers }: MainPageProps): JSX.Element {
               <div className="cities__places-list places__list tabs__content">
 
                 {offers && offers.map((offer) => (
-                  <Card key={offer.id} offer={offer} />
+                  <OfferPreview key={offer.id} offer={offer} />
                 ))}
 
               </div>
