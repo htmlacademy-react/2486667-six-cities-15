@@ -3,9 +3,10 @@ import {Offer} from '../../../types/offer';
 
 type CardProps = {
   offer: Offer;
+  activeCardId: string;
 }
 
-export default function OfferPreview({ offer }: CardProps): JSX.Element {
+export default function OfferCard({ offer, activeCardId }: CardProps): JSX.Element {
   return (
     <article className="cities__card place-card">
       {offer.isPremium &&
@@ -43,6 +44,7 @@ export default function OfferPreview({ offer }: CardProps): JSX.Element {
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>
+      {offer.id === activeCardId && <div>activeCard</div>}
     </article>
   );
 }

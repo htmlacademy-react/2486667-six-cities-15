@@ -1,9 +1,10 @@
-import OfferPreview from '../../components/catalog/offer-preview/offer-preview';
+import OfferCard from '../../components/catalog/offer-card/offer-card';
 import Container from '../../components/common/container/container';
 import Header from '../../components/common/header/header';
 import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Tabs from '../../components/common/tabs/tabs';
 import {Offer} from '../../types/offer';
+import OfferList from "../../components/catalog/offer-list/offer-list";
 
 type MainPageProps = {
   offers: Offer[];
@@ -39,11 +40,7 @@ export default function MainPage({ offers }: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-
-                {offers && offers.map((offer) => (
-                  <OfferPreview key={offer.id} offer={offer} />
-                ))}
-
+                <OfferList offers={offers} activeCardId={offers[0].id} />
               </div>
             </section>
 
