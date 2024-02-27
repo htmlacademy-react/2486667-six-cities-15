@@ -1,18 +1,12 @@
 import {Offer} from '../../../types/offer';
 import OfferCard from '../offer-card/offer-card';
-import {useState} from 'react';
 
 type OfferListProps = {
   offers: Offer[];
+  handleMouseOver: (id: Offer['id']) => void;
 }
 
-export default function OfferList({ offers }: OfferListProps): JSX.Element[] {
-  const [activeCardId, setActiveCardId] = useState<Offer['id']>('');
-
-  const handleMouseOver = (id: string) => {
-    setActiveCardId(id);
-  };
-
+export default function OfferList({ offers, handleMouseOver }: OfferListProps): JSX.Element[] {
   return offers && offers.map((offer) => (
     <OfferCard key={offer.id} offer={offer} handleMouseOver={handleMouseOver} />
   ));

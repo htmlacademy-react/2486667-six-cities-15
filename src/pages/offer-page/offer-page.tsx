@@ -27,19 +27,20 @@ export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
       <Header />
 
       <MainContainer extraClass="page__main--offer">
-        <section className="offer">
-          <OfferGallary images={offer.images} />
+        {offer &&
+          <section className="offer">
+            <OfferGallary images={offer.images} />
 
-          <div className="offer__container container">
-            <div className="offer__wrapper">
-              <OfferDescription offer={offer} />
+            <div className="offer__container container">
+              <div className="offer__wrapper">
+                <OfferDescription offer={offer} />
 
-              <OfferReviews isAuth />
+                <OfferReviews isAuth />
+              </div>
             </div>
-          </div>
 
-          <OfferMap />
-        </section>
+            <OfferMap />
+          </section>}
 
         <OfferOtherPlaces />
       </MainContainer>

@@ -23,7 +23,7 @@ function getFavoritesByLocation(offers: Offer[]): {[key: string]: Offer[]} {
     }
 
     return acc;
-  }, []);
+  }, {});
 }
 
 export default function FavoritesPage({ offers }: FavoritesPagePops): JSX.Element {
