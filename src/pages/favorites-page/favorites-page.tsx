@@ -1,11 +1,11 @@
 import Container from '../../components/common/container/container';
-import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Footer from '../../components/common/footer/footer';
 import Header from '../../components/common/header/header';
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offer';
 import {AppRoute} from '../../const';
+import MainContainer from '../../components/common/main-container/main-container';
 
 type FavoritesPagePops = {
   offers: Offer[];
@@ -30,12 +30,12 @@ export default function FavoritesPage({ offers }: FavoritesPagePops): JSX.Elemen
   const favorites = getFavoritesByLocation(offers);
 
   return (
-    <ExtraContainer>
+    <Container>
       <Helmet>
         <title>6 cities: favorites</title>
       </Helmet>
       <Header />
-      <Container extraClass="page__main--favorites">
+      <MainContainer extraClass="page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
@@ -99,8 +99,8 @@ export default function FavoritesPage({ offers }: FavoritesPagePops): JSX.Elemen
             </ul>
           </section>
         </div>
-      </Container>
+      </MainContainer>
       <Footer extraClass="container" />
-    </ExtraContainer>
+    </Container>
   );
 }

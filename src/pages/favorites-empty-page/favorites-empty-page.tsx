@@ -1,17 +1,17 @@
 import Container from '../../components/common/container/container';
-import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Header from '../../components/common/header/header';
 import Footer from '../../components/common/footer/footer';
 import {Helmet} from 'react-helmet-async';
+import MainContainer from '../../components/common/main-container/main-container';
 
 export default function FavoritesEmptyPage(): JSX.Element {
   return (
-    <ExtraContainer extraClass="page--favorites-empty">
+    <Container extraClass="page--favorites-empty">
       <Helmet>
         <title>6 cities: favorites empty</title>
       </Helmet>
       <Header />
-      <Container extraClass="page__main--favorites page__main--favorites-empty">
+      <MainContainer extraClass="page__main--favorites page__main--favorites-empty">
         <div className="page__favorites-container container">
           <section className="favorites favorites--empty">
             <h1 className="visually-hidden">Favorites (empty)</h1>
@@ -21,8 +21,8 @@ export default function FavoritesEmptyPage(): JSX.Element {
             </div>
           </section>
         </div>
-      </Container>
+      </MainContainer>
       <Footer />
-    </ExtraContainer>
+    </Container>
   );
 }

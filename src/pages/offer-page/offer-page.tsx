@@ -1,5 +1,4 @@
 import Container from '../../components/common/container/container';
-import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Header from '../../components/common/header/header';
 import {Helmet} from 'react-helmet-async';
 import OfferGallary from '../../components/catalog/offer-gallary/offer-gallary';
@@ -9,6 +8,7 @@ import OfferMap from '../../components/catalog/offer-map/offer-map';
 import OfferOtherPlaces from '../../components/catalog/offer-other-places/offer-other-places';
 import {useParams} from 'react-router-dom';
 import {Offer} from '../../types/offer';
+import MainContainer from '../../components/common/main-container/main-container';
 
 type OfferPageProps = {
   offers: Offer[];
@@ -19,14 +19,14 @@ export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
   const offer = offers.find((item) => item.id === id);
 
   return (
-    <ExtraContainer>
+    <Container>
       <Helmet>
         <title>6 cities: offer</title>
       </Helmet>
 
       <Header />
 
-      <Container extraClass="page__main--offer">
+      <MainContainer extraClass="page__main--offer">
         <section className="offer">
           <OfferGallary images={offer.images} />
 
@@ -42,7 +42,7 @@ export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
         </section>
 
         <OfferOtherPlaces />
-      </Container>
-    </ExtraContainer>
+      </MainContainer>
+    </Container>
   );
 }

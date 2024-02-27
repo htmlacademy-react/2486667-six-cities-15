@@ -1,13 +1,13 @@
 import Container from '../../components/common/container/container';
-import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Header from '../../components/common/header/header';
 import Tabs from '../../components/common/tabs/tabs';
+import MainContainer from '../../components/common/main-container/main-container';
 
 export default function MainEmptyPage(): JSX.Element {
   return (
-    <ExtraContainer extraClass="page--gray page--main">
+    <Container extraClass="page--gray page--main">
       <Header />
-      <Container extraClass="page__main--index page__main--index-empty">
+      <MainContainer extraClass="page__main--index page__main--index-empty">
         <h1 className="visually-hidden">Cities</h1>
 
         <Tabs />
@@ -24,7 +24,7 @@ export default function MainEmptyPage(): JSX.Element {
             <div className="cities__right-section"></div>
           </div>
         </div>
-      </Container>
-    </ExtraContainer>
+      </MainContainer>
+    </Container>
   );
 }

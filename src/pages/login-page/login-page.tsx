@@ -1,18 +1,18 @@
 import Container from '../../components/common/container/container';
-import ExtraContainer from '../../components/common/extra-container/extra-container';
 import Header from '../../components/common/header/header';
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import MainContainer from '../../components/common/main-container/main-container';
 
 export default function LoginPage() {
   return (
-    <ExtraContainer extraClass="page--gray page--login">
+    <Container extraClass="page--gray page--login">
       <Helmet>
         <title>6 cities: authorization</title>
       </Helmet>
       <Header />
-      <Container extraClass="page__main--login">
+      <MainContainer extraClass="page__main--login">
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
@@ -36,7 +36,7 @@ export default function LoginPage() {
             </div>
           </section>
         </div>
-      </Container>
-    </ExtraContainer>
+      </MainContainer>
+    </Container>
   );
 }

@@ -1,9 +1,9 @@
-import Container from '../../components/common/container/container';
 import Header from '../../components/common/header/header';
-import ExtraContainer from '../../components/common/extra-container/extra-container';
+import Container from '../../components/common/container/container';
 import Tabs from '../../components/common/tabs/tabs';
 import {Offer} from '../../types/offer';
 import OfferList from '../../components/catalog/offer-list/offer-list';
+import MainContainer from '../../components/common/main-container/main-container';
 
 type MainPageProps = {
   offers: Offer[];
@@ -11,9 +11,9 @@ type MainPageProps = {
 
 export default function MainPage({ offers }: MainPageProps): JSX.Element {
   return (
-    <ExtraContainer extraClass="page--gray page--main">
+    <Container extraClass="page--gray page--main">
       <Header />
-      <Container extraClass="page__main--index">
+      <MainContainer extraClass="page__main--index">
         <h1 className="visually-hidden">Cities</h1>
 
         <Tabs />
@@ -39,7 +39,7 @@ export default function MainPage({ offers }: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={offers} activeCardId={offers[0].id} />
+                <OfferList offers={offers} />
               </div>
             </section>
 
@@ -48,7 +48,7 @@ export default function MainPage({ offers }: MainPageProps): JSX.Element {
             </div>
           </div>
         </div>
-      </Container>
-    </ExtraContainer>
+      </MainContainer>
+    </Container>
   );
 }
