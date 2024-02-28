@@ -3,11 +3,12 @@ import OfferCard from '../offer-card/offer-card';
 
 type OfferListProps = {
   offers: Offer[];
-  handleMouseOver: (id: Offer['id']) => void;
+  block: string;
+  handleMouseOver?: (id: Offer['id']) => void;
 }
 
-export default function OfferList({ offers, handleMouseOver }: OfferListProps): JSX.Element[] {
+export default function OfferList({ offers, block, handleMouseOver }: OfferListProps): JSX.Element[] {
   return offers && offers.map((offer) => (
-    <OfferCard key={offer.id} offer={offer} handleMouseOver={handleMouseOver} />
+    <OfferCard key={offer.id} offer={offer} block={block} handleMouseOver={handleMouseOver} />
   ));
 }

@@ -36,7 +36,7 @@ export default function MainPage({ offers }: MainPageProps): JSX.Element {
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
-                Popular
+                  Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
@@ -50,7 +50,7 @@ export default function MainPage({ offers }: MainPageProps): JSX.Element {
               </form>
 
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={offers} handleMouseOver={handleMouseOver} />
+                <OfferList offers={offers} block='cities' handleMouseOver={handleMouseOver} />
               </div>
             </section>
 
