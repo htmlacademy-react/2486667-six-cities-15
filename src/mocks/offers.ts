@@ -198,5 +198,158 @@ export const Offers: Offer[] = [
     rating: 2.8,
     bedrooms: 3,
     maxAdults: 10
+  },
+  {
+    id: 'f71116c7-65f3-4a13-b897-a60e4a5337fc',
+    title: 'House in countryside',
+    description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.',
+    type: 'hotel',
+    price: 329,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+    images: [
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/15.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/6.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/16.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/19.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/12.jpg'
+    ],
+    city: {
+      name: 'Brussels',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 48.85761,
+      longitude: 2.358499,
+      zoom: 16
+    },
+    goods: [
+      'Air conditioning',
+      'Washing machine',
+      'Wi-Fi',
+      'Washer',
+      'Breakfast',
+      'Laptop friendly workspace',
+      'Kitchen',
+      'Cable TV',
+      'Dishwasher',
+      'Coffee machine'
+    ],
+    host: {
+      isPro: true,
+      name: 'Angelina',
+      avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
+    },
+    isPremium: false,
+    isFavorite: true,
+    rating: 2.8,
+    bedrooms: 3,
+    maxAdults: 10
+  },
+  {
+    id: 'f71116c7-65f3-4a13-b897-a60e4a5337fv',
+    title: 'House in countryside',
+    description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.',
+    type: 'hotel',
+    price: 329,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+    images: [
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/15.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/6.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/16.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/19.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/12.jpg'
+    ],
+    city: {
+      name: 'Hamburg',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 48.85761,
+      longitude: 2.358499,
+      zoom: 16
+    },
+    goods: [
+      'Air conditioning',
+      'Washing machine',
+      'Wi-Fi',
+      'Washer',
+      'Breakfast',
+      'Laptop friendly workspace',
+      'Kitchen',
+      'Cable TV',
+      'Dishwasher',
+      'Coffee machine'
+    ],
+    host: {
+      isPro: true,
+      name: 'Angelina',
+      avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
+    },
+    isPremium: false,
+    isFavorite: true,
+    rating: 2.8,
+    bedrooms: 3,
+    maxAdults: 10
+  },
+  {
+    id: 'f71116c7-65f3-4a13-b897-a60e4a5337fn',
+    title: 'House in countryside',
+    description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.',
+    type: 'hotel',
+    price: 329,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+    images: [
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/15.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/6.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/16.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/19.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/12.jpg'
+    ],
+    city: {
+      name: 'Dusseldorf',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 48.85761,
+      longitude: 2.358499,
+      zoom: 16
+    },
+    goods: [
+      'Air conditioning',
+      'Washing machine',
+      'Wi-Fi',
+      'Washer',
+      'Breakfast',
+      'Laptop friendly workspace',
+      'Kitchen',
+      'Cable TV',
+      'Dishwasher',
+      'Coffee machine'
+    ],
+    host: {
+      isPro: true,
+      name: 'Angelina',
+      avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
+    },
+    isPremium: false,
+    isFavorite: true,
+    rating: 2.8,
+    bedrooms: 3,
+    maxAdults: 10
   }
 ];

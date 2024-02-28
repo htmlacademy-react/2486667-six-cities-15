@@ -1,10 +1,11 @@
 import Header from '../../components/common/header/header';
 import Container from '../../components/common/container/container';
-import Tabs from '../../components/common/tabs/tabs';
 import {Offer} from '../../types/offer';
 import OfferList from '../../components/catalog/offer-list/offer-list';
 import MainContainer from '../../components/common/main-container/main-container';
 import {useState} from 'react';
+import Tabs from '../../components/common/tabs/tabs';
+import {getCitiesWithPath} from '../../utils/utils';
 
 type MainPageProps = {
   offers: Offer[];
@@ -23,7 +24,7 @@ export default function MainPage({ offers }: MainPageProps): JSX.Element {
       <MainContainer extraClass="page__main--index">
         <h1 className="visually-hidden">Cities</h1>
 
-        <Tabs />
+        <Tabs citiesWithPath={getCitiesWithPath(offers)} />
 
         <div className="cities">
           <div className="cities__places-container container">

@@ -1,11 +1,16 @@
 import {NavLink} from 'react-router-dom';
-import {AppRoute} from '../../../const';
+import {CityPath} from '../../../types/city';
 
-export default function Tabs(): JSX.Element {
+type TabsProps = {
+  citiesWithPath: CityPath[];
+}
+
+export default function Tabs({ citiesWithPath }: TabsProps): JSX.Element {
   type getClassesProps = {
     isActive: boolean;
   }
 
+  // Активность элемента определяется по ссылке в пропсе "to"
   const getClasses = ({ isActive }: getClassesProps) => isActive
     ? 'locations__item-link tabs__item tabs__item--active'
     : 'locations__item-link tabs__item';
@@ -14,54 +19,16 @@ export default function Tabs(): JSX.Element {
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          <li className="locations__item">
-            <NavLink
-              to={AppRoute.Login}
-              className={getClasses}
-            >
-              <span>Paris</span>
-            </NavLink>
-          </li>
-          <li className="locations__item">
-            <NavLink
-              to={AppRoute.Login}
-              className={getClasses}
-            >
-              <span>Cologne</span>
-            </NavLink>
-          </li>
-          <li className="locations__item">
-            <NavLink
-              to={AppRoute.Login}
-              className={getClasses}
-            >
-              <span>Brussels</span>
-            </NavLink>
-          </li>
-          <li className="locations__item">
-            <NavLink
-              to={AppRoute.Root}
-              className={getClasses}
-            >
-              <span>Amsterdam</span>
-            </NavLink>
-          </li>
-          <li className="locations__item">
-            <NavLink
-              to={AppRoute.Login}
-              className={getClasses}
-            >
-              <span>Hamburg</span>
-            </NavLink>
-          </li>
-          <li className="locations__item">
-            <NavLink
-              to={AppRoute.Login}
-              className={getClasses}
-            >
-              <span>Dusseldorf</span>
-            </NavLink>
-          </li>
+          {citiesWithPath.map((item) => (
+            <li className="locations__item" key={item.name}>
+              <NavLink
+                to={item.path}
+                className={getClasses}
+              >
+                <span>{item.name}</span>
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </section>
     </div>
