@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offer';
 import MainContainer from '../../components/common/main-container/main-container';
 import OfferList from '../../components/catalog/offer-list/offer-list';
-import {getFavoritesByLocation} from "../../utils/utils";
+import {getFavoritesByLocation} from '../../utils/utils';
 
 type FavoritesPagePops = {
   offers: Offer[];

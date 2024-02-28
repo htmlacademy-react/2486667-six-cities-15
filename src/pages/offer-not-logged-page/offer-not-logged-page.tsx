@@ -42,7 +42,7 @@ export default function OfferNotLoggedPage({ offers }: OfferNotLoggedPageProps):
             <OfferMap />
           </section>}
 
-        <OfferOtherPlaces />
+        <OfferOtherPlaces offers={offers} />
       </MainContainer>
     </Container>
   );

@@ -42,7 +42,7 @@ export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
             <OfferMap />
           </section>}
 
-        <OfferOtherPlaces />
+        <OfferOtherPlaces offers={offers} />
       </MainContainer>
     </Container>
   );

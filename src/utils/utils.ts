@@ -1,4 +1,4 @@
-import {Offer} from "../types/offer";
+import {Offer} from '../types/offer';
 
 export function getFavoritesByLocation(offers: Offer[]): {[key: string]: Offer[]} {
   return offers.reduce<{[key: string]: Offer[]}>((acc, current) => {

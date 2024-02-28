@@ -1,5 +1,6 @@
 import {Offer} from '../../../types/offer';
-import {getRatingWidth} from "../../../utils/utils";
+import {getRatingWidth} from '../../../utils/utils';
+import OfferBookmark from '../offer-bookmark/offer-bookmark';
 
 type OfferDescriptionProps = {
   offer: Offer;
@@ -16,12 +17,7 @@ export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.E
         <h1 className="offer__name">
           {offer.title}
         </h1>
-        <button className="offer__bookmark-button button" type="button">
-          <svg className="offer__bookmark-icon" width="31" height="33">
-            <use xlinkHref="#icon-bookmark"></use>
-          </svg>
-          <span className="visually-hidden">To bookmarks</span>
-        </button>
+        <OfferBookmark isFavorite={offer.isFavorite} block='offer' />
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
