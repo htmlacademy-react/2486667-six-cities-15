@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom';
 import {Offer} from '../../../types/offer';
 import {AppRoute} from '../../../const';
 import {clsx} from 'clsx';
+import {getRatingWidth} from "../../../utils/utils";
 
 type CardProps = {
   offer: Offer;
@@ -51,7 +52,7 @@ export default function OfferCard({ offer, block, handleMouseOver }: CardProps):
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${((offer.rating / 5) * 100).toFixed(1) }%`}}></span>
+            <span style={{width: getRatingWidth(offer.rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

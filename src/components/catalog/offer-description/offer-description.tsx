@@ -1,4 +1,5 @@
 import {Offer} from '../../../types/offer';
+import {getRatingWidth} from "../../../utils/utils";
 
 type OfferDescriptionProps = {
   offer: Offer;
@@ -24,7 +25,7 @@ export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.E
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
-          <span style={{width: `${((offer.rating / 5) * 100).toFixed(1) }%`}}></span>
+          <span style={{width: getRatingWidth(offer.rating)}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
         <span className="offer__rating-value rating__value">{offer.rating}</span>

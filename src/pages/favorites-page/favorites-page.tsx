@@ -6,24 +6,10 @@ import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offer';
 import MainContainer from '../../components/common/main-container/main-container';
 import OfferList from '../../components/catalog/offer-list/offer-list';
+import {getFavoritesByLocation} from "../../utils/utils";
 
 type FavoritesPagePops = {
   offers: Offer[];
-}
-
-function getFavoritesByLocation(offers: Offer[]): {[key: string]: Offer[]} {
-  return offers.reduce<{[key: string]: Offer[]}>((acc, current) => {
-    const location = current.city.name;
-
-    if (current.isFavorite) {
-      if (!(location in acc)) {
-        acc[location] = [];
-      }
-      acc[location].push(current);
-    }
-
-    return acc;
-  }, {});
 }
 
 export default function FavoritesPage({ offers }: FavoritesPagePops): JSX.Element {
