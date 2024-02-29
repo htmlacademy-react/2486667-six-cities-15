@@ -1,4 +1,4 @@
-import {Navigate, useLocation} from 'react-router-dom';
+import {Navigate/*, useLocation*/} from 'react-router-dom';
 import {AppRoute, AuthStatus} from '../../../const';
 import {setAuthStatus} from '../../../utils/common';
 //import {Location} from '@remix-run/router/history';
@@ -8,9 +8,9 @@ type ProtectedRouteProps = {
   children: JSX.Element;
 }
 
-type FromState = {
+/*type FromState = {
   from?: Location;
-}
+}*/
 
 export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteProps): JSX.Element {
   //const location = useLocation() as Location<FromState>;
