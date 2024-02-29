@@ -24,7 +24,7 @@ export default function MainPage({ offers, cities }: MainPageProps): JSX.Element
 
   useEffect(() => {
     const name = capitalizeU(pathname === '/' ? 'amsterdam' : pathname.slice(1));
-    const city = cities.find((item) => item.name === name);
+    const city = cities.find((item) => item.name === name) as City;
 
     setCurrentCity(city);
   }, [pathname, cities]); // cities added for lint

@@ -14,23 +14,27 @@ export default function FavoritesList({ favorites, cities }: FavoritesListProps)
       <h1 className="favorites__title">Saved listing</h1>
 
       <ul className="favorites__list">
-        {favorites && Object.entries(favorites).map(([cityName, groupedFavorites]) => (
-          <li key={cityName} className="favorites__locations-items">
-            <div className="favorites__locations locations locations--current">
-              <div className="locations__item">
-                <Link className="locations__item-link" to={cities.find((item) => (item.name === cityName)).path}>
-                  <span>{cityName}</span>
-                </Link>
+        {favorites && Object.entries(favorites).map(([cityName, groupedFavorites]) => {
+          const path: string = cities.find((item) => (item.name === cityName)).path;
+
+          return (
+            <li key={cityName} className="favorites__locations-items">
+              <div className="favorites__locations locations locations--current">
+                <div className="locations__item">
+                  <Link className="locations__item-link" to={path}>
+                    <span>{cityName}</span>
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="favorites__places">
-              {groupedFavorites &&
-                groupedFavorites.map((offer) => (
-                  <OfferCard key={offer.id} offer={offer} block='favorites' />
-                ))}
-            </div>
-          </li>
-        ))}
+              <div className="favorites__places">
+                {groupedFavorites &&
+                  groupedFavorites.map((offer) => (
+                    <OfferCard key={offer.id} offer={offer} block='favorites' />
+                  ))}
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

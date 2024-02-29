@@ -19,16 +19,20 @@ export default function Tabs({ cities }: TabsProps): JSX.Element {
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {cities.map((item) => (
-            <li className="locations__item" key={item.name}>
-              <NavLink
-                to={item.path}
-                className={getClasses}
-              >
-                <span>{item.name}</span>
-              </NavLink>
-            </li>
-          ))}
+          {cities.map((item) => {
+            const path: string = item.path || '';
+
+            return (
+              <li className="locations__item" key={item.name}>
+                <NavLink
+                  to={path}
+                  className={getClasses}
+                >
+                  <span>{item.name}</span>
+                </NavLink>
+              </li>
+            );
+          })}
         </ul>
       </section>
     </div>
