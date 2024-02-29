@@ -9,7 +9,7 @@ export default function OfferReviewForm({ isAuth }: OfferReviewFormProps): JSX.E
     'review': '',
   });
 
-  const handleFieldChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>): void => {
+  const fieldChangeHandler = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>): void => {
     const { name, value } = event.target;
     setFormData({...formData, [name]: value});
   };
@@ -51,7 +51,7 @@ export default function OfferReviewForm({ isAuth }: OfferReviewFormProps): JSX.E
                         value={n}
                         id={`${n}-stars`}
                         type="radio"
-                        onChange={handleFieldChange}
+                        onChange={fieldChangeHandler}
                         checked={Number(formData.rating) === n}
                       />
                       <label htmlFor={`${n}-stars`} className="reviews__rating-label form__rating-label" title={title}>
@@ -71,7 +71,7 @@ export default function OfferReviewForm({ isAuth }: OfferReviewFormProps): JSX.E
             id="review"
             name="review"
             placeholder="Tell how was your stay, what you like and what can be improved"
-            onChange={handleFieldChange}
+            onChange={fieldChangeHandler}
             value={formData.review}
           >
           </textarea>

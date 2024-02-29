@@ -29,7 +29,7 @@ export default function MainPage({ offers, cities }: MainPageProps): JSX.Element
     setCurrentCity(city);
   }, [pathname, cities]); // cities added for lint
 
-  const handleMouseOver = (id: string) => {
+  const mouseOverHandler = (id: string) => {
     setActiveCardId(id);
   };
 
@@ -45,7 +45,7 @@ export default function MainPage({ offers, cities }: MainPageProps): JSX.Element
 
         <div className="cities">
           {currentOffers && currentOffers.length ?
-            <OfferList offers={currentOffers} block='cities' handleMouseOver={handleMouseOver} /> :
+            <OfferList offers={currentOffers} block='cities' mouseOverHandler={mouseOverHandler} /> :
             <OfferListEmpty currentCity={currentCity} />}
         </div>
       </MainContainer>
