@@ -194,7 +194,7 @@ export const Offers: Offer[] = [
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
     isPremium: false,
-    isFavorite: true,
+    isFavorite: false,
     rating: 2.8,
     bedrooms: 3,
     maxAdults: 10
@@ -245,7 +245,7 @@ export const Offers: Offer[] = [
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
     isPremium: false,
-    isFavorite: true,
+    isFavorite: false,
     rating: 2.8,
     bedrooms: 3,
     maxAdults: 10
@@ -295,7 +295,7 @@ export const Offers: Offer[] = [
       name: 'Angelina',
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
-    isPremium: false,
+    isPremium: true,
     isFavorite: true,
     rating: 2.8,
     bedrooms: 3,
@@ -347,7 +347,7 @@ export const Offers: Offer[] = [
       avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
     },
     isPremium: false,
-    isFavorite: true,
+    isFavorite: false,
     rating: 2.8,
     bedrooms: 3,
     maxAdults: 10

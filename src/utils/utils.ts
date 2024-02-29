@@ -1,7 +1,8 @@
 import {Offer} from '../types/offer';
 import {City} from '../types/city';
+import {Favorites} from '../types/favorites';
 
-export function getFavoritesByLocation(offers: Offer[]): {[key: string]: Offer[]} {
+export function getFavoritesByLocation(offers: Offer[]): Favorites {
   return offers.reduce<{[key: string]: Offer[]}>((acc, current) => {
     const location = current.city.name;
 
