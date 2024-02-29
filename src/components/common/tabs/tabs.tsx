@@ -5,11 +5,11 @@ type TabsProps = {
   citiesWithPath: CityPath[];
 }
 
-export default function Tabs({ citiesWithPath }: TabsProps): JSX.Element {
-  type getClassesProps = {
-    isActive: boolean;
-  }
+type getClassesProps = {
+  isActive: boolean;
+}
 
+export default function Tabs({ citiesWithPath }: TabsProps): JSX.Element {
   // Активность элемента определяется по ссылке в пропсе "to"
   const getClasses = ({ isActive }: getClassesProps) => isActive
     ? 'locations__item-link tabs__item tabs__item--active'

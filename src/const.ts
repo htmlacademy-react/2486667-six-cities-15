@@ -2,6 +2,11 @@ import {City} from './types/city';
 
 export enum AppRoute {
   Root = '/',
+  RootParis = 'paris',
+  RootCologne = 'cologne',
+  RootBrussels = 'brussels',
+  RootHamburg = 'hamburg',
+  RootDusseldorf = 'dusseldorf',
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer',

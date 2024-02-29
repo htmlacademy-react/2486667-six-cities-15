@@ -29,3 +29,7 @@ export const getCities = (offers: Offer[]): City[] => {
     ))
   );
 };
+
+export function capitalizeU(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

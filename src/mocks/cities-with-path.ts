@@ -3,7 +3,7 @@ import {CityPath} from '../types/city';
 export const CitiesWithPath: CityPath[] = [
   {
     'name': 'Paris',
-    'path': '/Paris'
+    'path': '/paris'
   },
   {
     'name': 'Amsterdam',
@@ -11,18 +11,18 @@ export const CitiesWithPath: CityPath[] = [
   },
   {
     'name': 'Cologne',
-    'path': '/Cologne'
+    'path': '/cologne'
   },
   {
     'name': 'Brussels',
-    'path': '/Brussels'
+    'path': '/brussels'
   },
   {
     'name': 'Hamburg',
-    'path': '/Hamburg'
+    'path': '/hamburg'
   },
   {
     'name': 'Dusseldorf',
-    'path': '/Dusseldorf'
+    'path': '/dusseldorf'
   }
 ];

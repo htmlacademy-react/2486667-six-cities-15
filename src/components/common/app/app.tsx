@@ -21,7 +21,28 @@ export default function App({ offers, cities, citiesWithPath }: AppProps): JSX.E
       <Route
         path={AppRoute.Root}
         element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
-      />
+      >
+        <Route
+          path={AppRoute.RootParis}
+          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+        />
+        <Route
+          path={AppRoute.RootCologne}
+          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+        />
+        <Route
+          path={AppRoute.RootBrussels}
+          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+        />
+        <Route
+          path={AppRoute.RootHamburg}
+          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+        />
+        <Route
+          path={AppRoute.RootDusseldorf}
+          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+        />
+      </Route>
       <Route
         path={AppRoute.Login}
         element={<LoginPage />}
