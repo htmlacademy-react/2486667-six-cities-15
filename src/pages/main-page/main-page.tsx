@@ -1,59 +1,54 @@
-import Card from '../../components/catalog/card/card';
-import Container from '../../components/common/container/container';
 import Header from '../../components/common/header/header';
-import ExtraContainer from '../../components/common/extra-container/extra-container';
+import Container from '../../components/common/container/container';
+import {Offer} from '../../types/offer';
+import OfferList from '../../components/catalog/offer-list/offer-list';
+import MainContainer from '../../components/common/main-container/main-container';
+import {useEffect, useState} from 'react';
 import Tabs from '../../components/common/tabs/tabs';
+import {City} from '../../types/city';
+import {DEFAULT_CITY} from '../../const';
+import OfferListEmpty from '../../components/catalog/offer-list-empty/offer-list-empty';
+import {useLocation} from 'react-router-dom';
+import {capitalizeU} from '../../utils/common';
 
 type MainPageProps = {
-  cards: string[];
+  offers: Offer[];
+  cities: City[];
 }
 
-export default function MainPage({ cards }: MainPageProps): JSX.Element {
+export default function MainPage({ offers, cities }: MainPageProps): JSX.Element {
+  const {pathname} = useLocation();
+  const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
+  const [activeCardId, setActiveCardId] = useState<Offer['id']>('');
+  const currentOffers = currentCity && offers.filter((offer) => offer.city.name === currentCity.name);
+
+  useEffect(() => {
+    const name = capitalizeU(pathname === '/' ? 'amsterdam' : pathname.slice(1));
+    const city = cities.find((item) => item.name === name) as City;
+
+    setCurrentCity(city);
+  }, [pathname, cities]); // cities added for lint
+
+  const mouseOverHandler = (id: string) => {
+    setActiveCardId(id);
+  };
+
   return (
-    <ExtraContainer extraClass="page--gray page--main">
+    <Container extraClass="page--gray page--main">
       <Header />
-      <Container extraClass="page__main--index">
+      <MainContainer extraClass="page__main--index">
         <h1 className="visually-hidden">Cities</h1>
 
-        <Tabs />
+        <Tabs cities={cities} />
+
+        activeCardId = {activeCardId} {/*Temporary for lint*/}
 
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{cards.length} places to stay in Amsterdam</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
-              <div className="cities__places-list places__list tabs__content">
-
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-
-              </div>
-            </section>
-
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
-          </div>
+          {currentOffers && currentOffers.length ?
+            <OfferList offers={currentOffers} block='cities' mouseOverHandler={mouseOverHandler} /> :
+            <OfferListEmpty currentCity={currentCity} />}
         </div>
-      </Container>
-    </ExtraContainer>
+      </MainContainer>
+    </Container>
   );
 }

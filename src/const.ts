@@ -1,5 +1,12 @@
+import {City} from './types/city';
+
 export enum AppRoute {
   Root = '/',
+  RootParis = 'paris',
+  RootCologne = 'cologne',
+  RootBrussels = 'brussels',
+  RootHamburg = 'hamburg',
+  RootDusseldorf = 'dusseldorf',
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer',
@@ -11,3 +18,12 @@ export enum AuthStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export const DEFAULT_CITY: City = {
+  name: 'Amsterdam',
+  location: {
+    latitude: 48.85661,
+    longitude: 2.351499,
+    zoom: 13
+  }
+};

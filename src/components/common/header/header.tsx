@@ -1,20 +1,23 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../../const';
+import HeaderLogo from '../header-logo/header-logo';
 
 export default function Header(): JSX.Element {
+  const logout = () => {
+    // TODO: установить статус NoAuth
+  };
+
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Link to={AppRoute.Root} className="header__logo-link header__logo-link--active">
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-            </Link>
+            <HeaderLogo />
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <Link className="header__nav-link header__nav-link--profile" to="2486667-six-cities-15/src/components/common/header#">
+                <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
                   <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
@@ -22,7 +25,7 @@ export default function Header(): JSX.Element {
                 </Link>
               </li>
               <li className="header__nav-item">
-                <Link className="header__nav-link" to="2486667-six-cities-15/src/components/common/header#">
+                <Link className="header__nav-link" to="#" onClick={logout}>
                   <span className="header__signout">Sign out</span>
                 </Link>
               </li>

@@ -1,15 +1,15 @@
-import { ReactNode } from 'react';
+import {ReactNode} from 'react';
 import {clsx} from 'clsx';
 
-type ContainerProps = {
+type ExtraContainerProps = {
   children: ReactNode;
   extraClass?: string;
 }
 
-export default function Container({ children, extraClass }: ContainerProps): JSX.Element {
+export default function Container({ children, extraClass }: ExtraContainerProps): JSX.Element {
   return (
-    <main className={clsx('page__main', extraClass !== undefined && extraClass)}>
+    <div className={clsx('page', extraClass ? extraClass : '')}>
       {children}
-    </main>
+    </div>
   );
 }
