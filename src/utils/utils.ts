@@ -1,6 +1,5 @@
 import {Offer} from '../types/offer';
-import {AppRoute} from '../const';
-import {CityPath} from '../types/city';
+import {City} from '../types/city';
 
 export function getFavoritesByLocation(offers: Offer[]): {[key: string]: Offer[]} {
   return offers.reduce<{[key: string]: Offer[]}>((acc, current) => {
@@ -21,13 +20,12 @@ export function getRatingWidth(rating: number): string {
   return `${((rating / 5) * 100).toFixed(1) }%`;
 }
 
-/* Получение массива с объектами {name: 'название города', path: 'путь к странице'} */
-export const getCitiesWithPath = (offers: Offer[]): CityPath[] => {
-  const cities = offers.map((offer) => offer.city.name);
-  const uniqCities = [...new Set(cities)];
+export const getCities = (offers: Offer[]): City[] => {
+  const cities = offers.map((offer) => offer.city);
 
-  return uniqCities.map((city) => ({
-    name: city,
-    path: city === 'Amsterdam' ? AppRoute.Root : `${AppRoute.Root}${city}`,
-  }));
+  return cities.filter((value, index, self) =>
+    index === self.findIndex((t) => (
+      t.name === value.name && t.name === value.name
+    ))
+  );
 };

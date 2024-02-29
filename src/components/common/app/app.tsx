@@ -7,17 +7,20 @@ import {AppRoute, AuthStatus} from '../../../const';
 import OfferPage from '../../../pages/offer-page/offer-page';
 import {Offer} from '../../../types/offer';
 import ProtectedRoute from '../protected-route/protected-route';
+import {City, CityPath} from '../../../types/city';
 
 type AppProps = {
   offers: Offer[];
+  cities: City[];
+  citiesWithPath: CityPath[];
 }
 
-export default function App({ offers }: AppProps): JSX.Element {
+export default function App({ offers, cities, citiesWithPath }: AppProps): JSX.Element {
   return (
     <Routes>
       <Route
         path={AppRoute.Root}
-        element={<MainPage offers={offers} />}
+        element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
       />
       <Route
         path={AppRoute.Login}
