@@ -7,12 +7,14 @@ import MainContainer from '../../components/common/main-container/main-container
 import {getFavoritesByLocation} from '../../utils/utils';
 import FavoritesList from '../../components/catalog/favorites-list/favorites-list';
 import FavoritesListEmpty from '../../components/catalog/favorites-list-empty/favorites-list-empty';
+import {City} from '../../types/city';
 
 type FavoritesPagePops = {
   offers: Offer[];
+  cities: City[];
 }
 
-export default function FavoritesPage({ offers }: FavoritesPagePops): JSX.Element {
+export default function FavoritesPage({ offers, cities }: FavoritesPagePops): JSX.Element {
   const favorites = getFavoritesByLocation(offers);
 
   return (
@@ -24,7 +26,7 @@ export default function FavoritesPage({ offers }: FavoritesPagePops): JSX.Elemen
       <MainContainer extraClass="page__main--favorites">
         <div className="page__favorites-container container">
           {Object.keys(favorites).length ?
-            <FavoritesList favorites={favorites} /> :
+            <FavoritesList favorites={favorites} cities={cities} /> :
             <FavoritesListEmpty />}
         </div>
       </MainContainer>

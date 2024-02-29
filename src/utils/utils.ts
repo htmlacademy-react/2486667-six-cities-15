@@ -3,7 +3,7 @@ import {City} from '../types/city';
 import {Favorites} from '../types/favorites';
 
 export function getFavoritesByLocation(offers: Offer[]): Favorites {
-  return offers.reduce<{[key: string]: Offer[]}>((acc, current) => {
+  return offers.reduce<Favorites>((acc, current) => {
     const location = current.city.name;
 
     if (current.isFavorite) {

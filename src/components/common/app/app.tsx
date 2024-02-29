@@ -48,7 +48,7 @@ export default function App({ offers, cities }: AppProps): JSX.Element {
       />
       <Route
         path={AppRoute.Favorites}
-        element={<ProtectedRoute authStatus={AuthStatus.NoAuth}><FavoritesPage offers={offers} /></ProtectedRoute>}
+        element={<ProtectedRoute authStatus={AuthStatus.NoAuth}><FavoritesPage offers={offers} cities={cities} /></ProtectedRoute>}
       />
       <Route
         path={`${AppRoute.Offer}/:id`}
