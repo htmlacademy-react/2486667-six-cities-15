@@ -7,40 +7,39 @@ import {AppRoute, AuthStatus} from '../../../const';
 import OfferPage from '../../../pages/offer-page/offer-page';
 import {Offer} from '../../../types/offer';
 import ProtectedRoute from '../protected-route/protected-route';
-import {City, CityPath} from '../../../types/city';
+import {City} from '../../../types/city';
 
 type AppProps = {
   offers: Offer[];
   cities: City[];
-  citiesWithPath: CityPath[];
 }
 
-export default function App({ offers, cities, citiesWithPath }: AppProps): JSX.Element {
+export default function App({ offers, cities }: AppProps): JSX.Element {
   return (
     <Routes>
       <Route
         path={AppRoute.Root}
-        element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+        element={<MainPage offers={offers} cities={cities} />}
       >
         <Route
           path={AppRoute.RootParis}
-          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+          element={<MainPage offers={offers} cities={cities} />}
         />
         <Route
           path={AppRoute.RootCologne}
-          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+          element={<MainPage offers={offers} cities={cities} />}
         />
         <Route
           path={AppRoute.RootBrussels}
-          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+          element={<MainPage offers={offers} cities={cities} />}
         />
         <Route
           path={AppRoute.RootHamburg}
-          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+          element={<MainPage offers={offers} cities={cities} />}
         />
         <Route
           path={AppRoute.RootDusseldorf}
-          element={<MainPage offers={offers} cities={cities} citiesWithPath={citiesWithPath} />}
+          element={<MainPage offers={offers} cities={cities} />}
         />
       </Route>
       <Route
@@ -49,7 +48,7 @@ export default function App({ offers, cities, citiesWithPath }: AppProps): JSX.E
       />
       <Route
         path={AppRoute.Favorites}
-        element={<ProtectedRoute authStatus={AuthStatus.Auth}><FavoritesPage offers={offers} /></ProtectedRoute>}
+        element={<ProtectedRoute authStatus={AuthStatus.NoAuth}><FavoritesPage offers={offers} /></ProtectedRoute>}
       />
       <Route
         path={`${AppRoute.Offer}/:id`}
