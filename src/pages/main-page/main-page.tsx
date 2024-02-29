@@ -9,7 +9,7 @@ import {City} from '../../types/city';
 import {DEFAULT_CITY} from '../../const';
 import OfferListEmpty from '../../components/catalog/offer-list-empty/offer-list-empty';
 import {useLocation} from 'react-router-dom';
-import {capitalizeU} from '../../utils/utils';
+import {capitalizeU} from '../../utils/common';
 
 type MainPageProps = {
   offers: Offer[];

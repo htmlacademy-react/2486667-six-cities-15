@@ -3,6 +3,10 @@ import {AppRoute} from '../../../const';
 import HeaderLogo from '../header-logo/header-logo';
 
 export default function Header(): JSX.Element {
+  const logout = () => {
+    // TODO: установить статус NoAuth
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -21,7 +25,7 @@ export default function Header(): JSX.Element {
                 </Link>
               </li>
               <li className="header__nav-item">
-                <Link className="header__nav-link" to={AppRoute.Login}>
+                <Link className="header__nav-link" to="#" onClick={logout}>
                   <span className="header__signout">Sign out</span>
                 </Link>
               </li>

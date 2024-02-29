@@ -1,6 +1,7 @@
 import {Offer} from '../types/offer';
 import {City} from '../types/city';
 import {Favorites} from '../types/favorites';
+import {AuthStatus} from '../const';
 
 export function getFavoritesByLocation(offers: Offer[]): Favorites {
   return offers.reduce<Favorites>((acc, current) => {
@@ -33,4 +34,8 @@ export const getCities = (offers: Offer[]): City[] => {
 
 export function capitalizeU(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function setAuthStatus(status: AuthStatus): boolean {
+  return status === AuthStatus.Auth;
 }

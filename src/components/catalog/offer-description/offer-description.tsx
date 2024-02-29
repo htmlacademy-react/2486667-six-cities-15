@@ -1,5 +1,5 @@
 import {Offer} from '../../../types/offer';
-import {getRatingWidth} from '../../../utils/utils';
+import {getRatingWidth} from '../../../utils/common';
 import OfferBookmark from '../offer-bookmark/offer-bookmark';
 
 type OfferDescriptionProps = {

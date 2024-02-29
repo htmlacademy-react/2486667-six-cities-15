@@ -3,7 +3,7 @@ import MainPage from '../../../pages/main-page/main-page';
 import LoginPage from '../../../pages/login-page/login-page';
 import FavoritesPage from '../../../pages/favorites-page/favorites-page';
 import NotFoundPage from '../../../pages/not-found-page/not-found-page';
-import {AppRoute, AuthStatus} from '../../../const';
+import {AppRoute} from '../../../const';
 import OfferPage from '../../../pages/offer-page/offer-page';
 import {Offer} from '../../../types/offer';
 import ProtectedRoute from '../protected-route/protected-route';
@@ -44,11 +44,11 @@ export default function App({ offers, cities }: AppProps): JSX.Element {
       </Route>
       <Route
         path={AppRoute.Login}
-        element={<LoginPage />}
+        element={<ProtectedRoute onlyUnAuth><LoginPage /></ProtectedRoute>}
       />
       <Route
         path={AppRoute.Favorites}
-        element={<ProtectedRoute authStatus={AuthStatus.NoAuth}><FavoritesPage offers={offers} cities={cities} /></ProtectedRoute>}
+        element={<ProtectedRoute><FavoritesPage offers={offers} cities={cities} /></ProtectedRoute>}
       />
       <Route
         path={`${AppRoute.Offer}/:id`}

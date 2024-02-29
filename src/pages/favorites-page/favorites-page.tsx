@@ -4,7 +4,7 @@ import Header from '../../components/common/header/header';
 import {Helmet} from 'react-helmet-async';
 import {Offer} from '../../types/offer';
 import MainContainer from '../../components/common/main-container/main-container';
-import {getFavoritesByLocation} from '../../utils/utils';
+import {getFavoritesByLocation} from '../../utils/common';
 import FavoritesList from '../../components/catalog/favorites-list/favorites-list';
 import FavoritesListEmpty from '../../components/catalog/favorites-list-empty/favorites-list-empty';
 import {City} from '../../types/city';
