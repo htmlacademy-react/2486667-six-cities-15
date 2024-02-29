@@ -15,8 +15,8 @@ export default function FavoritesList({ favorites, cities }: FavoritesListProps)
 
       <ul className="favorites__list">
         {favorites && Object.entries(favorites).map(([cityName, groupedFavorites]) => {
-          const city = cities.find((item) => (item.name === cityName));
-          const cityPath = city.path || '';
+          const city = cities.find((item: City) => (item.name === cityName));
+          const cityPath = city?.path;
 
           return (
             <li key={cityName} className="favorites__locations-items">
