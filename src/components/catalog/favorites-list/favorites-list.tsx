@@ -15,13 +15,14 @@ export default function FavoritesList({ favorites, cities }: FavoritesListProps)
 
       <ul className="favorites__list">
         {favorites && Object.entries(favorites).map(([cityName, groupedFavorites]) => {
-          const path: string = cities?.find((item) => (item.name === cityName)).path || '';
+          const city = cities.find((item) => (item.name === cityName));
+          const cityPath = city.path || '';
 
           return (
             <li key={cityName} className="favorites__locations-items">
               <div className="favorites__locations locations locations--current">
                 <div className="locations__item">
-                  <Link className="locations__item-link" to={path}>
+                  <Link className="locations__item-link" to={cityPath}>
                     <span>{cityName}</span>
                   </Link>
                 </div>
