@@ -8,7 +8,7 @@ type ExtraContainerProps = {
 
 export default function Container({ children, extraClass }: ExtraContainerProps): JSX.Element {
   return (
-    <div className={clsx('page', extraClass !== undefined && extraClass)}>
+    <div className={clsx('page', extraClass ? extraClass : '')}>
       {children}
     </div>
   );
