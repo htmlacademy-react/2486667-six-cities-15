@@ -18,18 +18,20 @@ export default function NotFoundPage(): JSX.Element {
       <Header />
 
       <MainContainer extraClass="page__main--index">
-        <div className="container">
-          <h1 className="login__title">404. Страница не найдена</h1>
+        <div className="cities">
+          <div className="container" style={{paddingTop: '100px'}}>
+            <h1 className="login__title">404. Страница не найдена</h1>
 
-          <p style={{position: 'relative', zIndex: '1', wordWrap: 'break-word'}}>
-            Страница по адресу <b>{location.pathname}</b> не найдена.
-          </p>
+            <p style={{position: 'relative', zIndex: '1', wordWrap: 'break-word'}}>
+              Страница по адресу <b>{location.pathname}</b> не найдена.
+            </p>
 
-          <br/>
+            <br/>
 
-          <Link to={AppRoute.Root} style={{color: '#4481c3'}}>
-            Перейти на главную
-          </Link>
+            <Link to={AppRoute.Root} style={{color: '#4481c3'}}>
+              Перейти на главную
+            </Link>
+          </div>
         </div>
       </MainContainer>
 
