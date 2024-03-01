@@ -1,5 +1,6 @@
 import {Offer} from '../../../types/offer';
 import OfferCard from '../offer-card/offer-card';
+import OffersMap from '../offers-map/offers-map';
 
 type OfferListProps = {
   offers: Offer[];
@@ -38,7 +39,7 @@ export default function OfferList({ offers, block, mouseOverHandler }: OfferList
       </section>
 
       <div className="cities__right-section">
-        <section className="cities__map map"></section>
+        <OffersMap offers={offers} />
       </div>
     </div>
   );

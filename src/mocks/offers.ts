@@ -67,10 +67,10 @@ export const OFFERS: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/5.jpg'
     ],
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
         zoom: 13
       }
     },
@@ -117,8 +117,8 @@ export const OFFERS: Offer[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.3609553943508,
+        longitude: 4.85309666406198,
         zoom: 13
       }
     },
@@ -164,10 +164,10 @@ export const OFFERS: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/12.jpg'
     ],
     city: {
-      name: 'Cologne',
+      name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
         zoom: 13
       }
     },
@@ -268,8 +268,8 @@ export const OFFERS: Offer[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
         zoom: 13
       }
     },
