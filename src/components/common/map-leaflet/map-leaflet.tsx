@@ -1,15 +1,21 @@
-import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {MutableRefObject, useRef} from "react";
+import {RefObject, useRef} from 'react';
+import {City} from '../../../types/city';
+import useMapLeaflet from '../../../hooks/use-map-leaflet/use-map-leaflet';
 
-export default function MapLeaflet() {
-  const mapRef = useRef(null);
+type MapLeafletProps = {
+  city: City;
+}
+
+export default function MapLeaflet({ city }: MapLeafletProps) {
+  const mapRef = useRef(null) as RefObject<HTMLFormElement> | null;
+  const map = useMapLeaflet(mapRef, city);
 
   return (
-    <div
-      style={{height: '400px'}}
+    <section
+      className="cities__map map-leaflet"
       ref={mapRef}
     >
-    </div>
+    </section>
   );
 }
