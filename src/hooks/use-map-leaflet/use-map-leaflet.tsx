@@ -9,7 +9,7 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
   const isRenderedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (mapRef?.current !== null && !isRenderedRef.current) {
+    if (mapRef && mapRef?.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
           lat: city.location.latitude,
