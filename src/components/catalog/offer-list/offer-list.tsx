@@ -13,8 +13,10 @@ export default function OfferList({ offers, block }: OfferListProps): JSX.Elemen
   const [currentPoint, setCurrentPoint] = useState<Location | null>(null);
 
   const mouseOverHandler = (id: string) => {
-    const point = offers && offers.find((offer) => offer.id === id).location;
-    setCurrentPoint(point);
+    if (offers) {
+      const point = offers.find((offer) => offer.id === id).location;
+      setCurrentPoint(point);
+    }
   };
 
   return (
