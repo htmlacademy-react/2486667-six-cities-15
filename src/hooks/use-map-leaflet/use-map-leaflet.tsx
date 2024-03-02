@@ -1,10 +1,12 @@
 import {RefObject, useEffect, useRef, useState} from 'react';
 import leaflet from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import {City} from '../../types/city';
+import {Map} from 'leaflet';
 
 export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null, city: City) {
-  const [map, setMap] = useState(null);
-  const isRenderedRef = useRef(false);
+  const [map, setMap] = useState<Map | null>(null);
+  const isRenderedRef = useRef<boolean>(false);
 
   useEffect(() => {
     if (mapRef?.current !== null && !isRenderedRef.current) {
@@ -14,7 +16,7 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
           lng: city.location.longitude,
         },
         zoom: city.location.zoom,
-      });
+      }) ;
 
       leaflet
         .tileLayer(

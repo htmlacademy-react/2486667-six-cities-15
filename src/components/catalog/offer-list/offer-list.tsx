@@ -1,14 +1,22 @@
 import {Offer} from '../../../types/offer';
 import OfferCard from '../offer-card/offer-card';
 import OffersMap from '../offers-map/offers-map';
+import {useState} from 'react';
+import {Location} from '../../../types/location';
 
 type OfferListProps = {
   offers: Offer[];
   block: string;
-  mouseOverHandler?: (id: Offer['id']) => void;
 }
 
-export default function OfferList({ offers, block, mouseOverHandler }: OfferListProps): JSX.Element {
+export default function OfferList({ offers, block }: OfferListProps): JSX.Element {
+  const [currentPoint, setCurrentPoint] = useState<Location | null>(null);
+
+  const mouseOverHandler = (id: string) => {
+    const point = offers.find((offer) => offer.id === id).location;
+    setCurrentPoint(point);
+  };
+
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -39,7 +47,7 @@ export default function OfferList({ offers, block, mouseOverHandler }: OfferList
       </section>
 
       <div className="cities__right-section">
-        <OffersMap offers={offers} />
+        <OffersMap offers={offers} currentPoint={currentPoint} />
       </div>
     </div>
   );
