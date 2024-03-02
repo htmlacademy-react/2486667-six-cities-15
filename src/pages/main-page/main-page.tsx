@@ -19,7 +19,7 @@ type MainPageProps = {
 export default function MainPage({ offers, cities }: MainPageProps): JSX.Element {
   const {pathname} = useLocation();
   const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
-  const currentOffers = currentCity && offers.filter((offer) => offer.city.name === currentCity.name);
+  const currentOffers: Offer[] = currentCity && offers.filter((offer) => offer.city.name === currentCity.name);
 
   useEffect(() => {
     const name = capitalizeU(pathname === '/' ? 'amsterdam' : pathname.slice(1));
