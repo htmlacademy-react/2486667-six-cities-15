@@ -23,7 +23,7 @@ export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
   const offer: Offer | undefined = offers.find((item) => item.id === id);
 
   if (!offer) {
-    return <NotFoundPage />;
+    return <NotFoundPage type='offer' />;
   }
 
   return (
