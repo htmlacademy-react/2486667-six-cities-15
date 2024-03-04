@@ -12,7 +12,7 @@ type OfferListProps = {
 export default function OfferList({ offers, block }: OfferListProps): JSX.Element {
   const [activePoint, setActivePoint] = useState<Location | null>(null);
 
-  const mouseEnterHandler = (id: Offer['id'] | null) => {
+  const hoverHandler = (id: Offer['id'] | null) => {
     const point = offers.find((offer) => offer.id === id)?.location || null;
     setActivePoint(point);
   };
@@ -41,7 +41,7 @@ export default function OfferList({ offers, block }: OfferListProps): JSX.Elemen
 
         <div className="cities__places-list places__list tabs__content">
           {offers && offers.map((offer) => (
-            <OfferCard key={offer.id} offer={offer} block={block} mouseEnterHandler={mouseEnterHandler} />
+            <OfferCard key={offer.id} offer={offer} block={block} hoverHandler={hoverHandler} />
           ))}
         </div>
       </section>
