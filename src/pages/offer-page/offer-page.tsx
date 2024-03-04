@@ -10,12 +10,15 @@ import {useParams} from 'react-router-dom';
 import {Offer} from '../../types/offer';
 import MainContainer from '../../components/common/main-container/main-container';
 import NotFoundPage from '../not-found-page/not-found-page';
+import {setAuthStatus} from '../../utils/common';
+import {AuthStatus} from '../../const';
 
 type OfferPageProps = {
   offers: Offer[];
 }
 
 export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
+  const isAuthenticate = setAuthStatus(AuthStatus.Auth);
   const { id } = useParams();
   const offer: Offer | undefined = offers.find((item) => item.id === id);
 
@@ -40,7 +43,7 @@ export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
               <div className="offer__wrapper">
                 <OfferDescription offer={offer} />
 
-                <OfferReviews isAuth />
+                <OfferReviews isAuth={isAuthenticate} />
               </div>
             </div>
 

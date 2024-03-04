@@ -13,9 +13,11 @@ type CardProps = {
 
 export default function OfferCard({ offer, block, hoverHandler }: CardProps): JSX.Element {
   return (
-    <Link to={`${AppRoute.Offer}/${offer.id}`}>
+    <Link
+      to={`${AppRoute.Offer}/${offer.id}`}
+      className={`${block}__card place-card`}
+    >
       <article
-        className={`${block}__card place-card`}
         onMouseEnter={() => {
           if (hoverHandler) {
             hoverHandler(offer.id);
