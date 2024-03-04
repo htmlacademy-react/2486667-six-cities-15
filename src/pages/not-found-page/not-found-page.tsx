@@ -7,7 +7,7 @@ import MainContainer from '../../components/common/main-container/main-container
 import {Helmet} from 'react-helmet-async';
 
 export default function NotFoundPage(): JSX.Element {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <Container extraClass="page--gray page--main">
@@ -23,7 +23,7 @@ export default function NotFoundPage(): JSX.Element {
             <h1 className="login__title">404. Страница не найдена</h1>
 
             <p style={{position: 'relative', zIndex: '1', wordWrap: 'break-word'}}>
-              Страница по адресу <b>{location.pathname}</b> не найдена.
+              Страница по адресу <b>{pathname}</b> не найдена.
             </p>
 
             <br/>
