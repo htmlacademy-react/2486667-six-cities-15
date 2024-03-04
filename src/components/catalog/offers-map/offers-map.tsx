@@ -5,10 +5,10 @@ import {Location} from '../../../types/location';
 
 type MapProps = {
   offers: Offer[];
-  currentPoint: Location | null;
+  activePoint: Location | null;
 }
 
-export default function OffersMap({ offers, currentPoint }: MapProps) {
+export default function OffersMap({ offers, activePoint }: MapProps) {
   //const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
 
   const points = offers.map((offer) => DEFAULT_CITY ? offer.location : null) as Location[];
@@ -17,7 +17,7 @@ export default function OffersMap({ offers, currentPoint }: MapProps) {
     <MapLeaflet
       city={DEFAULT_CITY}
       points={points}
-      currentPoint={currentPoint}
+      activePoint={activePoint}
       extraClass="cities__map"
     />
   );

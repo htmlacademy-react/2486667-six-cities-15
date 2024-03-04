@@ -9,14 +9,14 @@ import {Map} from 'leaflet';
 type MapLeafletProps = {
   city: City;
   points: Location[];
-  currentPoint: Location | null;
+  activePoint: Location | null;
   extraClass: string;
 }
 
-export default function MapLeaflet({ city, points, currentPoint, extraClass }: MapLeafletProps) {
+export default function MapLeaflet({ city, points, activePoint, extraClass }: MapLeafletProps) {
   const mapRef = useRef(null) as RefObject<HTMLFormElement> | null;
   const map = useMapLeaflet(mapRef, city);
-  useMapLeafletMarkers(map as Map, points, currentPoint as Location);
+  useMapLeafletMarkers(map as Map, points, activePoint as Location);
 
   return (
     <section

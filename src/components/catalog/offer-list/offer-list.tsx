@@ -10,11 +10,11 @@ type OfferListProps = {
 }
 
 export default function OfferList({ offers, block }: OfferListProps): JSX.Element {
-  const [currentPoint, setCurrentPoint] = useState<Location | null>(null);
+  const [activePoint, setActivePoint] = useState<Location | null>(null);
 
   const mouseOverHandler = (id: string) => {
     const point = offers.find((offer) => offer.id === id)?.location || null;
-    setCurrentPoint(point);
+    setActivePoint(point);
   };
 
   return (
@@ -47,7 +47,7 @@ export default function OfferList({ offers, block }: OfferListProps): JSX.Elemen
       </section>
 
       <div className="cities__right-section">
-        <OffersMap offers={offers} currentPoint={currentPoint} />
+        <OffersMap offers={offers} activePoint={activePoint} />
       </div>
     </div>
   );
