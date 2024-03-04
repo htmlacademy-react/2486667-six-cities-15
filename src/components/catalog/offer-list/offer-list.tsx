@@ -12,7 +12,7 @@ type OfferListProps = {
 export default function OfferList({ offers, block }: OfferListProps): JSX.Element {
   const [activePoint, setActivePoint] = useState<Location | null>(null);
 
-  const mouseEnterHandler = (id: string) => {
+  const mouseEnterHandler = (id: Offer['id'] | null) => {
     const point = offers.find((offer) => offer.id === id)?.location || null;
     setActivePoint(point);
   };

@@ -8,14 +8,15 @@ import OfferBookmark from '../offer-bookmark/offer-bookmark';
 type CardProps = {
   offer: Offer;
   block: string;
-  mouseEnterHandler?: (id: Offer['id']) => void;
+  mouseEnterHandler: (id: Offer['id'] | null) => void;
 }
 
 export default function OfferCard({ offer, block, mouseEnterHandler }: CardProps): JSX.Element {
   return (
     <article
       className={`${block}__card place-card`}
-      onMouseEnter={() => mouseEnterHandler?.(offer.id)}
+      onMouseEnter={() => mouseEnterHandler(offer.id)}
+      onMouseLeave={() => mouseEnterHandler(null)}
     >
       {offer.isPremium &&
         <div className="place-card__mark">
