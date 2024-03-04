@@ -16,7 +16,7 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
           lng: city.location.longitude,
         },
         zoom: city.location.zoom,
-      }) ;
+      });
 
       leaflet
         .tileLayer(
