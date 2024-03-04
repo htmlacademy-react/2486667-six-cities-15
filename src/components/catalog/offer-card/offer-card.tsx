@@ -8,12 +8,15 @@ import OfferBookmark from '../offer-bookmark/offer-bookmark';
 type CardProps = {
   offer: Offer;
   block: string;
-  mouseOverHandler?: (id: Offer['id']) => void;
+  mouseEnterHandler?: (id: Offer['id']) => void;
 }
 
-export default function OfferCard({ offer, block, mouseOverHandler }: CardProps): JSX.Element {
+export default function OfferCard({ offer, block, mouseEnterHandler }: CardProps): JSX.Element {
   return (
-    <article className={`${block}__card place-card`} onMouseOver={() => mouseOverHandler?.(offer.id)}>
+    <article
+      className={`${block}__card place-card`}
+      onMouseEnter={() => mouseEnterHandler?.(offer.id)}
+    >
       {offer.isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
