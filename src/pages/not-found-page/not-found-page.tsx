@@ -10,7 +10,7 @@ import {Helmet} from 'react-helmet-async';
 const VARIANTS = {
   page: {text: 'Page'},
   offer: {text: 'Offer'},
-}
+};
 
 type NotFoundPageProps = {
   type: keyof typeof VARIANTS;

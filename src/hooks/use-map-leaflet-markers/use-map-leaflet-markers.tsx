@@ -1,4 +1,4 @@
-import leaflet from 'leaflet';
+import leaflet, {layerGroup} from 'leaflet';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const';
 import {useEffect} from 'react';
 import {Location} from '../../types/location';
@@ -19,6 +19,8 @@ export default function useMapLeafletMarkers(map: Map, points: Location[], curre
 
   useEffect(() => {
     if (map) {
+      const markerLayer = layerGroup().addTo(map);
+
       points.forEach((point) => {
         leaflet
           .marker({
@@ -29,8 +31,12 @@ export default function useMapLeafletMarkers(map: Map, points: Location[], curre
               currentCustomIcon :
               defaultCustomIcon,
           })
-          .addTo(map);
+          .addTo(markerLayer);
       });
+
+      return () => {
+        map.removeLayer(markerLayer);
+      };
     }
   }, [map, points, currentPoint, defaultCustomIcon, currentCustomIcon]);
 }
