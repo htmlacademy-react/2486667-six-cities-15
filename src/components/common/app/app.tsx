@@ -56,7 +56,7 @@ export default function App({ offers, cities }: AppProps): JSX.Element {
       />
       <Route
         path={AppRoute.NotFound}
-        element={<NotFoundPage />}
+        element={<NotFoundPage type='page' />}
       />
     </Routes>
   );

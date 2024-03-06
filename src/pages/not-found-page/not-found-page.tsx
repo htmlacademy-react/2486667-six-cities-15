@@ -6,8 +6,18 @@ import {AppRoute} from '../../const';
 import MainContainer from '../../components/common/main-container/main-container';
 import {Helmet} from 'react-helmet-async';
 
-export default function NotFoundPage(): JSX.Element {
-  const location = useLocation();
+
+const VARIANTS = {
+  page: {text: 'Page'},
+  offer: {text: 'Offer'},
+};
+
+type NotFoundPageProps = {
+  type: keyof typeof VARIANTS;
+}
+
+export default function NotFoundPage({ type }: NotFoundPageProps): JSX.Element {
+  const { pathname } = useLocation();
 
   return (
     <Container extraClass="page--gray page--main">
@@ -20,16 +30,16 @@ export default function NotFoundPage(): JSX.Element {
       <MainContainer extraClass="page__main--index">
         <div className="cities">
           <div className="container" style={{paddingTop: '100px'}}>
-            <h1 className="login__title">404. Страница не найдена</h1>
+            <h1 className="login__title">404. Page not found</h1>
 
             <p style={{position: 'relative', zIndex: '1', wordWrap: 'break-word'}}>
-              Страница по адресу <b>{location.pathname}</b> не найдена.
+              {VARIANTS[type].text} with pathname <b>{pathname}</b> not found.
             </p>
 
             <br/>
 
             <Link to={AppRoute.Root} style={{color: '#4481c3'}}>
-              Перейти на главную
+              Main page
             </Link>
           </div>
         </div>

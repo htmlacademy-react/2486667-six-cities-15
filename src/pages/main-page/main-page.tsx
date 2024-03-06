@@ -19,8 +19,7 @@ type MainPageProps = {
 export default function MainPage({ offers, cities }: MainPageProps): JSX.Element {
   const {pathname} = useLocation();
   const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
-  const [activeCardId, setActiveCardId] = useState<Offer['id']>('');
-  const currentOffers = currentCity && offers.filter((offer) => offer.city.name === currentCity.name);
+  const currentOffers: Offer[] = currentCity && offers.filter((offer) => offer.city.name === currentCity.name);
 
   useEffect(() => {
     const name = capitalizeU(pathname === '/' ? 'amsterdam' : pathname.slice(1));
@@ -28,10 +27,6 @@ export default function MainPage({ offers, cities }: MainPageProps): JSX.Element
 
     setCurrentCity(city);
   }, [pathname, cities]); // cities added for lint
-
-  const mouseOverHandler = (id: string) => {
-    setActiveCardId(id);
-  };
 
   return (
     <Container extraClass="page--gray page--main">
@@ -41,11 +36,9 @@ export default function MainPage({ offers, cities }: MainPageProps): JSX.Element
 
         <Tabs cities={cities} />
 
-        activeCardId = {activeCardId} {/*Temporary for lint*/}
-
         <div className="cities">
           {currentOffers && currentOffers.length ?
-            <OfferList offers={currentOffers} block='cities' mouseOverHandler={mouseOverHandler} /> :
+            <OfferList offers={currentOffers} block='cities' /> :
             <OfferListEmpty currentCity={currentCity} />}
         </div>
       </MainContainer>

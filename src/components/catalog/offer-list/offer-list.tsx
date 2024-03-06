@@ -1,13 +1,22 @@
 import {Offer} from '../../../types/offer';
 import OfferCard from '../offer-card/offer-card';
+import OffersMap from '../offers-map/offers-map';
+import {useState} from 'react';
+import {Location} from '../../../types/location';
 
 type OfferListProps = {
   offers: Offer[];
   block: string;
-  mouseOverHandler?: (id: Offer['id']) => void;
 }
 
-export default function OfferList({ offers, block, mouseOverHandler }: OfferListProps): JSX.Element {
+export default function OfferList({ offers, block }: OfferListProps): JSX.Element {
+  const [activePoint, setActivePoint] = useState<Location | null>(null);
+
+  const hoverHandler = (id: Offer['id'] | null) => {
+    const point = offers.find((offer) => offer.id === id)?.location || null;
+    setActivePoint(point);
+  };
+
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -32,13 +41,13 @@ export default function OfferList({ offers, block, mouseOverHandler }: OfferList
 
         <div className="cities__places-list places__list tabs__content">
           {offers && offers.map((offer) => (
-            <OfferCard key={offer.id} offer={offer} block={block} mouseOverHandler={mouseOverHandler} />
+            <OfferCard key={offer.id} offer={offer} block={block} hoverHandler={hoverHandler} />
           ))}
         </div>
       </section>
 
       <div className="cities__right-section">
-        <section className="cities__map map"></section>
+        <OffersMap offers={offers} activePoint={activePoint} />
       </div>
     </div>
   );
