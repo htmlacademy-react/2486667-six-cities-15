@@ -1,5 +1,5 @@
-import {Fragment, ReactEventHandler, useState} from 'react';
-import {RATING} from './const';
+import { ReactEventHandler, useState} from 'react';
+import RatingStars from '../../common/rating-stars/rating-stars';
 
 type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
@@ -18,22 +18,7 @@ export default function OfferReviewForm(): JSX.Element {
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {RATING.map(({value, title}) => (
-          <Fragment key={value}>
-            <input className="form__rating-input visually-hidden"
-              name="rating"
-              defaultValue={value}
-              id={`${value}-stars`}
-              type="radio"
-              onChange={fieldChangeHandler}
-            />
-            <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
-              <svg className="form__star-image" width="37" height="33">
-                <use xlinkHref="#icon-star"></use>
-              </svg>
-            </label>
-          </Fragment>
-        ))}
+        <RatingStars fieldChangeHandler={fieldChangeHandler}/>
       </div>
 
       <textarea
