@@ -1,5 +1,5 @@
 import leaflet, {layerGroup} from 'leaflet';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const';
+import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from './const';
 import {useEffect} from 'react';
 import {Location} from '../../types/location';
 import {Map} from 'leaflet';

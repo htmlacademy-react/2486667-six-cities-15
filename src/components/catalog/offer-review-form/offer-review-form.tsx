@@ -1,5 +1,5 @@
 import {Fragment, ReactEventHandler, useState} from 'react';
-import {RATING} from '../../../const';
+import {RATING} from './const';
 
 type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 

@@ -1,6 +1,6 @@
 import {Offer} from '../../../types/offer';
 import MapLeaflet from '../../common/map-leaflet/map-leaflet';
-import {DEFAULT_CITY} from '../../../const';
+import {DEFAULT_CITY} from '../../../utils/const';
 import {Location} from '../../../types/location';
 
 type MapProps = {

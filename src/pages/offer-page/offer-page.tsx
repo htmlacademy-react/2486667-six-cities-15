@@ -11,7 +11,7 @@ import {Offer} from '../../types/offer';
 import MainContainer from '../../components/common/main-container/main-container';
 import NotFoundPage from '../not-found-page/not-found-page';
 import {setAuthStatus} from '../../utils/common';
-import {AuthStatus} from '../../const';
+import {AuthStatus} from '../../utils/const';
 
 type OfferPageProps = {
   offers: Offer[];

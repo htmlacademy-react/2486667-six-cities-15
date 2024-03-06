@@ -2,7 +2,7 @@ import Container from '../../components/common/container/container';
 import Header from '../../components/common/header/header';
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../utils/const';
 import MainContainer from '../../components/common/main-container/main-container';
 
 export default function LoginPage() {

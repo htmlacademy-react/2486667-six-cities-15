@@ -1,6 +1,6 @@
 import OfferReviewList from '../offer-review-list/offer-review-list';
 import OfferReviewForm from '../offer-review-form/offer-review-form';
-import {AppRoute} from '../../../const';
+import {AppRoute} from '../../../utils/const';
 import {Link} from 'react-router-dom';
 
 type OfferReviewsProps = {

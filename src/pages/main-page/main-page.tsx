@@ -6,7 +6,7 @@ import MainContainer from '../../components/common/main-container/main-container
 import {useEffect, useState} from 'react';
 import Tabs from '../../components/common/tabs/tabs';
 import {City} from '../../types/city';
-import {DEFAULT_CITY} from '../../const';
+import {DEFAULT_CITY} from '../../utils/const';
 import OfferListEmpty from '../../components/catalog/offer-list-empty/offer-list-empty';
 import {useLocation} from 'react-router-dom';
 import {capitalizeU} from '../../utils/common';
