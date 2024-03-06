@@ -14,7 +14,7 @@ type FromState = {
 
 export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteProps): JSX.Element {
   const location = useLocation() as Location<FromState>;
-  const isAuthenticate = setAuthStatus(AuthStatus.Auth);
+  const isAuthenticate = setAuthStatus(AuthStatus.NoAuth);
 
   // Авторизованы и стр логина => переход на предыдущую перед стр логина страницу, либо на главную
   if (isAuthenticate && onlyUnAuth) {
