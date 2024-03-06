@@ -1,14 +1,14 @@
-import Container from '../../components/common/container/container';
-import Header from '../../components/common/header/header';
 import {Helmet} from 'react-helmet-async';
-import OfferGallary from '../../components/catalog/offer-gallary/offer-gallary';
-import OfferDescription from '../../components/catalog/offer-description/offer-description';
-import OfferReviews from '../../components/catalog/offer-reviews/offer-reviews';
-import OfferMap from '../../components/catalog/offer-map/offer-map';
-import OfferOtherPlaces from '../../components/catalog/offer-other-places/offer-other-places';
-import MainContainer from '../../components/common/main-container/main-container';
-import {Offer} from '../../types/offer';
+import {Offer} from '@/types/offer';
 import {useParams} from 'react-router-dom';
+import Container from "@/components/common/container/container";
+import Header from "@/components/common/header/header";
+import MainContainer from "@/components/common/main-container/main-container";
+import OfferGallary from "@/components/catalog/offer-gallary/offer-gallary";
+import OfferDescription from "@/components/catalog/offer-description/offer-description";
+import OfferReviews from "@/components/catalog/offer-reviews/offer-reviews";
+import OfferMap from "@/components/catalog/offer-map/offer-map";
+import OfferOtherPlaces from "@/components/catalog/offer-other-places/offer-other-places";
 
 type OfferNotLoggedPageProps = {
   offers: Offer[];

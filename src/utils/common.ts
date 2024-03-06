@@ -1,5 +1,5 @@
-import {Offer} from '../types/offer';
-import {Favorites} from '../types/favorites';
+import {Offer} from '@/types/offer';
+import {Favorites} from '@/types/favorites';
 import {AuthStatus} from './const';
 
 export function getFavoritesByLocation(offers: Offer[]): Favorites {

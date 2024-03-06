@@ -1,5 +1,5 @@
 import { ReactEventHandler, useState} from 'react';
-import RatingStars from '../../common/rating-stars/rating-stars';
+import RatingStars from "@/components/common/rating-stars/rating-stars";
 
 type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 

@@ -1,13 +1,13 @@
 import {Route, Routes} from 'react-router-dom';
-import MainPage from '../../../pages/main-page/main-page';
-import LoginPage from '../../../pages/login-page/login-page';
-import FavoritesPage from '../../../pages/favorites-page/favorites-page';
-import NotFoundPage from '../../../pages/not-found-page/not-found-page';
-import {AppRoute} from '../../../utils/const';
-import OfferPage from '../../../pages/offer-page/offer-page';
-import {Offer} from '../../../types/offer';
-import ProtectedRoute from '../protected-route/protected-route';
-import {City} from '../../../types/city';
+import {AppRoute} from '@/utils/const';
+import {Offer} from '@/types/offer';
+import {City} from '@/types/city';
+import MainPage from "@/pages/main-page/main-page";
+import LoginPage from "@/pages/login-page/login-page";
+import FavoritesPage from "@/pages/favorites-page/favorites-page";
+import NotFoundPage from "@/pages/not-found-page/not-found-page";
+import OfferPage from "@/pages/offer-page/offer-page";
+import ProtectedRoute from "@/components/common/protected-route/protected-route";
 
 type AppProps = {
   offers: Offer[];

@@ -1,7 +1,7 @@
 import {RefObject, useEffect, useRef, useState} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {City} from '../../types/city';
+import {City} from '@/types/city';
 import {Map} from 'leaflet';
 
 export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null, city: City) {

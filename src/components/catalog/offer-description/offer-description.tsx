@@ -1,6 +1,6 @@
-import {Offer} from '../../../types/offer';
-import {getRatingWidth} from '../../../utils/common';
-import OfferBookmark from '../offer-bookmark/offer-bookmark';
+import {Offer} from '@/types/offer';
+import {getRatingWidth} from '@/utils/common';
+import OfferBookmark from "@/components/catalog/offer-bookmark/offer-bookmark";
 
 type OfferDescriptionProps = {
   offer: Offer;

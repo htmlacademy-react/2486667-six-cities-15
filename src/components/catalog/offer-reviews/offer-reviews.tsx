@@ -1,7 +1,7 @@
-import OfferReviewList from '../offer-review-list/offer-review-list';
-import OfferReviewForm from '../offer-review-form/offer-review-form';
-import {AppRoute} from '../../../utils/const';
+import {AppRoute} from '@/utils/const';
 import {Link} from 'react-router-dom';
+import OfferReviewList from "@/components/catalog/offer-review-list/offer-review-list";
+import OfferReviewForm from "@/components/catalog/offer-review-form/offer-review-form";
 
 type OfferReviewsProps = {
   isAuth?: boolean;
