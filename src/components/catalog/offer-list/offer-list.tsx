@@ -1,8 +1,8 @@
 import {Offer} from '@/types/offer';
 import {useState} from 'react';
 import {Location} from '@/types/location';
-import OfferCard from "@/components/catalog/offer-card/offer-card";
-import OffersMap from "@/components/catalog/offers-map/offers-map";
+import OfferCard from '@/components/catalog/offer-card/offer-card';
+import OffersMap from '@/components/catalog/offers-map/offers-map';
 
 type OfferListProps = {
   offers: Offer[];

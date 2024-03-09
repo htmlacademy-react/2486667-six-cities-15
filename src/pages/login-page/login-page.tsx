@@ -1,10 +1,10 @@
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';
-import Header from "@/components/common/header/header";
-import Container from "@/components/common/container/container";
-import MainContainer from "@/components/common/main-container/main-container";
-import LoginForm from "@/components/common/login-form/login-form";
+import Header from '@/components/common/header/header';
+import Container from '@/components/common/container/container';
+import MainContainer from '@/components/common/main-container/main-container';
+import LoginForm from '@/components/common/login-form/login-form';
 
 export default function LoginPage() {
   return (

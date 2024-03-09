@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import {Favorites} from '@/types/favorites';
 import {City} from '@/types/city';
-import OfferCard from "@/components/catalog/offer-card/offer-card";
+import OfferCard from '@/components/catalog/offer-card/offer-card';
 
 type FavoritesListProps = {
   favorites: Favorites;

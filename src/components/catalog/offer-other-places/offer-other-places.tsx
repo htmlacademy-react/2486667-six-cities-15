@@ -1,5 +1,5 @@
 import {Offer} from '@/types/offer';
-import OfferCard from "@/components/catalog/offer-card/offer-card";
+import OfferCard from '@/components/catalog/offer-card/offer-card';
 
 type OfferOtherPlacesProps = {
   offers: Offer[];

@@ -1,15 +1,15 @@
 import {useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
-import Header from "@/components/common/header/header";
-import Container from "@/components/common/container/container";
-import MainContainer from "@/components/common/main-container/main-container";
-import OfferList from "@/components/catalog/offer-list/offer-list";
-import OfferListEmpty from "@/components/catalog/offer-list-empty/offer-list-empty";
-import Tabs from "@/components/common/tabs/tabs";
-import {capitalizeU} from "@/utils/common";
-import {City} from "@/types/city";
-import {Offer} from "@/types/offer";
-import {DEFAULT_CITY} from "@/utils/const";
+import Header from '@/components/common/header/header';
+import Container from '@/components/common/container/container';
+import MainContainer from '@/components/common/main-container/main-container';
+import OfferList from '@/components/catalog/offer-list/offer-list';
+import OfferListEmpty from '@/components/catalog/offer-list-empty/offer-list-empty';
+import Tabs from '@/components/common/tabs/tabs';
+import {capitalizeU} from '@/utils/common';
+import {City} from '@/types/city';
+import {Offer} from '@/types/offer';
+import {DEFAULT_CITY} from '@/utils/const';
 
 type MainPageProps = {
   offers: Offer[];

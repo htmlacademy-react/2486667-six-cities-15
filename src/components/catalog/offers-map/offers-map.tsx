@@ -1,7 +1,7 @@
 import {Offer} from '@/types/offer';
 import {DEFAULT_CITY} from '@/utils/const';
 import {Location} from '@/types/location';
-import MapLeaflet from "@/components/common/map-leaflet/map-leaflet";
+import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 
 type MapProps = {
   offers: Offer[];

@@ -3,8 +3,8 @@ import {RefObject, useRef} from 'react';
 import {City} from '@/types/city';
 import {Location} from '@/types/location';
 import {Map} from 'leaflet';
-import useMapLeaflet from "@/hooks/use-map-leaflet/use-map-leaflet";
-import useMapLeafletMarkers from "@/hooks/use-map-leaflet-markers/use-map-leaflet-markers";
+import useMapLeaflet from '@/hooks/use-map-leaflet/use-map-leaflet';
+import useMapLeafletMarkers from '@/hooks/use-map-leaflet-markers/use-map-leaflet-markers';
 
 type MapLeafletProps = {
   city: City;
