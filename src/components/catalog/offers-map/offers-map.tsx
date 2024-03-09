@@ -6,19 +6,18 @@ import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 type MapProps = {
   offers: Offer[];
   activePoint: Location | null;
+  extraClass: string;
 }
 
-export default function OffersMap({ offers, activePoint }: MapProps) {
-  //const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
-
-  const points = offers.map((offer) => DEFAULT_CITY ? offer.location : null) as Location[];
+export default function OffersMap({ offers, activePoint, extraClass }: MapProps) {
+  const points = offers.map((offer) => offer.location);
 
   return (
     <MapLeaflet
       city={DEFAULT_CITY}
       points={points}
       activePoint={activePoint}
-      extraClass="cities__map"
+      extraClass={extraClass}
     />
   );
 }

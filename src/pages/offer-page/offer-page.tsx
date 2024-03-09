@@ -9,10 +9,12 @@ import MainContainer from '@/components/common/main-container/main-container';
 import OfferGallary from '@/components/catalog/offer-gallary/offer-gallary';
 import OfferDescription from '@/components/catalog/offer-description/offer-description';
 import OfferReviews from '@/components/catalog/offer-reviews/offer-reviews';
-import OfferMap from '@/components/catalog/offer-map/offer-map';
 import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import {Review} from '@/types/reviews';
+import OffersMap from '@/components/catalog/offers-map/offers-map';
+import {useState} from 'react';
+import {Location} from '@/types/location';
 
 type OfferPageProps = {
   offers: Offer[];
@@ -23,6 +25,13 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
   const isAuthenticate = setAuthStatus(AuthStatus.Auth);
   const { id } = useParams();
   const offer: Offer | undefined = offers.find((item) => item.id === id);
+  const [activePoint, setActivePoint] = useState<Location | null>(null);
+  const nearOffers: Offer[] = offers.slice(0, 3);
+
+  const hoverHandler = (hoverId: Offer['id'] | null) => {
+    const point = offers.find((item) => item.id === hoverId)?.location || null;
+    setActivePoint(point);
+  };
 
   if (!offer) {
     return <NotFoundPage type='offer' />;
@@ -49,10 +58,14 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
               </div>
             </div>
 
-            <OfferMap />
+            <OffersMap
+              offers={nearOffers}
+              activePoint={activePoint}
+              extraClass="offer__map"
+            />
           </section>}
 
-        <OfferOtherPlaces offers={offers} />
+        <OfferOtherPlaces offers={offers} hoverHandler={hoverHandler} />
       </MainContainer>
     </Container>
   );

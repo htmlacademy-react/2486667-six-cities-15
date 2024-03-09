@@ -47,7 +47,7 @@ export default function OfferList({ offers, block }: OfferListProps): JSX.Elemen
       </section>
 
       <div className="cities__right-section">
-        <OffersMap offers={offers} activePoint={activePoint} />
+        <OffersMap offers={offers} activePoint={activePoint} extraClass="cities__map" />
       </div>
     </div>
   );

@@ -41,7 +41,7 @@ export function setAuthStatus(status: AuthStatus): boolean {
 
 export const convertDate = (str: string) => {
   const date = new Date(str);
-  const monthYear = date.toLocaleString('en-GB', { month: 'long' }) + ' ' + date.getFullYear();
+  const monthYear = `${date.toLocaleString('en-GB', { month: 'long' }) } ${ date.getFullYear()}`;
   const fullDate = str.slice(0, 10);
 
   return {monthYear, fullDate};

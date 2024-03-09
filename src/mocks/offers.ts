@@ -2,56 +2,6 @@ import {Offer} from '@/types/offer';
 
 export const OFFERS: Offer[] = [
   {
-    id: 'a4938522-593f-4b60-8c61-8b21a1e0f319',
-    title: 'Loft Studio in the Central Area',
-    description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
-    type: 'apartment',
-    price: 446,
-    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-    images: [
-      'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/8.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/7.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/3.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/9.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/19.jpg'
-    ],
-    city: {
-      name: 'Paris',
-      location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
-        zoom: 13
-      }
-    },
-    location: {
-      latitude: 48.868610000000004,
-      longitude: 2.342499,
-      zoom: 16
-    },
-    goods: [
-      'Baby seat',
-      'Washer',
-      'Heating',
-      'Laptop friendly workspace',
-      'Dishwasher',
-      'Washing machine',
-      'Kitchen',
-      'Coffee machine',
-      'Fridge'
-    ],
-    host: {
-      isPro: true,
-      name: 'Angelina',
-      avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
-    },
-    isPremium: true,
-    isFavorite: true,
-    rating: 4.7,
-    bedrooms: 2,
-    maxAdults: 6,
-  },
-  {
     id: '2e053f7e-68d8-4a1d-8fe7-623119311d7d',
     title: 'The house among olive ',
     description: 'I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.',
@@ -198,6 +148,56 @@ export const OFFERS: Offer[] = [
     rating: 2.8,
     bedrooms: 3,
     maxAdults: 10
+  },
+  {
+    id: 'a4938522-593f-4b60-8c61-8b21a1e0f319',
+    title: 'Loft Studio in the Central Area',
+    description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
+    type: 'apartment',
+    price: 446,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
+    images: [
+      'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/8.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/7.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/3.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/9.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/19.jpg'
+    ],
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 48.868610000000004,
+      longitude: 2.342499,
+      zoom: 16
+    },
+    goods: [
+      'Baby seat',
+      'Washer',
+      'Heating',
+      'Laptop friendly workspace',
+      'Dishwasher',
+      'Washing machine',
+      'Kitchen',
+      'Coffee machine',
+      'Fridge'
+    ],
+    host: {
+      isPro: true,
+      name: 'Angelina',
+      avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
+    },
+    isPremium: true,
+    isFavorite: true,
+    rating: 4.7,
+    bedrooms: 2,
+    maxAdults: 6,
   },
   {
     id: 'f71116c7-65f3-4a13-b897-a60e4a5337fc',
