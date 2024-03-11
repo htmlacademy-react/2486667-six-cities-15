@@ -2,9 +2,9 @@ import {Offer} from '@/types/offer';
 import {useState} from 'react';
 import {Location} from '@/types/location';
 import OfferCard from '@/components/catalog/offer-card/offer-card';
-import {DEFAULT_CITY} from "@/utils/const";
-import MapLeaflet from "@/components/common/map-leaflet/map-leaflet";
-import {City} from "@/types/city";
+import {DEFAULT_CITY} from '@/utils/const';
+import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
+import {City} from '@/types/city';
 
 type OfferListProps = {
   offers: Offer[];

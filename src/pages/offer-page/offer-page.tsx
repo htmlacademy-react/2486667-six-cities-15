@@ -14,7 +14,7 @@ import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import {Review} from '@/types/reviews';
 import {useState} from 'react';
 import {Location} from '@/types/location';
-import MapLeaflet from "@/components/common/map-leaflet/map-leaflet";
+import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 
 type OfferPageProps = {
   offers: Offer[];
@@ -33,7 +33,7 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
     setActivePoint(point);
   };
 
-  const points = offers.map((offer) => offer.location);
+  const points = nearOffers.map((item) => item.location);
 
   if (!offer) {
     return <NotFoundPage type='offer' />;
