@@ -4,13 +4,15 @@ import {Location} from '@/types/location';
 import OfferCard from '@/components/catalog/offer-card/offer-card';
 import {DEFAULT_CITY} from "@/utils/const";
 import MapLeaflet from "@/components/common/map-leaflet/map-leaflet";
+import {City} from "@/types/city";
 
 type OfferListProps = {
   offers: Offer[];
+  currentCity: City;
   block: string;
 }
 
-export default function OfferList({ offers, block }: OfferListProps): JSX.Element {
+export default function OfferList({ offers, currentCity, block }: OfferListProps): JSX.Element {
   const [activePoint, setActivePoint] = useState<Location | null>(null);
 
   const hoverHandler = (id: Offer['id'] | null) => {
@@ -25,7 +27,7 @@ export default function OfferList({ offers, block }: OfferListProps): JSX.Elemen
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
 
-        <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+        <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
 
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by</span>

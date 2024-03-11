@@ -38,7 +38,7 @@ export default function MainPage({ offers, cities }: MainPageProps): JSX.Element
 
         <div className="cities">
           {currentOffers && currentOffers.length ?
-            <OfferList offers={currentOffers} block='cities' /> :
+            <OfferList offers={currentOffers} currentCity={currentCity} block='cities' /> :
             <OfferListEmpty currentCity={currentCity} />}
         </div>
       </MainContainer>
