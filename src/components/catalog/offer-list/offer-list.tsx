@@ -54,7 +54,7 @@ export default function OfferList({ offers, currentCity, block }: OfferListProps
 
       <div className="cities__right-section">
         <MapLeaflet
-          city={DEFAULT_CITY}
+          defaultCity={DEFAULT_CITY}
           points={points}
           activePoint={activePoint}
           extraClass="cities__map"

@@ -61,7 +61,7 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
             </div>
 
             <MapLeaflet
-              city={DEFAULT_CITY}
+              defaultCity={DEFAULT_CITY}
               points={points}
               activePoint={activePoint}
               extraClass="offer__map"
