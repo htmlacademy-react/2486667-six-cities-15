@@ -8,13 +8,13 @@ export default function useMapLeafletMarkers(map: Map, points: Location[], curre
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
     iconSize: [27, 39],
-    iconAnchor: [13, 39],
+    iconAnchor: [13.5, 39],
   });
 
   const currentCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_CURRENT,
     iconSize: [27, 39],
-    iconAnchor: [13, 39],
+    iconAnchor: [13.5, 39],
   });
 
   useEffect(() => {
