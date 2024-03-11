@@ -1,7 +1,7 @@
 import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
 import {setAuthStatus} from '@/utils/common';
-import {AuthStatus, DEFAULT_CITY} from '@/utils/const';
+import {AuthStatus} from '@/utils/const';
 import {Offer} from '@/types/offer';
 import Container from '@/components/common/container/container';
 import Header from '@/components/common/header/header';
@@ -25,7 +25,7 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
   const isAuthenticate = setAuthStatus(AuthStatus.Auth);
   const { id } = useParams();
   const offer: Offer | undefined = offers.find((item) => item.id === id);
-  const [activePoint, setActivePoint] = useState<Location | null>(null);
+  const [activePoint, setActivePoint] = useState<Location | null>(offer!.location);
 
   const hoverHandler = (hoverId: Offer['id'] | null) => {
     const point = offers.find((item) => item.id === hoverId)?.location || null;
@@ -33,7 +33,9 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
   };
 
   const nearOffers: Offer[] = offers.slice(0, 3); // Временно берем три первых предложения из моков
-  const points = nearOffers.map((item) => item.location);
+
+  const nearOffersPlusCurrent: Offer[] = [...nearOffers, offer!];
+  const points = nearOffersPlusCurrent.map((item) => item.location);
 
   if (!offer) {
     return <NotFoundPage type='offer' />;
@@ -61,8 +63,7 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
             </div>
 
             <MapLeaflet
-              currentCity={DEFAULT_CITY} // Временное значение города
-              //currentCity={offer.city}
+              currentCity={offer.city}
               points={points}
               activePoint={activePoint}
               extraClass="offer__map"
