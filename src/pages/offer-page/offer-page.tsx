@@ -1,7 +1,7 @@
 import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
 import {setAuthStatus} from '@/utils/common';
-import {AuthStatus} from '@/utils/const';
+import {AuthStatus, DEFAULT_CITY} from '@/utils/const';
 import {Offer} from '@/types/offer';
 import Container from '@/components/common/container/container';
 import Header from '@/components/common/header/header';
@@ -12,9 +12,9 @@ import OfferReviews from '@/components/catalog/offer-reviews/offer-reviews';
 import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import {Review} from '@/types/reviews';
-import OffersMap from '@/components/catalog/offers-map/offers-map';
 import {useState} from 'react';
 import {Location} from '@/types/location';
+import MapLeaflet from "@/components/common/map-leaflet/map-leaflet";
 
 type OfferPageProps = {
   offers: Offer[];
@@ -32,6 +32,8 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
     const point = offers.find((item) => item.id === hoverId)?.location || null;
     setActivePoint(point);
   };
+
+  const points = offers.map((offer) => offer.location);
 
   if (!offer) {
     return <NotFoundPage type='offer' />;
@@ -58,8 +60,9 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
               </div>
             </div>
 
-            <OffersMap
-              offers={nearOffers}
+            <MapLeaflet
+              city={DEFAULT_CITY}
+              points={points}
               activePoint={activePoint}
               extraClass="offer__map"
             />

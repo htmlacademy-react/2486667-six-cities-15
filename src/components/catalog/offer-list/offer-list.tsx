@@ -2,7 +2,8 @@ import {Offer} from '@/types/offer';
 import {useState} from 'react';
 import {Location} from '@/types/location';
 import OfferCard from '@/components/catalog/offer-card/offer-card';
-import OffersMap from '@/components/catalog/offers-map/offers-map';
+import {DEFAULT_CITY} from "@/utils/const";
+import MapLeaflet from "@/components/common/map-leaflet/map-leaflet";
 
 type OfferListProps = {
   offers: Offer[];
@@ -17,12 +18,15 @@ export default function OfferList({ offers, block }: OfferListProps): JSX.Elemen
     setActivePoint(point);
   };
 
+  const points = offers.map((offer) => offer.location);
+
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
 
         <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by</span>
           <span className="places__sorting-type" tabIndex={0}>
@@ -47,7 +51,12 @@ export default function OfferList({ offers, block }: OfferListProps): JSX.Elemen
       </section>
 
       <div className="cities__right-section">
-        <OffersMap offers={offers} activePoint={activePoint} extraClass="cities__map" />
+        <MapLeaflet
+          city={DEFAULT_CITY}
+          points={points}
+          activePoint={activePoint}
+          extraClass="cities__map"
+        />
       </div>
     </div>
   );
