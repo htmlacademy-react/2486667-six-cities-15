@@ -1,7 +1,6 @@
-import {Offer} from '../types/offer';
-import {City} from '../types/city';
-import {Favorites} from '../types/favorites';
-import {AuthStatus} from '../const';
+import {Offer} from '@/types/offer';
+import {Favorites} from '@/types/favorites';
+import {AuthStatus} from './const';
 
 export function getFavoritesByLocation(offers: Offer[]): Favorites {
   return offers.reduce<Favorites>((acc, current) => {
@@ -22,7 +21,7 @@ export function getRatingWidth(rating: number): string {
   return `${((rating / 5) * 100).toFixed(1) }%`;
 }
 
-export const getCities = (offers: Offer[]): City[] => {
+/*export const getCities = (offers: Offer[]): City[] => {
   const cities = offers.map((offer) => offer.city);
 
   return cities.filter((value, index, self) =>
@@ -30,7 +29,7 @@ export const getCities = (offers: Offer[]): City[] => {
       t.name === value.name && t.name === value.name
     ))
   );
-};
+};*/
 
 export function capitalizeU(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -39,3 +38,11 @@ export function capitalizeU(str: string): string {
 export function setAuthStatus(status: AuthStatus): boolean {
   return status === AuthStatus.Auth;
 }
+
+export const convertDate = (str: string) => {
+  const date = new Date(str);
+  const monthYear = `${date.toLocaleString('en-GB', { month: 'long' }) } ${ date.getFullYear()}`;
+  const fullDate = str.slice(0, 10);
+
+  return {monthYear, fullDate};
+};

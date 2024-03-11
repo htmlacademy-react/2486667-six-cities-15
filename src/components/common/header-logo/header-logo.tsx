@@ -1,5 +1,5 @@
 import {Link, useLocation} from 'react-router-dom';
-import {AppRoute} from '../../../const';
+import {AppRoute} from '@/utils/const';
 
 export default function HeaderLogo(): JSX.Element {
   const {pathname} = useLocation();

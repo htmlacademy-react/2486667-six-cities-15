@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../const';
-import HeaderLogo from '../header-logo/header-logo';
+import {AppRoute} from '@/utils/const';
+import HeaderLogo from '@/components/common/header-logo/header-logo';
 
 export default function Header(): JSX.Element {
   const logout = () => {

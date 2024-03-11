@@ -1,25 +1,13 @@
-import leaflet, {layerGroup} from 'leaflet';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const';
+import leaflet from 'leaflet';
+import {DEFAULT_CUSTOM_ICON, CURRENT_CUSTOM_ICON} from './const';
 import {useEffect} from 'react';
-import {Location} from '../../types/location';
+import {Location} from '@/types/location';
 import {Map} from 'leaflet';
 
-export default function useMapLeafletMarkers(map: Map, points: Location[], currentPoint: Location) {
-  const defaultCustomIcon = leaflet.icon({
-    iconUrl: URL_MARKER_DEFAULT,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-  });
-
-  const currentCustomIcon = leaflet.icon({
-    iconUrl: URL_MARKER_CURRENT,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-  });
-
+export default function useMapLeafletMarkers(map: Map, points: Location[], currentPoint: Location): void {
   useEffect(() => {
     if (map) {
-      const markerLayer = layerGroup().addTo(map);
+      const markerLayer = leaflet.layerGroup().addTo(map);
 
       points.forEach((point) => {
         leaflet
@@ -28,8 +16,8 @@ export default function useMapLeafletMarkers(map: Map, points: Location[], curre
             lng: point.longitude,
           }, {
             icon: JSON.stringify(currentPoint) === JSON.stringify(point) ?
-              currentCustomIcon :
-              defaultCustomIcon,
+              CURRENT_CUSTOM_ICON :
+              DEFAULT_CUSTOM_ICON,
           })
           .addTo(markerLayer);
       });
@@ -38,5 +26,5 @@ export default function useMapLeafletMarkers(map: Map, points: Location[], curre
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, points, currentPoint, defaultCustomIcon, currentCustomIcon]);
+  }, [map, points, currentPoint]);
 }

@@ -1,15 +1,17 @@
-import {Offer} from '../../../types/offer';
-import OfferCard from '../offer-card/offer-card';
-import OffersMap from '../offers-map/offers-map';
+import {Offer} from '@/types/offer';
 import {useState} from 'react';
-import {Location} from '../../../types/location';
+import {Location} from '@/types/location';
+import OfferCard from '@/components/catalog/offer-card/offer-card';
+import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
+import {City} from '@/types/city';
 
 type OfferListProps = {
   offers: Offer[];
+  currentCity: City;
   block: string;
 }
 
-export default function OfferList({ offers, block }: OfferListProps): JSX.Element {
+export default function OfferList({ offers, currentCity, block }: OfferListProps): JSX.Element {
   const [activePoint, setActivePoint] = useState<Location | null>(null);
 
   const hoverHandler = (id: Offer['id'] | null) => {
@@ -17,12 +19,15 @@ export default function OfferList({ offers, block }: OfferListProps): JSX.Elemen
     setActivePoint(point);
   };
 
+  const points = offers.map((offer) => offer.location);
+
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
 
-        <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+        <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
+
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by</span>
           <span className="places__sorting-type" tabIndex={0}>
@@ -47,7 +52,12 @@ export default function OfferList({ offers, block }: OfferListProps): JSX.Elemen
       </section>
 
       <div className="cities__right-section">
-        <OffersMap offers={offers} activePoint={activePoint} />
+        <MapLeaflet
+          currentCity={currentCity}
+          points={points}
+          activePoint={activePoint}
+          extraClass="cities__map"
+        />
       </div>
     </div>
   );

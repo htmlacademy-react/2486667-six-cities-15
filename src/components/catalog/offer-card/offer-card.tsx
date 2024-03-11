@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom';
-import {Offer} from '../../../types/offer';
-import {AppRoute} from '../../../const';
+import {Offer} from '@/types/offer';
+import {AppRoute} from '@/utils/const';
 import {clsx} from 'clsx';
-import {getRatingWidth} from '../../../utils/common';
-import OfferBookmark from '../offer-bookmark/offer-bookmark';
+import {getRatingWidth} from '@/utils/common';
+import OfferBookmark from '@/components/catalog/offer-bookmark/offer-bookmark';
 
 type CardProps = {
   offer: Offer;

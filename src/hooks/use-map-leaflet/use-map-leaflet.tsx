@@ -1,10 +1,11 @@
 import {RefObject, useEffect, useRef, useState} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {City} from '../../types/city';
+import {City} from '@/types/city';
 import {Map} from 'leaflet';
+import {TILE_LAYER_ATTRIBUTION, TILE_LAYER_URL_PATTERN} from './consts';
 
-export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null, city: City) {
+export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null, currentCity: City) {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
 
@@ -12,17 +13,17 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
     if (mapRef && mapRef?.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: city.location.latitude,
-          lng: city.location.longitude,
+          lat: currentCity.location.latitude,
+          lng: currentCity.location.longitude,
         },
-        zoom: city.location.zoom,
+        zoom: currentCity.location.zoom,
       });
 
       leaflet
         .tileLayer(
-          'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+          TILE_LAYER_URL_PATTERN,
           {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            attribution: TILE_LAYER_ATTRIBUTION,
           },
         )
         .addTo(instance);
@@ -30,7 +31,7 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+  }, [mapRef, currentCity]);
 
   return map;
 }

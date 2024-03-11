@@ -1,26 +1,42 @@
-import Container from '../../components/common/container/container';
-import Header from '../../components/common/header/header';
 import {Helmet} from 'react-helmet-async';
-import OfferGallary from '../../components/catalog/offer-gallary/offer-gallary';
-import OfferDescription from '../../components/catalog/offer-description/offer-description';
-import OfferReviews from '../../components/catalog/offer-reviews/offer-reviews';
-import OfferMap from '../../components/catalog/offer-map/offer-map';
-import OfferOtherPlaces from '../../components/catalog/offer-other-places/offer-other-places';
 import {useParams} from 'react-router-dom';
-import {Offer} from '../../types/offer';
-import MainContainer from '../../components/common/main-container/main-container';
-import NotFoundPage from '../not-found-page/not-found-page';
-import {setAuthStatus} from '../../utils/common';
-import {AuthStatus} from '../../const';
+import {setAuthStatus} from '@/utils/common';
+import {AuthStatus} from '@/utils/const';
+import {Offer} from '@/types/offer';
+import Container from '@/components/common/container/container';
+import Header from '@/components/common/header/header';
+import MainContainer from '@/components/common/main-container/main-container';
+import OfferGallary from '@/components/catalog/offer-gallary/offer-gallary';
+import OfferDescription from '@/components/catalog/offer-description/offer-description';
+import OfferReviews from '@/components/catalog/offer-reviews/offer-reviews';
+import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
+import NotFoundPage from '@/pages/not-found-page/not-found-page';
+import {Review} from '@/types/reviews';
+import {useState} from 'react';
+import {Location} from '@/types/location';
+import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 
 type OfferPageProps = {
   offers: Offer[];
+  reviews: Review[];
 }
 
-export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
+export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
   const isAuthenticate = setAuthStatus(AuthStatus.Auth);
   const { id } = useParams();
   const offer: Offer | undefined = offers.find((item) => item.id === id);
+  const [activePoint, setActivePoint] = useState<Location | null>(offer!.location);
+
+  const hoverHandler = (hoverId: Offer['id'] | null) => {
+    const point = offers.find((item) => item.id === hoverId)?.location || null;
+    setActivePoint(point);
+  };
+
+  const MAX_NEAR_OFFERS = 3;
+  const nearOffers: Offer[] = offers.slice(0, MAX_NEAR_OFFERS); // Временно берем три первых предложения из моков
+
+  const nearOffersPlusCurrent: Offer[] = [...nearOffers, offer!];
+  const points = nearOffersPlusCurrent.map((item) => item.location);
 
   if (!offer) {
     return <NotFoundPage type='offer' />;
@@ -43,14 +59,19 @@ export default function OfferPage({ offers }: OfferPageProps): JSX.Element {
               <div className="offer__wrapper">
                 <OfferDescription offer={offer} />
 
-                <OfferReviews isAuth={isAuthenticate} />
+                <OfferReviews isAuth={isAuthenticate} reviews={reviews} />
               </div>
             </div>
 
-            <OfferMap />
+            <MapLeaflet
+              currentCity={offer.city}
+              points={points}
+              activePoint={activePoint}
+              extraClass="offer__map"
+            />
           </section>}
 
-        <OfferOtherPlaces offers={offers} />
+        <OfferOtherPlaces offers={nearOffers} hoverHandler={hoverHandler} />
       </MainContainer>
     </Container>
   );

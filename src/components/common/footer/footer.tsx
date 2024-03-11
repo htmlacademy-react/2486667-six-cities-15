@@ -1,6 +1,6 @@
 import {clsx} from 'clsx';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../const';
+import {AppRoute} from '@/utils/const';
 
 type FooterProps = {
   extraClass?: string;

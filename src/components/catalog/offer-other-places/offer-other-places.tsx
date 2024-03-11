@@ -1,11 +1,12 @@
-import {Offer} from '../../../types/offer';
-import OfferCard from '../offer-card/offer-card';
+import {Offer} from '@/types/offer';
+import OfferCard from '@/components/catalog/offer-card/offer-card';
 
 type OfferOtherPlacesProps = {
   offers: Offer[];
+  hoverHandler?: (id: Offer['id'] | null) => void;
 }
 
-export default function OfferOtherPlaces({ offers }: OfferOtherPlacesProps): JSX.Element {
+export default function OfferOtherPlaces({ offers, hoverHandler }: OfferOtherPlacesProps): JSX.Element {
   return (
     <div className="container">
       <section className="near-places places">
@@ -13,7 +14,7 @@ export default function OfferOtherPlaces({ offers }: OfferOtherPlacesProps): JSX
 
         <div className="near-places__list places__list">
           {offers && offers.map((offer) => (
-            <OfferCard key={offer.id} offer={offer} block='near-places' />
+            <OfferCard key={offer.id} offer={offer} block='near-places' hoverHandler={hoverHandler} />
           ))}
         </div>
       </section>

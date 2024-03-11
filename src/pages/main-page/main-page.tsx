@@ -1,15 +1,15 @@
-import Header from '../../components/common/header/header';
-import Container from '../../components/common/container/container';
-import {Offer} from '../../types/offer';
-import OfferList from '../../components/catalog/offer-list/offer-list';
-import MainContainer from '../../components/common/main-container/main-container';
 import {useEffect, useState} from 'react';
-import Tabs from '../../components/common/tabs/tabs';
-import {City} from '../../types/city';
-import {DEFAULT_CITY} from '../../const';
-import OfferListEmpty from '../../components/catalog/offer-list-empty/offer-list-empty';
 import {useLocation} from 'react-router-dom';
-import {capitalizeU} from '../../utils/common';
+import Header from '@/components/common/header/header';
+import Container from '@/components/common/container/container';
+import MainContainer from '@/components/common/main-container/main-container';
+import OfferList from '@/components/catalog/offer-list/offer-list';
+import OfferListEmpty from '@/components/catalog/offer-list-empty/offer-list-empty';
+import Tabs from '@/components/common/tabs/tabs';
+import {capitalizeU} from '@/utils/common';
+import {City} from '@/types/city';
+import {Offer} from '@/types/offer';
+import {DEFAULT_CITY} from '@/utils/const';
 
 type MainPageProps = {
   offers: Offer[];
@@ -38,7 +38,7 @@ export default function MainPage({ offers, cities }: MainPageProps): JSX.Element
 
         <div className="cities">
           {currentOffers && currentOffers.length ?
-            <OfferList offers={currentOffers} block='cities' /> :
+            <OfferList offers={currentOffers} currentCity={currentCity} block='cities' /> :
             <OfferListEmpty currentCity={currentCity} />}
         </div>
       </MainContainer>

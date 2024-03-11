@@ -1,11 +1,10 @@
-import Container from '../../components/common/container/container';
-import Header from '../../components/common/header/header';
-import Footer from '../../components/common/footer/footer';
 import {Link, useLocation} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import MainContainer from '../../components/common/main-container/main-container';
+import {AppRoute} from '@/utils/const';
 import {Helmet} from 'react-helmet-async';
-
+import Container from '@/components/common/container/container';
+import MainContainer from '@/components/common/main-container/main-container';
+import Header from '@/components/common/header/header';
+import Footer from '@/components/common/footer/footer';
 
 const VARIANTS = {
   page: {text: 'Page'},
