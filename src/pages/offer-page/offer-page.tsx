@@ -26,13 +26,13 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
   const { id } = useParams();
   const offer: Offer | undefined = offers.find((item) => item.id === id);
   const [activePoint, setActivePoint] = useState<Location | null>(null);
-  const nearOffers: Offer[] = offers.slice(0, 3);
 
   const hoverHandler = (hoverId: Offer['id'] | null) => {
     const point = offers.find((item) => item.id === hoverId)?.location || null;
     setActivePoint(point);
   };
 
+  const nearOffers: Offer[] = offers.slice(0, 3); // Временно берем три первых предложения из моков
   const points = nearOffers.map((item) => item.location);
 
   if (!offer) {
@@ -61,14 +61,15 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
             </div>
 
             <MapLeaflet
-              defaultCity={DEFAULT_CITY}
+              currentCity={DEFAULT_CITY} // Временное значение города
+              //currentCity={offer.city}
               points={points}
               activePoint={activePoint}
               extraClass="offer__map"
             />
           </section>}
 
-        <OfferOtherPlaces offers={offers} hoverHandler={hoverHandler} />
+        <OfferOtherPlaces offers={nearOffers} hoverHandler={hoverHandler} />
       </MainContainer>
     </Container>
   );

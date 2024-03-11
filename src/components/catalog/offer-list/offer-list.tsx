@@ -2,7 +2,6 @@ import {Offer} from '@/types/offer';
 import {useState} from 'react';
 import {Location} from '@/types/location';
 import OfferCard from '@/components/catalog/offer-card/offer-card';
-import {DEFAULT_CITY} from '@/utils/const';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 import {City} from '@/types/city';
 
@@ -54,7 +53,7 @@ export default function OfferList({ offers, currentCity, block }: OfferListProps
 
       <div className="cities__right-section">
         <MapLeaflet
-          defaultCity={DEFAULT_CITY}
+          currentCity={currentCity}
           points={points}
           activePoint={activePoint}
           extraClass="cities__map"

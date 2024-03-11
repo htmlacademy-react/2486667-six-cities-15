@@ -7,15 +7,15 @@ import useMapLeaflet from '@/hooks/use-map-leaflet/use-map-leaflet';
 import useMapLeafletMarkers from '@/hooks/use-map-leaflet-markers/use-map-leaflet-markers';
 
 type MapLeafletProps = {
-  defaultCity: City;
+  currentCity: City;
   points: Location[];
   activePoint: Location | null;
   extraClass: string;
 }
 
-export default function MapLeaflet({ defaultCity, points, activePoint, extraClass }: MapLeafletProps) {
+export default function MapLeaflet({ currentCity, points, activePoint, extraClass }: MapLeafletProps) {
   const mapRef = useRef(null) as RefObject<HTMLFormElement> | null;
-  const map = useMapLeaflet(mapRef, defaultCity);
+  const map = useMapLeaflet(mapRef, currentCity);
   useMapLeafletMarkers(map as Map, points, activePoint as Location);
 
   return (

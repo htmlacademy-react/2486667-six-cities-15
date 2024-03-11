@@ -5,7 +5,7 @@ import {City} from '@/types/city';
 import {Map} from 'leaflet';
 import {TILE_LAYER_ATTRIBUTION, TILE_LAYER_URL_PATTERN} from './consts';
 
-export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null, defaultCity: City) {
+export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null, currentCity: City) {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
 
@@ -13,10 +13,10 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
     if (mapRef && mapRef?.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: defaultCity.location.latitude,
-          lng: defaultCity.location.longitude,
+          lat: currentCity.location.latitude,
+          lng: currentCity.location.longitude,
         },
-        zoom: defaultCity.location.zoom,
+        zoom: currentCity.location.zoom,
       });
 
       leaflet
@@ -31,7 +31,7 @@ export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null,
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, defaultCity]);
+  }, [mapRef, currentCity]);
 
   return map;
 }
