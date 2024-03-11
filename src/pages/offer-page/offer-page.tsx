@@ -32,7 +32,8 @@ export default function OfferPage({ offers, reviews }: OfferPageProps): JSX.Elem
     setActivePoint(point);
   };
 
-  const nearOffers: Offer[] = offers.slice(0, 3); // Временно берем три первых предложения из моков
+  const MAX_NEAR_OFFERS = 3;
+  const nearOffers: Offer[] = offers.slice(0, MAX_NEAR_OFFERS); // Временно берем три первых предложения из моков
 
   const nearOffersPlusCurrent: Offer[] = [...nearOffers, offer!];
   const points = nearOffersPlusCurrent.map((item) => item.location);
