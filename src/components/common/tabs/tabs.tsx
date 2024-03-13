@@ -1,5 +1,6 @@
 import {NavLink} from 'react-router-dom';
 import {City} from '@/types/city';
+import {clsx} from 'clsx';
 
 type TabsProps = {
   cities: City[];
@@ -11,9 +12,8 @@ type getClassesProps = {
 
 export default function Tabs({ cities }: TabsProps): JSX.Element {
   // Активность элемента определяется по ссылке в пропсе "to"
-  const getClasses = ({ isActive }: getClassesProps) => isActive
-    ? 'locations__item-link tabs__item tabs__item--active'
-    : 'locations__item-link tabs__item';
+  const getClasses = ({isActive}: getClassesProps) =>
+    clsx('locations__item-link tabs__item', isActive && 'tabs__item--active');
 
   return (
     <div className="tabs">
