@@ -1,5 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
-import {AppRoute} from '@/utils/const';
+import {AppRoute, DEFAULT_CITY} from '@/utils/const';
 import {Offer} from '@/types/offer';
 import {City} from '@/types/city';
 import MainPage from '@/pages/main-page/main-page';
@@ -9,6 +9,9 @@ import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import OfferPage from '@/pages/offer-page/offer-page';
 import ProtectedRoute from '@/components/common/protected-route/protected-route';
 import {Review} from '@/types/reviews';
+import {useAppDispatch} from '@/hooks/store/store';
+import {useEffect} from 'react';
+import {changeCity, fillingOffers} from '@/store/actions';
 
 type AppProps = {
   offers: Offer[];
@@ -17,31 +20,38 @@ type AppProps = {
 }
 
 export default function App({ offers, cities, reviews }: AppProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fillingOffers());
+    dispatch(changeCity(DEFAULT_CITY));
+  }, []);
+
   return (
     <Routes>
       <Route
         path={AppRoute.Root}
-        element={<MainPage offers={offers} cities={cities} />}
+        element={<MainPage cities={cities} />}
       >
         <Route
           path={AppRoute.RootParis}
-          element={<MainPage offers={offers} cities={cities} />}
+          element={<MainPage cities={cities} />}
         />
         <Route
           path={AppRoute.RootCologne}
-          element={<MainPage offers={offers} cities={cities} />}
+          element={<MainPage cities={cities} />}
         />
         <Route
           path={AppRoute.RootBrussels}
-          element={<MainPage offers={offers} cities={cities} />}
+          element={<MainPage cities={cities} />}
         />
         <Route
           path={AppRoute.RootHamburg}
-          element={<MainPage offers={offers} cities={cities} />}
+          element={<MainPage cities={cities} />}
         />
         <Route
           path={AppRoute.RootDusseldorf}
-          element={<MainPage offers={offers} cities={cities} />}
+          element={<MainPage cities={cities} />}
         />
       </Route>
       <Route

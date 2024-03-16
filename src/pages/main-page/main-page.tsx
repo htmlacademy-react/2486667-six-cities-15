@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import Header from '@/components/common/header/header';
 import Container from '@/components/common/container/container';
@@ -9,23 +9,25 @@ import Tabs from '@/components/common/tabs/tabs';
 import {capitalizeU} from '@/utils/common';
 import {City} from '@/types/city';
 import {Offer} from '@/types/offer';
-import {DEFAULT_CITY} from '@/utils/const';
+import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
+import {changeCity} from '@/store/actions';
 
 type MainPageProps = {
-  offers: Offer[];
   cities: City[];
 }
 
-export default function MainPage({ offers, cities }: MainPageProps): JSX.Element {
+export default function MainPage({ cities }: MainPageProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   const {pathname} = useLocation();
-  const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
-  const currentOffers: Offer[] = currentCity && offers.filter((offer) => offer.city.name === currentCity.name);
+  const currentCity = useAppSelector((state) => state.currentCity);
+  const currentOffers: Offer[] = useAppSelector((state) => state.currentOffers);
 
   useEffect(() => {
     const name = capitalizeU(pathname === '/' ? 'amsterdam' : pathname.slice(1));
     const city = cities.find((item) => item.name === name) as City;
 
-    setCurrentCity(city);
+    dispatch(changeCity(city));
   }, [pathname, cities]); // cities added for lint
 
   return (
@@ -37,9 +39,11 @@ export default function MainPage({ offers, cities }: MainPageProps): JSX.Element
         <Tabs cities={cities} />
 
         <div className="cities">
-          {currentOffers && currentOffers.length ?
-            <OfferList offers={currentOffers} currentCity={currentCity} block='cities' /> :
-            <OfferListEmpty currentCity={currentCity} />}
+          {currentOffers.length !== 0 && currentCity &&
+            <OfferList offers={currentOffers} currentCity={currentCity} block='cities' />}
+          {currentOffers.length === 0 && currentCity &&
+            <OfferListEmpty currentCity={currentCity} />
+          }
         </div>
       </MainContainer>
     </Container>
