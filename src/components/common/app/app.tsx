@@ -60,11 +60,11 @@ export default function App({ offers, cities, reviews }: AppProps): JSX.Element 
       />
       <Route
         path={AppRoute.Favorites}
-        element={<ProtectedRoute><FavoritesPage offers={offers} cities={cities} /></ProtectedRoute>}
+        element={<ProtectedRoute><FavoritesPage cities={cities} /></ProtectedRoute>}
       />
       <Route
         path={`${AppRoute.Offer}/:id`}
-        element={<OfferPage offers={offers} reviews={reviews} />}
+        element={<OfferPage reviews={reviews} />}
       />
       <Route
         path={AppRoute.NotFound}
