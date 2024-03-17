@@ -8,7 +8,7 @@ import Footer from '@/components/common/footer/footer';
 import MainContainer from '@/components/common/main-container/main-container';
 import FavoritesList from '@/components/catalog/favorites-list/favorites-list';
 import FavoritesListEmpty from '@/components/catalog/favorites-list-empty/favorites-list-empty';
-import {useAppSelector} from "@/hooks/store/store";
+import {useAppSelector} from '@/hooks/store/store';
 
 type FavoritesPagePops = {
   cities: City[];

@@ -1,8 +1,16 @@
 import {OFFERS} from '@/mocks/offers';
 import {createReducer} from '@reduxjs/toolkit';
 import {changeCity, fillingOffers} from '@/store/actions';
+import {City} from '@/types/city';
+import {Offer} from '@/types/offer';
 
-const initialState = {
+type TInitialState = {
+  offersData: Offer[];
+  currentCity: City | null;
+  currentOffers: Offer[];
+}
+
+const initialState: TInitialState = {
   offersData: [],
   currentCity: null,
   currentOffers: [],

@@ -1,6 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
 import {AppRoute, DEFAULT_CITY} from '@/utils/const';
-import {Offer} from '@/types/offer';
 import {City} from '@/types/city';
 import MainPage from '@/pages/main-page/main-page';
 import LoginPage from '@/pages/login-page/login-page';
@@ -14,18 +13,17 @@ import {useEffect} from 'react';
 import {changeCity, fillingOffers} from '@/store/actions';
 
 type AppProps = {
-  offers: Offer[];
   cities: City[];
   reviews: Review[];
 }
 
-export default function App({ offers, cities, reviews }: AppProps): JSX.Element {
+export default function App({ cities, reviews }: AppProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fillingOffers());
     dispatch(changeCity(DEFAULT_CITY));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>
@@ -35,6 +33,10 @@ export default function App({ offers, cities, reviews }: AppProps): JSX.Element 
       >
         <Route
           path={AppRoute.RootParis}
+          element={<MainPage cities={cities} />}
+        />
+        <Route
+          path={AppRoute.RootAmsterdam}
           element={<MainPage cities={cities} />}
         />
         <Route

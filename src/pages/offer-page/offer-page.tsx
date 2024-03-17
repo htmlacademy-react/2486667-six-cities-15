@@ -15,7 +15,7 @@ import {Review} from '@/types/reviews';
 import {useState} from 'react';
 import {Location} from '@/types/location';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
-import {useAppSelector} from "@/hooks/store/store";
+import {useAppSelector} from '@/hooks/store/store';
 
 type OfferPageProps = {
   reviews: Review[];
@@ -24,7 +24,7 @@ type OfferPageProps = {
 export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
   const isAuthenticate = setAuthStatus(AuthStatus.Auth);
   const { id } = useParams();
-  const offers = useAppSelector((state) => state.offersData);
+  const offers: Offer[] = useAppSelector((state) => state.offersData);
   const offer: Offer | undefined = offers.find((item) => item.id === id);
   const [activePoint, setActivePoint] = useState<Location | null>(offer!.location);
 

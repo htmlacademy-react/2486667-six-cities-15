@@ -11,7 +11,7 @@ import {City} from '@/types/city';
 import {Offer} from '@/types/offer';
 import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
 import {changeCity} from '@/store/actions';
-import {DEFAULT_CITY} from "@/utils/const";
+import {DEFAULT_CITY} from '@/utils/const';
 
 type MainPageProps = {
   cities: City[];
@@ -28,7 +28,7 @@ export default function MainPage({ cities }: MainPageProps): JSX.Element {
     const city = cities.find((item) => item.name === name) as City;
 
     dispatch(changeCity(city));
-  }, [pathname, cities]); // cities added for lint
+  }, [pathname, cities, dispatch]); // cities added for lint
 
   return (
     <Container extraClass="page--gray page--main">
@@ -42,8 +42,7 @@ export default function MainPage({ cities }: MainPageProps): JSX.Element {
           {currentOffers.length !== 0 && currentCity &&
             <OfferList offers={currentOffers} currentCity={currentCity} block='cities' />}
           {currentOffers.length === 0 && currentCity &&
-            <OfferListEmpty currentCity={currentCity} />
-          }
+            <OfferListEmpty currentCity={currentCity} />}
         </div>
       </MainContainer>
     </Container>
