@@ -6,7 +6,7 @@ export const OFFERS: Offer[] = [
     title: 'The house among olive ',
     description: 'I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.',
     type: 'apartment',
-    price: 118,
+    price: 918,
     previewImage: 'https://15.design.htmlacademy.pro/static/hotel/3.jpg',
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/3.jpg',
@@ -45,7 +45,7 @@ export const OFFERS: Offer[] = [
     },
     isPremium: false,
     isFavorite: true,
-    rating: 3.4,
+    rating: 4.8,
     bedrooms: 3,
     maxAdults: 2
   },
@@ -145,7 +145,7 @@ export const OFFERS: Offer[] = [
     },
     isPremium: false,
     isFavorite: false,
-    rating: 2.8,
+    rating: 1.8,
     bedrooms: 3,
     maxAdults: 10
   },
@@ -195,7 +195,7 @@ export const OFFERS: Offer[] = [
     },
     isPremium: true,
     isFavorite: true,
-    rating: 4.7,
+    rating: 2.4,
     bedrooms: 2,
     maxAdults: 6,
   },
@@ -215,7 +215,7 @@ export const OFFERS: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/12.jpg'
     ],
     city: {
-      name: 'Brussels',
+      name: 'Paris',
       location: {
         latitude: 48.85661,
         longitude: 2.351499,
@@ -297,7 +297,7 @@ export const OFFERS: Offer[] = [
     },
     isPremium: true,
     isFavorite: true,
-    rating: 2.8,
+    rating: 3.5,
     bedrooms: 3,
     maxAdults: 10
   },
@@ -317,7 +317,7 @@ export const OFFERS: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/12.jpg'
     ],
     city: {
-      name: 'Dusseldorf',
+      name: 'Paris',
       location: {
         latitude: 48.85661,
         longitude: 2.351499,
@@ -348,7 +348,7 @@ export const OFFERS: Offer[] = [
     },
     isPremium: false,
     isFavorite: false,
-    rating: 2.8,
+    rating: 0.5,
     bedrooms: 3,
     maxAdults: 10
   }

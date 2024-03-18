@@ -1,18 +1,22 @@
 import {useState} from 'react';
 import {clsx} from 'clsx';
-import {OFFERS_SORT_OPTION_ID_DEFAULT, OFFERS_SORT_OPTIONS} from '@/utils/const';
+import {OFFERS_SORT_OPTIONS} from '@/utils/const';
+import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
+import {setSortId, sortOffers} from '@/store/actions';
 
 export default function OffersSort() {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [activeOptionId, setActiveOptionId] = useState<number>(OFFERS_SORT_OPTION_ID_DEFAULT);
+  const activeOptionId = useAppSelector((state) => state.currentSortId);
 
   const clickCaptionHandler = (): void => {
     setIsOpen((state) => !state);
   };
 
   const clickOptionHandler = (id: number): void => {
-    setActiveOptionId(id);
     setIsOpen(false);
+    dispatch(setSortId(id));
+    dispatch(sortOffers());
   };
 
   return (

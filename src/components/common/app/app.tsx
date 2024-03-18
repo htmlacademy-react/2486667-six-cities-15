@@ -1,5 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
-import {AppRoute, DEFAULT_CITY} from '@/utils/const';
+import {AppRoute} from '@/utils/const';
 import {City} from '@/types/city';
 import MainPage from '@/pages/main-page/main-page';
 import LoginPage from '@/pages/login-page/login-page';
@@ -10,7 +10,7 @@ import ProtectedRoute from '@/components/common/protected-route/protected-route'
 import {Review} from '@/types/reviews';
 import {useAppDispatch} from '@/hooks/store/store';
 import {useEffect} from 'react';
-import {changeCity, fillingOffers} from '@/store/actions';
+import {fillingOffers} from '@/store/actions';
 
 type AppProps = {
   cities: City[];
@@ -22,7 +22,6 @@ export default function App({ cities, reviews }: AppProps): JSX.Element {
 
   useEffect(() => {
     dispatch(fillingOffers());
-    dispatch(changeCity(DEFAULT_CITY));
   }, [dispatch]);
 
   return (

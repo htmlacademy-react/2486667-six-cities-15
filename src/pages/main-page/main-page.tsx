@@ -10,7 +10,7 @@ import {capitalizeU} from '@/utils/common';
 import {City} from '@/types/city';
 import {Offer} from '@/types/offer';
 import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
-import {changeCity} from '@/store/actions';
+import {changeCity, sortOffers} from '@/store/actions';
 import {DEFAULT_CITY} from '@/utils/const';
 
 type MainPageProps = {
@@ -28,7 +28,8 @@ export default function MainPage({ cities }: MainPageProps): JSX.Element {
     const city = cities.find((item) => item.name === name) as City;
 
     dispatch(changeCity(city));
-  }, [pathname, cities, dispatch]); // cities added for lint
+    dispatch(sortOffers());
+  }, [pathname, cities, dispatch]);
 
   return (
     <Container extraClass="page--gray page--main">
