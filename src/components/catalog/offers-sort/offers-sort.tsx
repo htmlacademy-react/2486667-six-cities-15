@@ -25,7 +25,7 @@ export default function OffersSort() {
 
       <span className="places__sorting-type" tabIndex={0} onClick={clickCaptionHandler}>
         &nbsp;
-        {OFFERS_SORT_OPTIONS.find((option) => option.id === activeOptionId).name}
+        {OFFERS_SORT_OPTIONS && OFFERS_SORT_OPTIONS.find((option) => option.id === activeOptionId).name}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
