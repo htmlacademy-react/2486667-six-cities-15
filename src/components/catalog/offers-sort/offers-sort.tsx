@@ -1,21 +1,21 @@
 import {useState} from 'react';
 import {clsx} from 'clsx';
-import {OFFERS_SORT_OPTIONS} from '@/utils/const';
 import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
-import {setSortId, sortOffers} from '@/store/actions';
+import {setSort, sortOffers} from '@/store/actions';
+import {SORT_OPTIONS, SortOption} from "@/components/catalog/offers-sort/utils/const";
 
 export default function OffersSort() {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const activeOptionId = useAppSelector((state) => state.currentSortId);
+  const activeOption = useAppSelector((state) => state.currentSortOption);
 
   const clickCaptionHandler = (): void => {
     setIsOpen((state) => !state);
   };
 
-  const clickOptionHandler = (id: number): void => {
+  const clickOptionHandler = (id: SortOption): void => {
     setIsOpen(false);
-    dispatch(setSortId(id));
+    dispatch(setSort(id));
     dispatch(sortOffers());
   };
 
@@ -25,7 +25,7 @@ export default function OffersSort() {
 
       <span className="places__sorting-type" tabIndex={0} onClick={clickCaptionHandler}>
         &nbsp;
-        {OFFERS_SORT_OPTIONS.find((option) => option.id === activeOptionId)?.name}
+        {SORT_OPTIONS.find((option) => option.id === activeOption)?.name}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -38,13 +38,13 @@ export default function OffersSort() {
           isOpen && 'places__options--opened'
         )}
       >
-        {OFFERS_SORT_OPTIONS.map((option) => (
+        {SORT_OPTIONS.map((option) => (
           <li
             key={option.id}
             tabIndex={0}
             className={clsx(
               'places__option',
-              activeOptionId === option.id && 'places__option--active',
+              activeOption === option.id && 'places__option--active',
             )}
             onClick={() => clickOptionHandler(option.id)}
           >
