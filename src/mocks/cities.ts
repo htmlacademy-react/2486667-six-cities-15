@@ -8,7 +8,7 @@ export const CITIES: City[] = [
       longitude: 2.351499,
       zoom: 13
     },
-    path: '/paris'
+    path: '/'
   },
   {
     name: 'Amsterdam',
@@ -17,7 +17,7 @@ export const CITIES: City[] = [
       longitude: 4.897976,
       zoom: 13
     },
-    path: '/'
+    path: '/amsterdam'
   },
   {
     name: 'Cologne',
