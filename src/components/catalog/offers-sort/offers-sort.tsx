@@ -1,12 +1,10 @@
 import {KeyboardEvent, useEffect} from 'react';
-import {clsx} from 'clsx';
-import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
-import {setSortOption} from '@/store/actions';
-import {SORT_OPTIONS, SortOption} from '@/components/catalog/offers-sort/utils/const';
+import {useAppSelector} from '@/hooks/store/store';
+import {SORT_OPTIONS} from '@/components/catalog/offers-sort/utils/const';
 import {useBoolean} from '@/hooks/boolean/boolean';
+import OffersSortList from '@/components/catalog/offers-sort-list/offers-sort-list';
 
 export default function OffersSort() {
-  const dispatch = useAppDispatch();
   const {isOn, off, toggle} = useBoolean<boolean>(false);
   const sortOption = useAppSelector((state) => state.sortOption);
 
@@ -14,22 +12,17 @@ export default function OffersSort() {
     toggle();
   };
 
-  const clickOptionHandler = (option: SortOption): void => {
-    off();
-    dispatch(setSortOption(option));
-  };
-
   useEffect(() => {
     if (isOn) {
-      const pressEscHandler = (event: KeyboardEvent): void => {
+      const onEscKeyDown = (event: KeyboardEvent) => {
         if (event.key === 'Escape') {
           event.preventDefault();
           off();
         }
       };
-      document.addEventListener('keydown', () => pressEscHandler);
+      document.addEventListener('keydown', onEscKeyDown);
       return () => {
-        document.removeEventListener('keydown', () => pressEscHandler);
+        document.removeEventListener('keydown', onEscKeyDown);
       };
     }
   });
@@ -51,27 +44,7 @@ export default function OffersSort() {
         </svg>
       </span>
 
-      <ul
-        className={clsx(
-          'places__options',
-          'places__options--custom',
-          isOn && 'places__options--opened'
-        )}
-      >
-        {SORT_OPTIONS.map((option) => (
-          <li
-            key={option.id}
-            tabIndex={0}
-            className={clsx(
-              'places__option',
-              sortOption === option.id && 'places__option--active',
-            )}
-            onClick={() => clickOptionHandler(option.id)}
-          >
-            {option.name}
-          </li>
-        ))}
-      </ul>
+      <OffersSortList sortOption={sortOption} isOn={isOn} off={off} />
     </form>
   );
 }
