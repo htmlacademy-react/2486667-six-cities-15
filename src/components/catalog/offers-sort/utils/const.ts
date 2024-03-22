@@ -23,5 +23,3 @@ export const SORT_OPTIONS = [
     name: 'Top rated first'
   },
 ];
-
-export const SORT_OPTION_DEFAULT = SortOption.Popular;

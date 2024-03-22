@@ -1,4 +1,4 @@
-import {convertDate, getRatingWidth} from '@/utils/common';
+import {convertDate, getRatingWidth} from '@/utils';
 import {Review} from '@/types/reviews';
 
 type OfferReviewItemProps = {

@@ -1,4 +1,5 @@
 import {City} from '@/types/city';
+import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 
 export enum AppRoute {
   Root = '/',
@@ -21,11 +22,13 @@ export enum AuthStatus {
 }
 
 export const DEFAULT_CITY: City = {
+  id: AppRoute.RootParis,
   name: 'Paris',
   location: {
     latitude: 48.85661,
     longitude: 2.351499,
     zoom: 13
-  },
-  path: '/'
+  }
 };
+
+export const SORT_OPTION_DEFAULT = SortOption.Popular;

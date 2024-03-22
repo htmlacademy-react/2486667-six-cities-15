@@ -31,10 +31,6 @@ export function getRatingWidth(rating: number): string {
   );
 };*/
 
-export function capitalizeU(str: string): string {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 export function setAuthStatus(status: AuthStatus): boolean {
   return status === AuthStatus.Auth;
 }

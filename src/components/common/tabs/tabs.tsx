@@ -1,6 +1,10 @@
-import {NavLink} from 'react-router-dom';
+import {NavLink, useLocation} from 'react-router-dom';
 import {City} from '@/types/city';
 import {clsx} from 'clsx';
+import {useAppDispatch} from '@/hooks/store/store';
+import {useEffect} from 'react';
+import {DEFAULT_CITY} from '@/utils/const';
+import {changeCity} from '@/store/actions';
 
 type TabsProps = {
   cities: City[];
@@ -11,9 +15,17 @@ type getClassesProps = {
 }
 
 export default function Tabs({ cities }: TabsProps): JSX.Element {
-  // Активность элемента определяется по ссылке в пропсе "to"
+  const dispatch = useAppDispatch();
+  const {pathname} = useLocation();
   const getClasses = ({isActive}: getClassesProps) =>
     clsx('locations__item-link tabs__item', isActive && 'tabs__item--active');
+
+  useEffect(() => {
+    const cityId = pathname === '/' ? DEFAULT_CITY.id : pathname.slice(1);
+    const city = cities.find((item) => item.id === cityId) as City;
+
+    dispatch(changeCity(city));
+  }, [pathname, cities, dispatch]);
 
   return (
     <div className="tabs">

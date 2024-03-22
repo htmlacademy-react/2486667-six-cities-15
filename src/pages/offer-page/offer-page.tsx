@@ -1,6 +1,6 @@
 import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
-import {setAuthStatus} from '@/utils/common';
+import {setAuthStatus} from '@/utils';
 import {AuthStatus} from '@/utils/const';
 import {Offer} from '@/types/offer';
 import Container from '@/components/common/container/container';

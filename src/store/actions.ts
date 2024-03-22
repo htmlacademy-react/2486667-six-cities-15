@@ -8,8 +8,8 @@ export const changeCity = createAction('cities/changeCity', (city: City) => ({
   payload: city,
 }));
 
-export const setSort = createAction('offers/setSortId', (id: SortOption) => ({
-  payload: id,
+export const setSortOption = createAction('offers/setSortId', (sortOption: SortOption) => ({
+  payload: sortOption,
 }));
 
 export const sortOffers = createAction('offers/sort');
