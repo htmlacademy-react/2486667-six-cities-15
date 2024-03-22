@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {reducer} from '@/store/reducer';
-import {createApi} from "@/services/api";
+import {createAPI} from '@/services/api';
 
-const api = createApi();
+const api = createAPI();
 
 export const store = configureStore({
   reducer,
