@@ -3,8 +3,9 @@ import {City} from '@/types/city';
 import {clsx} from 'clsx';
 import {useAppDispatch} from '@/hooks/store/store';
 import {useEffect} from 'react';
-import {DEFAULT_CITY} from '@/utils/const';
+import {AppRoute, DEFAULT_CITY} from '@/utils/const';
 import {changeCity} from '@/store/actions';
+import {logDOM} from "@testing-library/react";
 
 type TabsProps = {
   cities: City[];
@@ -32,7 +33,7 @@ export default function Tabs({ cities }: TabsProps): JSX.Element {
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {cities.map((item) => {
-            const path: string = `/${item?.id}` || '';
+            const path: string = item?.id === DEFAULT_CITY.id ? '/' : `/${item?.id}` || '';
 
             return (
               <li className="locations__item" key={item.name}>
