@@ -11,6 +11,7 @@ import {City} from '@/types/city';
 import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
 import {changeCity, sortOffers} from '@/store/actions';
 import {DEFAULT_CITY} from '@/utils/const';
+import {getCurrentOffers} from '@/pages/main-page/utils';
 
 type MainPageProps = {
   cities: City[];
@@ -21,7 +22,7 @@ export default function MainPage({ cities }: MainPageProps): JSX.Element {
   const {pathname} = useLocation();
   const currentCity = useAppSelector((state) => state.currentCity);
   const offers = useAppSelector((state) => state.offersData);
-  const currentOffers = offers.filter((offer) => offer.city.name === currentCity?.name);
+  const currentOffers = getCurrentOffers(currentCity, offers);
 
   useEffect(() => {
     const name = capitalizeU(pathname === '/' ? DEFAULT_CITY.name : pathname.slice(1));
