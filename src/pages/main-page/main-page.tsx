@@ -17,11 +17,7 @@ type MainPageProps = {
 export default function MainPage({ cities }: MainPageProps): JSX.Element {
   const offers = useAppSelector((state) => state.offersData);
   const currentCity = useAppSelector((state) => state.currentCity);
-  const [currentOffers, setCurrentOffers] = useState<Offer[]>([]);
-
-  useEffect(() => {
-    setCurrentOffers(getCurrentOffers(currentCity, offers));
-  }, [currentCity, offers]);
+  const currentOffers = getCurrentOffers(currentCity, offers);
 
   return (
     <Container extraClass="page--gray page--main">
