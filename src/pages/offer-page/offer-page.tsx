@@ -1,7 +1,6 @@
 import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
-import {setAuthStatus} from '@/utils';
-import {AuthStatus} from '@/utils/const';
+import {getIsAuth} from '@/utils';
 import {Offer} from '@/types/offer';
 import Container from '@/components/common/container/container';
 import Header from '@/components/common/header/header';
@@ -22,7 +21,8 @@ type OfferPageProps = {
 }
 
 export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
-  const isAuthenticate = setAuthStatus(AuthStatus.Auth);
+  const authStatus = useAppSelector((state) => state.authStatus);
+  const isAuthenticate = getIsAuth(authStatus);
   const { id } = useParams();
   const offers: Offer[] = useAppSelector((state) => state.offersData);
   const offer: Offer | undefined = offers.find((item) => item.id === id);

@@ -1,7 +1,8 @@
 import {Navigate, useLocation} from 'react-router-dom';
-import {AppRoute, AuthStatus} from '@/utils/const';
-import {setAuthStatus} from '@/utils';
+import {AppRoute} from '@/utils/const';
+import {getIsAuth} from '@/utils';
 import {Location} from 'react-router-dom';
+import {useAppSelector} from '@/hooks/store/store';
 
 type ProtectedRouteProps = {
   onlyUnAuth?: boolean;
@@ -14,7 +15,8 @@ type FromState = {
 
 export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteProps): JSX.Element {
   const location = useLocation() as Location<FromState>;
-  const isAuthenticate = setAuthStatus(AuthStatus.Auth);
+  const authStatus = useAppSelector((state) => state.authStatus);
+  const isAuthenticate = getIsAuth(authStatus);
 
   // Авторизованы и стр логина => переход на предыдущую перед стр логина страницу, либо на главную
   if (isAuthenticate && onlyUnAuth) {

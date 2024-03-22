@@ -31,7 +31,7 @@ export function getRatingWidth(rating: number): string {
   );
 };*/
 
-export function setAuthStatus(status: AuthStatus): boolean {
+export function getIsAuth(status: AuthStatus): boolean {
   return status === AuthStatus.Auth;
 }
 
