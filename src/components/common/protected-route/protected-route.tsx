@@ -1,6 +1,6 @@
 import {Navigate, useLocation} from 'react-router-dom';
 import {AppRoute, AuthStatus} from '@/utils/const';
-import {setAuthStatus} from '@/utils/common';
+import {setAuthStatus} from '@/utils';
 import {Location} from 'react-router-dom';
 
 type ProtectedRouteProps = {

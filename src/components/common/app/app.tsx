@@ -11,6 +11,7 @@ import {Review} from '@/types/reviews';
 import {useAppDispatch} from '@/hooks/store/store';
 import {useEffect} from 'react';
 import {fillingOffers} from '@/store/actions';
+import {CITIES} from '@/mocks/cities';
 
 type AppProps = {
   cities: City[];
@@ -30,30 +31,9 @@ export default function App({ cities, reviews }: AppProps): JSX.Element {
         path={AppRoute.Root}
         element={<MainPage cities={cities} />}
       >
-        <Route
-          path={AppRoute.RootParis}
-          element={<MainPage cities={cities} />}
-        />
-        <Route
-          path={AppRoute.RootAmsterdam}
-          element={<MainPage cities={cities} />}
-        />
-        <Route
-          path={AppRoute.RootCologne}
-          element={<MainPage cities={cities} />}
-        />
-        <Route
-          path={AppRoute.RootBrussels}
-          element={<MainPage cities={cities} />}
-        />
-        <Route
-          path={AppRoute.RootHamburg}
-          element={<MainPage cities={cities} />}
-        />
-        <Route
-          path={AppRoute.RootDusseldorf}
-          element={<MainPage cities={cities} />}
-        />
+        {CITIES.map((city) =>
+          <Route key={city.id} element={<MainPage cities={cities}/>} path={city.id}/>
+        )}
       </Route>
       <Route
         path={AppRoute.Login}

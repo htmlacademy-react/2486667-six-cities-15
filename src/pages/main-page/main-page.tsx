@@ -1,35 +1,21 @@
-import {useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
 import Header from '@/components/common/header/header';
 import Container from '@/components/common/container/container';
 import MainContainer from '@/components/common/main-container/main-container';
-import OfferList from '@/components/catalog/offer-list/offer-list';
-import OfferListEmpty from '@/components/catalog/offer-list-empty/offer-list-empty';
+import OffersList from '@/components/catalog/offers-list/offers-list';
+import OffersListEmpty from '@/components/catalog/offers-list-empty/offers-list-empty';
 import Tabs from '@/components/common/tabs/tabs';
-import {capitalizeU} from '@/utils/common';
 import {City} from '@/types/city';
-import {Offer} from '@/types/offer';
-import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
-import {changeCity, sortOffers} from '@/store/actions';
-import {DEFAULT_CITY} from '@/utils/const';
+import {useAppSelector} from '@/hooks/store/store';
+import {getCurrentOffers} from '@/pages/main-page/utils';
 
 type MainPageProps = {
   cities: City[];
 }
 
 export default function MainPage({ cities }: MainPageProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  const {pathname} = useLocation();
+  const offers = useAppSelector((state) => state.offersData);
   const currentCity = useAppSelector((state) => state.currentCity);
-  const currentOffers: Offer[] = useAppSelector((state) => state.currentOffers);
-
-  useEffect(() => {
-    const name = capitalizeU(pathname === '/' ? DEFAULT_CITY.name : pathname.slice(1));
-    const city = cities.find((item) => item.name === name) as City;
-
-    dispatch(changeCity(city));
-    dispatch(sortOffers());
-  }, [pathname, cities, dispatch]);
+  const currentOffers = getCurrentOffers(currentCity, offers);
 
   return (
     <Container extraClass="page--gray page--main">
@@ -41,9 +27,13 @@ export default function MainPage({ cities }: MainPageProps): JSX.Element {
 
         <div className="cities">
           {currentOffers.length !== 0 && currentCity &&
-            <OfferList offers={currentOffers} currentCity={currentCity} block='cities' />}
+            <OffersList
+              offers={currentOffers}
+              currentCity={currentCity}
+              block='cities'
+            />}
           {currentOffers.length === 0 && currentCity &&
-            <OfferListEmpty currentCity={currentCity} />}
+            <OffersListEmpty currentCity={currentCity} />}
         </div>
       </MainContainer>
     </Container>

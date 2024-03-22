@@ -3,7 +3,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {City} from '@/types/city';
 import {Map} from 'leaflet';
-import {TILE_LAYER_ATTRIBUTION, TILE_LAYER_URL_PATTERN} from './consts';
+import {TILE_LAYER_ATTRIBUTION, TILE_LAYER_URL_PATTERN} from './const';
 
 export default function useMapLeaflet(mapRef: RefObject<HTMLFormElement> | null, currentCity: City) {
   const [map, setMap] = useState<Map | null>(null);

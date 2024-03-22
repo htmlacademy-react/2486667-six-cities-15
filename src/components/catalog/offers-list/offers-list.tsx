@@ -5,15 +5,19 @@ import OfferCard from '@/components/catalog/offer-card/offer-card';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 import {City} from '@/types/city';
 import OffersSort from '@/components/catalog/offers-sort/offers-sort';
+import {useAppSelector} from '@/hooks/store/store';
+import {getSortedOffers} from '@/components/catalog/offers-list/utils';
 
-type OfferListProps = {
+type OffersListProps = {
   offers: Offer[];
   currentCity: City;
   block: string;
 }
 
-export default function OfferList({ offers, currentCity, block }: OfferListProps): JSX.Element {
+export default function OffersList({ offers, currentCity, block }: OffersListProps): JSX.Element {
   const [activePoint, setActivePoint] = useState<Location | null>(null);
+  const sortOption = useAppSelector((state) => state.sortOption);
+  const sortedOffers = getSortedOffers(sortOption, offers);
 
   const hoverHandler = (id: Offer['id'] | null) => {
     const point = offers.find((offer) => offer.id === id)?.location || null;
@@ -32,7 +36,7 @@ export default function OfferList({ offers, currentCity, block }: OfferListProps
         <OffersSort />
 
         <div className="cities__places-list places__list tabs__content">
-          {offers && offers.map((offer) => (
+          {sortedOffers && sortedOffers.map((offer) => (
             <OfferCard key={offer.id} offer={offer} block={block} hoverHandler={hoverHandler} />
           ))}
         </div>
