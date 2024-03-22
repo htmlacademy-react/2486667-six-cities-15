@@ -3,9 +3,8 @@ import {City} from '@/types/city';
 import {clsx} from 'clsx';
 import {useAppDispatch} from '@/hooks/store/store';
 import {useEffect} from 'react';
-import {AppRoute, DEFAULT_CITY} from '@/utils/const';
+import {DEFAULT_CITY} from '@/utils/const';
 import {changeCity} from '@/store/actions';
-import {logDOM} from "@testing-library/react";
 
 type TabsProps = {
   cities: City[];
