@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react';
 import Header from '@/components/common/header/header';
 import Container from '@/components/common/container/container';
 import MainContainer from '@/components/common/main-container/main-container';
@@ -8,7 +7,6 @@ import Tabs from '@/components/common/tabs/tabs';
 import {City} from '@/types/city';
 import {useAppSelector} from '@/hooks/store/store';
 import {getCurrentOffers} from '@/pages/main-page/utils';
-import {Offer} from '@/types/offer';
 
 type MainPageProps = {
   cities: City[];
