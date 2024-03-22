@@ -8,14 +8,12 @@ import {SORT_OPTION_DEFAULT, SortOption} from '@/components/catalog/offers-sort/
 type TInitialState = {
   offersData: Offer[];
   currentCity: City | null;
-  currentOffers: Offer[];
   currentSortOption: SortOption;
 }
 
 const initialState: TInitialState = {
   offersData: [],
   currentCity: null,
-  currentOffers: [],
   currentSortOption: SORT_OPTION_DEFAULT,
 };
 
@@ -26,13 +24,12 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeCity, (state, action) => {
       state.currentCity = action.payload;
-      state.currentOffers = state.offersData.filter((offer) => offer.city.name === action.payload.name);
     })
     .addCase(setSort, (state, action) => {
       state.currentSortOption = action.payload;
     })
     .addCase(sortOffers, (state) => {
-      switch (state.currentSortOption) {
+      /*switch (state.currentSortOption) {
         case SortOption.Popular:
           state.currentOffers = state.offersData.filter((offer) => offer.city.name === state.currentCity?.name);
           break;
@@ -47,6 +44,6 @@ export const reducer = createReducer(initialState, (builder) => {
           break;
         default:
           break;
-      }
+      }*/
     });
 });

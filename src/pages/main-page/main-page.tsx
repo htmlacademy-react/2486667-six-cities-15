@@ -8,7 +8,6 @@ import OfferListEmpty from '@/components/catalog/offer-list-empty/offer-list-emp
 import Tabs from '@/components/common/tabs/tabs';
 import {capitalizeU} from '@/utils/common';
 import {City} from '@/types/city';
-import {Offer} from '@/types/offer';
 import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
 import {changeCity, sortOffers} from '@/store/actions';
 import {DEFAULT_CITY} from '@/utils/const';
@@ -21,7 +20,8 @@ export default function MainPage({ cities }: MainPageProps): JSX.Element {
   const dispatch = useAppDispatch();
   const {pathname} = useLocation();
   const currentCity = useAppSelector((state) => state.currentCity);
-  const currentOffers: Offer[] = useAppSelector((state) => state.currentOffers);
+  const offers = useAppSelector((state) => state.offersData);
+  const currentOffers = offers.filter((offer) => offer.city.name === currentCity?.name);
 
   useEffect(() => {
     const name = capitalizeU(pathname === '/' ? DEFAULT_CITY.name : pathname.slice(1));
