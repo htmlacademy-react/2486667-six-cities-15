@@ -3,7 +3,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import {changeCity, fillingOffers, setSort, sortOffers} from '@/store/actions';
 import {City} from '@/types/city';
 import {Offer} from '@/types/offer';
-import {SORT_OPTION_DEFAULT, SortOption} from "@/components/catalog/offers-sort/utils/const";
+import {SORT_OPTION_DEFAULT, SortOption} from '@/components/catalog/offers-sort/utils/const';
 
 type TInitialState = {
   offersData: Offer[];
@@ -37,13 +37,13 @@ export const reducer = createReducer(initialState, (builder) => {
           state.currentOffers = state.offersData.filter((offer) => offer.city.name === state.currentCity?.name);
           break;
         case SortOption.PriceLowToHigh:
-          state.currentOffers = [...state.currentOffers].sort((a, b) => a.price - b.price);
+          state.currentOffers = state.currentOffers.toSorted((a, b) => a.price - b.price);
           break;
         case SortOption.PriceHighToLow:
-          state.currentOffers = [...state.currentOffers].sort((a, b) => b.price - a.price);
+          state.currentOffers = state.currentOffers.toSorted((a, b) => b.price - a.price);
           break;
         case SortOption.TopRatedFirst:
-          state.currentOffers = [...state.currentOffers].sort((a, b) => b.rating - a.rating);
+          state.currentOffers = state.currentOffers.toSorted((a, b) => b.rating - a.rating);
           break;
         default:
           break;

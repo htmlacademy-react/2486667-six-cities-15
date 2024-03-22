@@ -20,7 +20,7 @@ export default function Tabs({ cities }: TabsProps): JSX.Element {
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {cities.map((item) => {
-            const path: string = item.path || '';
+            const path: string = `/${item?.id}` || '';
 
             return (
               <li className="locations__item" key={item.name}>

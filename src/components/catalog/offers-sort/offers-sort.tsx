@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {clsx} from 'clsx';
 import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
 import {setSort, sortOffers} from '@/store/actions';
-import {SORT_OPTIONS, SortOption} from "@/components/catalog/offers-sort/utils/const";
+import {SORT_OPTIONS, SortOption} from '@/components/catalog/offers-sort/utils/const';
 
 export default function OffersSort() {
   const dispatch = useAppDispatch();

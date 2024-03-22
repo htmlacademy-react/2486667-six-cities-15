@@ -1,6 +1,6 @@
 import {createAction} from '@reduxjs/toolkit';
 import {City} from '@/types/city';
-import {SortOption} from "@/components/catalog/offers-sort/utils/const";
+import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 
 export const fillingOffers = createAction('offers/fillingOffers');
 
