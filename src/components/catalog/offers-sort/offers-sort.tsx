@@ -1,11 +1,11 @@
-import {KeyboardEvent, useEffect} from 'react';
+import {useEffect} from 'react';
 import {useAppSelector} from '@/hooks/store/store';
 import {SORT_OPTIONS} from '@/components/catalog/offers-sort/utils/const';
 import {useBoolean} from '@/hooks/boolean/boolean';
 import OffersSortList from '@/components/catalog/offers-sort-list/offers-sort-list';
 
 export default function OffersSort() {
-  const {isOn, off, toggle} = useBoolean<boolean>(false);
+  const {isOn, off, toggle} = useBoolean(false);
   const sortOption = useAppSelector((state) => state.sortOption);
 
   const clickCaptionHandler = (): void => {
