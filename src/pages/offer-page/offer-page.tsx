@@ -6,42 +6,58 @@ import Container from '@/components/common/container/container';
 import Header from '@/components/common/header/header';
 import MainContainer from '@/components/common/main-container/main-container';
 import OfferGallary from '@/components/catalog/offer-gallary/offer-gallary';
-import OfferDescription from '@/components/catalog/offer-description/offer-description';
 import OfferReviews from '@/components/catalog/offer-reviews/offer-reviews';
-import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import {Review} from '@/types/reviews';
-import {useState} from 'react';
 import {Location} from '@/types/location';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
-import {useAppSelector} from '@/hooks/store/store';
+import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
+import {getNearOffers} from '@/pages/offer-page/utils';
+import {City} from '@/types/city';
+import {useEffect, useState} from 'react';
+import {fetchOfferAction} from '@/store/api-actions';
+import OfferDescription from '@/components/catalog/offer-description/offer-description';
+import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
 
 type OfferPageProps = {
   reviews: Review[];
 }
 
 export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
+  const dispatch = useAppDispatch();
   const authStatus = useAppSelector((state) => state.authStatus);
   const isAuthenticate = getIsAuth(authStatus);
   const { id } = useParams();
   const offers: Offer[] = useAppSelector((state) => state.offersData);
-  const offer: Offer | undefined = offers.find((item) => item.id === id);
-  const [activePoint, setActivePoint] = useState<Location | null>(offer!.location);
+  const offer: Offer | null = useAppSelector((state) => state.offerData);
+  const [activePoint, setActivePoint] = useState<Location | null>(null);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchOfferAction(id));
+    }
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    if (offer?.location) {
+      setActivePoint(offer.location);
+    }
+  }, [offer]);
+
+  if (!offer) {
+    return <NotFoundPage type='offer' />;
+  }
+
+  const currentCity: City = offer.city;
 
   const hoverHandler = (hoverId: Offer['id'] | null) => {
     const point = offers.find((item) => item.id === hoverId)?.location || null;
     setActivePoint(point);
   };
 
-  const MAX_NEAR_OFFERS = 3;
-  const nearOffers: Offer[] = offers.slice(0, MAX_NEAR_OFFERS); // Временно берем три первых предложения из моков
-
-  const nearOffersPlusCurrent: Offer[] = [...nearOffers, offer!];
-  const points = nearOffersPlusCurrent.map((item) => item.location);
-
-  if (!offer) {
-    return <NotFoundPage type='offer' />;
-  }
+  const nearOffers = getNearOffers(currentCity, offers);
+  const nearOffersPlusCurrent: Offer[] = [...nearOffers, offer];
+  const nearPoints = nearOffersPlusCurrent.map((item) => item.location);
 
   return (
     <Container>
@@ -65,8 +81,8 @@ export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
             </div>
 
             <MapLeaflet
-              currentCity={offer.city}
-              points={points}
+              currentCity={currentCity}
+              points={nearPoints}
               activePoint={activePoint}
               extraClass="offer__map"
             />

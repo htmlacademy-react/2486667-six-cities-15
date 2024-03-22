@@ -8,10 +8,9 @@ import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import OfferPage from '@/pages/offer-page/offer-page';
 import ProtectedRoute from '@/components/common/protected-route/protected-route';
 import {Review} from '@/types/reviews';
-import {useAppDispatch} from '@/hooks/store/store';
-import {useEffect} from 'react';
-import {fillingOffers} from '@/store/actions';
 import {CITIES} from '@/mocks/cities';
+import {useAppDispatch} from '@/hooks/store/store';
+import {fetchOffersAction} from '@/store/api-actions';
 
 type AppProps = {
   cities: City[];
@@ -20,10 +19,7 @@ type AppProps = {
 
 export default function App({ cities, reviews }: AppProps): JSX.Element {
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fillingOffers());
-  }, [dispatch]);
+  dispatch(fetchOffersAction());
 
   return (
     <Routes>

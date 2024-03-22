@@ -32,3 +32,14 @@ export const DEFAULT_CITY: City = {
 };
 
 export const SORT_OPTION_DEFAULT = SortOption.Popular;
+
+export enum APIRoute {
+  Offers = '/offers',
+  Offer = '/offers/',
+  Nearby = '/offers/{offerId}/nearby',
+  Favorite = '/favorite',
+  FavoriteStatus = '/favorite/{offerId}/{status}',
+  Comments = '/comments/{offerId}',
+  Login = '/login',
+  Logout = '/logout',
+}

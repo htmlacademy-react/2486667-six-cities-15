@@ -24,8 +24,8 @@ export const CITIES: City[] = [
     id: AppRoute.RootCologne,
     name: 'Cologne',
     location: {
-      latitude: 48.85661,
-      longitude: 2.351499,
+      latitude: 50.938361,
+      longitude: 6.959974,
       zoom: 13
     }
   },
@@ -33,8 +33,8 @@ export const CITIES: City[] = [
     id: AppRoute.RootBrussels,
     name: 'Brussels',
     location: {
-      latitude: 48.85661,
-      longitude: 2.351499,
+      latitude: 50.846557,
+      longitude: 4.351697,
       zoom: 13
     }
   },
@@ -42,8 +42,8 @@ export const CITIES: City[] = [
     id: AppRoute.RootHamburg,
     name: 'Hamburg',
     location: {
-      latitude: 48.85661,
-      longitude: 2.351499,
+      latitude: 53.550341,
+      longitude: 10.000654,
       zoom: 13
     }
   },
@@ -51,8 +51,8 @@ export const CITIES: City[] = [
     id: AppRoute.RootDusseldorf,
     name: 'Dusseldorf',
     location: {
-      latitude: 48.85661,
-      longitude: 2.351499,
+      latitude: 51.225402,
+      longitude: 6.776314,
       zoom: 13
     }
   }
