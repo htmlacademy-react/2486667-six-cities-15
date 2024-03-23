@@ -67,7 +67,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     setToken(token);
     dispatch(requireAuth(AuthStatus.Auth));
-    //dispatch(redirectToRoute(AppRoute.Root)); // TODO перенаправление не работает
+    //dispatch(redirectToRoute(AppRoute.Root)); // TODO перенаправление в защищенном компоненте, удалить middleware redirect
   },
 );
 
