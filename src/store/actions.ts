@@ -11,13 +11,9 @@ export const loadOffer = createAction<Offer>('offers/loadOffer');
 
 export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');
 
-export const changeCity = createAction('cities/changeCity', (city: City) => ({
-  payload: city,
-}));
+export const changeCity = createAction<City>('cities/changeCity');
 
-export const setSortOption = createAction('offers/setSortOption', (sortOption: SortOption) => ({
-  payload: sortOption,
-}));
+export const setSortOption = createAction<SortOption>('offers/setSortOption');
 
 export const requireAuth = createAction<AuthStatus>('user/requireAuth');
 

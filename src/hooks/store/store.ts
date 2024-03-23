@@ -1,8 +1,6 @@
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import {AppDispatch, State} from '@/types/state';
+import {AppDispatch, RootState} from '@/types/state';
 
-// Чтобы каждый раз не типизировать запросы к стору,
-// создадим типизированные версии хуков.
-// Будем использовать их для работы со стором.
+// Чтобы каждый раз не типизировать запросы к стору
 export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<State> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
