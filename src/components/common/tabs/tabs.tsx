@@ -4,7 +4,7 @@ import {clsx} from 'clsx';
 import {useAppDispatch} from '@/hooks/store/store';
 import {useEffect} from 'react';
 import {DEFAULT_CITY} from '@/utils/const';
-import {changeCity} from '@/store/actions';
+import {offersActions} from '@/store/slices/offers';
 
 type TabsProps = {
   cities: City[];
@@ -24,7 +24,7 @@ export default function Tabs({ cities }: TabsProps): JSX.Element {
     const cityId = pathname === '/' ? DEFAULT_CITY.id : pathname.slice(1);
     const city = cities.find((item) => item.id === cityId) as City;
 
-    dispatch(changeCity(city));
+    dispatch(offersActions.setCity(city));
   }, [pathname, cities, dispatch]);
 
   return (

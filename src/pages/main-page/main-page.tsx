@@ -7,14 +7,15 @@ import Tabs from '@/components/common/tabs/tabs';
 import {City} from '@/types/city';
 import {useAppSelector} from '@/hooks/store/store';
 import {getCurrentOffers} from '@/pages/main-page/utils';
+import {offersSelectors} from '@/store/slices/offers';
 
 type MainPageProps = {
   cities: City[];
 }
 
 export default function MainPage({ cities }: MainPageProps): JSX.Element {
-  const offers = useAppSelector((state) => state.offersData);
-  const currentCity = useAppSelector((state) => state.currentCity);
+  const offers = useAppSelector(offersSelectors.offers);
+  const currentCity = useAppSelector(offersSelectors.city);
   const currentOffers = getCurrentOffers(currentCity, offers);
 
   return (

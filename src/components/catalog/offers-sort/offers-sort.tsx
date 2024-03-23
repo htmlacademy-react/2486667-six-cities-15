@@ -3,10 +3,11 @@ import {useAppSelector} from '@/hooks/store/store';
 import {SORT_OPTIONS} from '@/components/catalog/offers-sort/utils/const';
 import {useBoolean} from '@/hooks/boolean/boolean';
 import OffersSortList from '@/components/catalog/offers-sort-list/offers-sort-list';
+import {offersSelectors} from '@/store/slices/offers';
 
 export default function OffersSort() {
   const {isOn, off, toggle} = useBoolean(false);
-  const sortOption = useAppSelector((state) => state.sortOption);
+  const sortOption = useAppSelector(offersSelectors.sortOption);
 
   const clickCaptionHandler = (): void => {
     toggle();

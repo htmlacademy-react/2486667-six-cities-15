@@ -3,6 +3,7 @@ import {AppRoute} from '@/utils/const';
 import {getIsAuth} from '@/utils';
 import {Location} from 'react-router-dom';
 import {useAppSelector} from '@/hooks/store/store';
+import {usersSelectors} from '@/store/slices/users';
 
 type ProtectedRouteProps = {
   onlyUnAuth?: boolean;
@@ -15,7 +16,7 @@ type FromState = {
 
 export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteProps): JSX.Element {
   const location = useLocation() as Location<FromState>;
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const authStatus = useAppSelector(usersSelectors.status);
   const isAuthenticate = getIsAuth(authStatus);
 
   // Авторизованы и стр логина => переход на главную

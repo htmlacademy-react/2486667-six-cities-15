@@ -9,13 +9,14 @@ import MainContainer from '@/components/common/main-container/main-container';
 import FavoritesList from '@/components/catalog/favorites-list/favorites-list';
 import FavoritesListEmpty from '@/components/catalog/favorites-list-empty/favorites-list-empty';
 import {useAppSelector} from '@/hooks/store/store';
+import {offersSelectors} from '@/store/slices/offers';
 
 type FavoritesPagePops = {
   cities: City[];
 }
 
 export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Element {
-  const offers: Offer[] = useAppSelector((state) => state.offersData);
+  const offers: Offer[] = useAppSelector(offersSelectors.offers);
   const favorites = getFavoritesByLocation(offers);
 
   return (

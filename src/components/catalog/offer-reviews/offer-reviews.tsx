@@ -5,13 +5,14 @@ import OfferReviewForm from '@/components/catalog/offer-review-form/offer-review
 import {Review} from '@/types/reviews';
 import {getIsAuth} from '@/utils';
 import {useAppSelector} from '@/hooks/store/store';
+import {usersSelectors} from '@/store/slices/users';
 
 type OfferReviewsProps = {
   reviews: Review[];
 }
 
 export default function OfferReviews({ reviews }: OfferReviewsProps): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const authStatus = useAppSelector(usersSelectors.status);
   const isAuthenticate = getIsAuth(authStatus);
 
   return (

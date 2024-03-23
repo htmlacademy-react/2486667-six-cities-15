@@ -1,7 +1,12 @@
-import {configureStore} from '@reduxjs/toolkit';
-import {reducer} from '@/store/reducer';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {createAPI} from '@/services/api';
-import {redirect} from '@/store/middlewares/redirect';
+import {offersSlice} from '@/store/slices/offers';
+import {usersSlice} from "@/store/slices/users";
+
+const reducer = combineReducers({
+  [offersSlice.name]: offersSlice.reducer,
+  [usersSlice.name]: usersSlice.reducer,
+});
 
 export const store = configureStore({
   reducer,
@@ -10,5 +15,5 @@ export const store = configureStore({
       thunk: {
         extraArgument: createAPI(),
       },
-    }).concat(redirect),
+    }),
 });

@@ -14,9 +14,10 @@ import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
 import {getNearOffers} from '@/pages/offer-page/utils';
 import {City} from '@/types/city';
 import {useEffect, useState} from 'react';
-import {fetchOfferAction} from '@/store/api-actions';
 import OfferDescription from '@/components/catalog/offer-description/offer-description';
 import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
+import {offersSelectors} from '@/store/slices/offers';
+import {fetchOffer} from '@/store/thunks/offers';
 
 type OfferPageProps = {
   reviews: Review[];
@@ -25,13 +26,13 @@ type OfferPageProps = {
 export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const offers: Offer[] = useAppSelector((state) => state.offersData);
-  const offer: Offer | null = useAppSelector((state) => state.offerData);
+  const offers: Offer[] = useAppSelector(offersSelectors.offers);
+  const offer: Offer | null = useAppSelector(offersSelectors.offer);
   const [activePoint, setActivePoint] = useState<Location | null>(null);
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchOfferAction(id));
+      dispatch(fetchOffer(id));
     }
   }, [id, dispatch]);
 

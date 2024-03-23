@@ -33,7 +33,7 @@ export const DEFAULT_CITY: City = {
 
 export const SORT_OPTION_DEFAULT = SortOption.Popular;
 
-export enum APIRoute {
+export enum Endpoint {
   Offers = '/offers',
   Offer = '/offers/',
   Nearby = '/offers/{offerId}/nearby',
@@ -42,4 +42,11 @@ export enum APIRoute {
   Comments = '/comments/{offerId}',
   Login = '/login',
   Logout = '/logout',
+}
+
+export const enum RequestStatus {
+  Idle,
+  Loading,
+  Success,
+  Failed,
 }

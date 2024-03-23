@@ -2,18 +2,20 @@ import {Link, useLocation} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';
 import HeaderLogo from '@/components/common/header-logo/header-logo';
 import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
-import {logoutAction} from '@/store/api-actions';
 import {getIsAuth} from '@/utils';
+import {usersSelectors} from '@/store/slices/users';
+import {logoutUser} from '@/store/thunks/users';
 
 export default function Header(): JSX.Element {
   const dispatch = useAppDispatch();
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const authStatus = useAppSelector(usersSelectors.status);
   const isAuthenticate = getIsAuth(authStatus);
-  const name = useAppSelector((state) => state.user?.name);
+  const user = useAppSelector(usersSelectors.user);
+  const name = user?.name;
   const {pathname} = useLocation();
 
   const logout = () => {
-    dispatch(logoutAction());
+    dispatch(logoutUser());
   };
 
   return (
