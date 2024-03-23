@@ -18,7 +18,7 @@ export function getFavoritesByLocation(offers: Offer[]): Favorites {
 }
 
 export function getRatingWidth(rating: number): string {
-  return `${((rating / 5) * 100).toFixed(1) }%`;
+  return `${((Math.round(rating) / 5) * 100)}%`;
 }
 
 export function getIsAuth(status: AuthStatus): boolean {
