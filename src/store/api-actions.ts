@@ -2,8 +2,15 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '@/types/state';
 import {AxiosInstance} from 'axios';
 import {Offer} from '@/types/offer';
-import {APIRoute, AuthStatus, TIMEOUT_SHOW_ERROR} from '@/utils/const';
-import {loadOffer, loadOffers, requireAuth, setError, setOffersDataLoadingStatus} from '@/store/actions';
+import {APIRoute, AppRoute, AuthStatus, TIMEOUT_SHOW_ERROR} from '@/utils/const';
+import {
+  loadOffer,
+  loadOffers,
+  redirectToRoute,
+  requireAuth,
+  setError,
+  setOffersDataLoadingStatus
+} from '@/store/actions';
 import {AuthData, UserData} from '@/types/user';
 import {removeToken, setToken} from '@/services/token';
 import {store} from '@/store/index';
@@ -60,6 +67,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     setToken(token);
     dispatch(requireAuth(AuthStatus.Auth));
+    //dispatch(redirectToRoute(AppRoute.Root)); // TODO перенаправление не работает
   },
 );
 

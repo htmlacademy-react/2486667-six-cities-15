@@ -34,7 +34,7 @@ export default function LoginForm() {
           name="login"
           placeholder="Email"
           required
-          value="Oliver.conner@gmail.com"
+          //value="Oliver.conner@gmail.com"
           ref={login}
         />
       </div>
@@ -47,7 +47,7 @@ export default function LoginForm() {
           placeholder="Password"
           required
           autoComplete="on"
-          value="password1"
+          //value="password1"
           ref={password}
         />
       </div>
