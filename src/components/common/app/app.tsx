@@ -10,7 +10,7 @@ import ProtectedRoute from '@/components/common/protected-route/protected-route'
 import {Review} from '@/types/reviews';
 import {CITIES} from '@/mocks/cities';
 import {useAppDispatch} from '@/hooks/store/store';
-import {fetchOffersAction} from '@/store/api-actions';
+import {fetchOffersAction, loginAction} from '@/store/api-actions';
 
 type AppProps = {
   cities: City[];
