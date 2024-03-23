@@ -1,24 +1,26 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, loadOffer, loadOffers, requireAuth, setSortOption} from '@/store/actions';
+import {changeCity, loadOffer, loadOffers, requireAuth, setError, setSortOption} from '@/store/actions';
 import {City} from '@/types/city';
 import {Offer} from '@/types/offer';
 import {AuthStatus, DEFAULT_CITY, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 
-type TInitialState = {
+type InitialStateType = {
   offersData: Offer[];
   offerData: Offer | null;
   currentCity: City;
   sortOption: SortOption;
   authStatus: AuthStatus;
+  error: string | null;
 }
 
-const initialState: TInitialState = {
+const initialState: InitialStateType = {
   offersData: [],
   offerData: null,
   currentCity: DEFAULT_CITY,
   sortOption: SORT_OPTION_DEFAULT,
   authStatus: AuthStatus.Unknown,
+  error: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -37,5 +39,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuth, (state, action) => {
       state.authStatus = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
