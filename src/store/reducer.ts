@@ -4,7 +4,6 @@ import {
   loadOffer,
   loadOffers,
   requireAuth,
-  setError,
   setOffersDataLoadingStatus,
   setSortOption
 } from '@/store/actions';
@@ -20,7 +19,6 @@ type InitialStateType = {
   currentCity: City;
   sortOption: SortOption;
   authStatus: AuthStatus;
-  error: string | null;
 }
 
 const initialState: InitialStateType = {
@@ -30,7 +28,6 @@ const initialState: InitialStateType = {
   currentCity: DEFAULT_CITY,
   sortOption: SORT_OPTION_DEFAULT,
   authStatus: AuthStatus.Unknown,
-  error: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -52,8 +49,5 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuth, (state, action) => {
       state.authStatus = action.payload;
-    })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
     });
 });

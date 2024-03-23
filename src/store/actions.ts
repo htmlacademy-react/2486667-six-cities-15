@@ -20,6 +20,4 @@ export const setSortOption = createAction('offers/setSortOption', (sortOption: S
 
 export const requireAuth = createAction<AuthStatus>('user/requireAuth');
 
-export const setError = createAction<string | null>('app/setError');
-
 export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');
