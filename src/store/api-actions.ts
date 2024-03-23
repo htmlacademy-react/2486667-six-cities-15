@@ -7,7 +7,7 @@ import {
   loadOffer,
   loadOffers,
   requireAuth,
-  setOffersDataLoadingStatus
+  setOffersDataLoadingStatus, setUserData
 } from '@/store/actions';
 import {AuthData, UserData} from '@/types/user';
 import {removeToken, setToken} from '@/services/token';
@@ -46,10 +46,12 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     try {
-      await api.get(APIRoute.Login);
+      const {data} = await api.get<UserData>(APIRoute.Login);
       dispatch(requireAuth(AuthStatus.Auth));
+      dispatch(setUserData(data));
     } catch {
       dispatch(requireAuth(AuthStatus.NoAuth));
+      dispatch(setUserData(null));
     }
   }
 );
@@ -61,9 +63,11 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
+    const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+    const {token} = data;
     setToken(token);
     dispatch(requireAuth(AuthStatus.Auth));
+    dispatch(setUserData(data));
     //dispatch(redirectToRoute(AppRoute.Root)); // TODO перенаправление в защищенном компоненте, удалить middleware redirect
   },
 );
@@ -78,5 +82,6 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     removeToken();
     dispatch(requireAuth(AuthStatus.NoAuth));
+    dispatch(setUserData(null));
   },
 );

@@ -11,7 +11,7 @@ import {checkAuthAction, fetchOffersAction} from '@/store/api-actions';
 import browserHistory from '@/browser-history';
 import HistoryRouter from '@/components/common/history-route/history-route';
 import {ToastContainer} from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());

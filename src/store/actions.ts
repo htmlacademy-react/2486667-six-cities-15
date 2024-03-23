@@ -3,6 +3,7 @@ import {City} from '@/types/city';
 import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {AppRoute, AuthStatus} from '@/utils/const';
 import {Offer} from '@/types/offer';
+import {UserData} from '@/types/user';
 
 export const loadOffers = createAction<Offer[]>('offers/loadOffers');
 
@@ -21,3 +22,5 @@ export const setSortOption = createAction('offers/setSortOption', (sortOption: S
 export const requireAuth = createAction<AuthStatus>('user/requireAuth');
 
 export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');
+
+export const setUserData = createAction<UserData | null>('user/setUserData');

@@ -5,12 +5,13 @@ import {
   loadOffers,
   requireAuth,
   setOffersDataLoadingStatus,
-  setSortOption
+  setSortOption, setUserData
 } from '@/store/actions';
 import {City} from '@/types/city';
 import {Offer} from '@/types/offer';
 import {AuthStatus, DEFAULT_CITY, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {SortOption} from '@/components/catalog/offers-sort/utils/const';
+import {UserData} from '@/types/user';
 
 type InitialStateType = {
   offersData: Offer[];
@@ -19,6 +20,7 @@ type InitialStateType = {
   currentCity: City;
   sortOption: SortOption;
   authStatus: AuthStatus;
+  user: UserData | null;
 }
 
 const initialState: InitialStateType = {
@@ -28,6 +30,7 @@ const initialState: InitialStateType = {
   currentCity: DEFAULT_CITY,
   sortOption: SORT_OPTION_DEFAULT,
   authStatus: AuthStatus.Unknown,
+  user: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -49,5 +52,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuth, (state, action) => {
       state.authStatus = action.payload;
+    })
+    .addCase(setUserData, (state, action) => {
+      state.user = action.payload;
     });
 });
