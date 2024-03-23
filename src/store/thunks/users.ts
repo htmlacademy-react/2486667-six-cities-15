@@ -5,7 +5,7 @@ import {Endpoint} from '@/utils/const';
 
 const checkAuth = createAsyncThunk<UserData, undefined, { extra: AxiosInstance }>(
   'user/checkAuth',
-  async (offerId, {extra: api}) => {
+  async (_arg, {extra: api}) => {
     const {data} = await api.get<UserData>(Endpoint.Login);
 
     return data;
