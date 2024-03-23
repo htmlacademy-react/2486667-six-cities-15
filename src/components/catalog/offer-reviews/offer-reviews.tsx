@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import OfferReviewList from '@/components/catalog/offer-review-list/offer-review-list';
 import OfferReviewForm from '@/components/catalog/offer-review-form/offer-review-form';
 import {Review} from '@/types/reviews';
-import {getIsAuth} from "@/utils";
-import {useAppSelector} from "@/hooks/store/store";
+import {getIsAuth} from '@/utils';
+import {useAppSelector} from '@/hooks/store/store';
 
 type OfferReviewsProps = {
   reviews: Review[];

@@ -10,7 +10,7 @@ import {
   setOffersDataLoadingStatus, setUserData
 } from '@/store/actions';
 import {AuthData, UserData} from '@/types/user';
-import {removeToken, setToken} from '@/services/token';
+import {dropToken, saveToken} from '@/services/token';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -65,7 +65,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   async ({login: email, password}, {dispatch, extra: api}) => {
     const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
     const {token} = data;
-    setToken(token);
+    saveToken(token);
     dispatch(requireAuth(AuthStatus.Auth));
     dispatch(setUserData(data));
     //dispatch(redirectToRoute(AppRoute.Root)); // TODO перенаправление в защищенном компоненте, удалить middleware redirect
@@ -80,7 +80,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   'user/logout',
   async (_arg, {dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
-    removeToken();
+    dropToken();
     dispatch(requireAuth(AuthStatus.NoAuth));
     dispatch(setUserData(null));
   },

@@ -1,4 +1,4 @@
-import {MAX_OFFER_GALLARY_IMAGES} from "@/components/catalog/offer-gallary/utils/const";
+import {MAX_OFFER_GALLARY_IMAGES} from '@/components/catalog/offer-gallary/utils/const';
 
 type OfferGallaryProps = {
   images: string[];
