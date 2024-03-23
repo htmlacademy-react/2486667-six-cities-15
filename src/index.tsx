@@ -10,6 +10,8 @@ import {Provider} from 'react-redux';
 import {store} from '@/store';
 import ErrorMessage from '@/components/common/error-message/error-message';
 import {checkAuthAction, fetchOffersAction} from '@/store/api-actions';
+import browserHistory from "@/browser-history";
+import HistoryRouter from "@/components/common/history-route/history-route";
 
 store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
@@ -21,13 +23,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <ScrollToTop />
         <Provider store={store}>
           <ErrorMessage />
           <App cities={CITIES} reviews={REVIEWS} />
         </Provider>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   </React.StrictMode>
 );
