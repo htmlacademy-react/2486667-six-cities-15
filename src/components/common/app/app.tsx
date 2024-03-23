@@ -1,5 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
-import {AppRoute} from '@/utils/const';
+import {AppRoute, AuthStatus} from '@/utils/const';
 import {City} from '@/types/city';
 import MainPage from '@/pages/main-page/main-page';
 import LoginPage from '@/pages/login-page/login-page';
@@ -9,8 +9,8 @@ import OfferPage from '@/pages/offer-page/offer-page';
 import ProtectedRoute from '@/components/common/protected-route/protected-route';
 import {Review} from '@/types/reviews';
 import {CITIES} from '@/mocks/cities';
-import {useAppDispatch} from '@/hooks/store/store';
-import {checkAuthAction, fetchOffersAction} from '@/store/api-actions';
+import {useAppSelector} from '@/hooks/store/store';
+import LoadingScreen from '@/pages/loading-screen/loading-screen';
 
 type AppProps = {
   cities: City[];
@@ -18,9 +18,14 @@ type AppProps = {
 }
 
 export default function App({ cities, reviews }: AppProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  dispatch(fetchOffersAction());
-  dispatch(checkAuthAction());
+  const authStatus = useAppSelector((state) => state.authStatus);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+
+  if (authStatus === AuthStatus.Unknown || isOffersDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <Routes>

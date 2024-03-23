@@ -1,7 +1,7 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {getToken} from './token';
 import {StatusCodes} from 'http-status-codes';
-import {processErrorHandle} from "@/services/process-error-handle";
+import {processErrorHandle} from '@/services/process-error-handle';
 
 const BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities';
 const REQUEST_TIMEOUT = 1000;

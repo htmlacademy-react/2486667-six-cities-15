@@ -3,7 +3,7 @@ import {AppDispatch, State} from '@/types/state';
 import {AxiosInstance} from 'axios';
 import {Offer} from '@/types/offer';
 import {APIRoute, AuthStatus, TIMEOUT_SHOW_ERROR} from '@/utils/const';
-import {loadOffer, loadOffers, requireAuth, setError} from '@/store/actions';
+import {loadOffer, loadOffers, requireAuth, setError, setOffersDataLoadingStatus} from '@/store/actions';
 import {AuthData, UserData} from '@/types/user';
 import {removeToken, setToken} from '@/services/token';
 import {store} from '@/store/index';
@@ -15,7 +15,9 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchOffers',
   async (_arg, {dispatch, extra: api}) => {
+    dispatch(setOffersDataLoadingStatus(true));
     const {data} = await api.get<Offer[]>(APIRoute.Offers);
+    dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(data));
   },
 );

@@ -8,6 +8,8 @@ export const loadOffers = createAction<Offer[]>('offers/loadOffers');
 
 export const loadOffer = createAction<Offer>('offers/loadOffer');
 
+export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');
+
 export const changeCity = createAction('cities/changeCity', (city: City) => ({
   payload: city,
 }));
