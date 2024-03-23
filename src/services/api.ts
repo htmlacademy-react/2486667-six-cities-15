@@ -4,7 +4,7 @@ import {StatusCodes} from 'http-status-codes';
 import {toast} from 'react-toastify';
 
 const BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities';
-const REQUEST_TIMEOUT = 1000;
+const REQUEST_TIMEOUT = 5000;
 
 type DetailMessageType = {
   type: string;
