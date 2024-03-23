@@ -1,0 +1,1 @@
+export const MAX_OFFER_GALLARY_IMAGES = 6;

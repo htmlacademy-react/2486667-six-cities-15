@@ -1,6 +1,7 @@
 import {Offer} from '@/types/offer';
 import {getRatingWidth} from '@/utils';
 import OfferBookmark from '@/components/catalog/offer-bookmark/offer-bookmark';
+import {COUNT_ADULTS_SINGULAR, COUNT_BEDROOMS_SINGULAR} from "@/components/catalog/offer-description/utils/const";
 
 type OfferDescriptionProps = {
   offer: Offer;
@@ -31,10 +32,10 @@ export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.E
           {offer.type}
         </li>
         <li className="offer__feature offer__feature--bedrooms">
-          {offer.bedrooms} Bedrooms
+          {offer.bedrooms} Bedroom{offer.bedrooms > COUNT_BEDROOMS_SINGULAR && 's'}
         </li>
         <li className="offer__feature offer__feature--adults">
-          Max {offer.maxAdults} adults
+          Max {offer.maxAdults} adult{offer.maxAdults > COUNT_ADULTS_SINGULAR && 's'}
         </li>
       </ul>
       <div className="offer__price">
@@ -68,10 +69,6 @@ export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.E
         <div className="offer__description">
           <p className="offer__text">
             {offer.description}
-          </p>
-          <p className="offer__text">
-            An independent House, strategically located between Rembrand Square and National Opera, but where the
-            bustle of the city comes to rest in this alley flowery and colorful.
           </p>
         </div>
       </div>
