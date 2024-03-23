@@ -6,7 +6,7 @@ import {APIRoute, AuthStatus, TIMEOUT_SHOW_ERROR} from '@/utils/const';
 import {loadOffer, loadOffers, requireAuth, setError} from '@/store/actions';
 import {AuthData, UserData} from '@/types/user';
 import {removeToken, setToken} from '@/services/token';
-import {store} from "@/store/index";
+import {store} from '@/store/index';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;

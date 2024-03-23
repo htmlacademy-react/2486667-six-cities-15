@@ -8,6 +8,7 @@ import {REVIEWS} from '@/mocks/reviews';
 import ScrollToTop from './components/common/scroll-to-top/scroll-to-top';
 import {Provider} from 'react-redux';
 import {store} from '@/store';
+import ErrorMessage from '@/components/common/error-message/error-message';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,6 +20,7 @@ root.render(
       <BrowserRouter>
         <ScrollToTop />
         <Provider store={store}>
+          <ErrorMessage />
           <App cities={CITIES} reviews={REVIEWS} />
         </Provider>
       </BrowserRouter>
