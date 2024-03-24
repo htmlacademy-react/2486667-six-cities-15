@@ -3,17 +3,19 @@ import {City} from '@/types/city';
 import {DEFAULT_CITY, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {SortOption} from '@/components/catalog/offers-sort/utils/const';
-import {fetchNearOffers, fetchOffer, fetchOffers, postFavoriteStatus} from '@/store/thunks/offers';
+import {fetchFavorites, fetchNearOffers, fetchOffer, fetchOffers, postFavoriteStatus} from '@/store/thunks/offers';
 
 interface OffersState {
   offersData: Offer[];
   offerData: Offer | null;
   nearOffersData: Offer[];
+  favoritesData: Offer[];
   currentCity: City;
   sortOption: SortOption;
   status: RequestStatus;
   offerStatus: RequestStatus;
   nearStatus: RequestStatus;
+  favoriteDataStatus: RequestStatus;
   favoriteStatus: RequestStatus;
 }
 
@@ -21,11 +23,13 @@ const initialState: OffersState = {
   offersData: [],
   offerData: null,
   nearOffersData: [],
+  favoritesData: [],
   currentCity: DEFAULT_CITY,
   sortOption: SORT_OPTION_DEFAULT,
   status: RequestStatus.Idle,
   offerStatus: RequestStatus.Idle,
   nearStatus: RequestStatus.Idle,
+  favoriteDataStatus: RequestStatus.Idle,
   favoriteStatus: RequestStatus.Idle,
 };
 
@@ -65,6 +69,17 @@ const offersSlice = createSlice({
         state.nearStatus = RequestStatus.Failed;
       })
 
+      .addCase(fetchFavorites.pending, (state: OffersState) => {
+        state.favoriteDataStatus = RequestStatus.Loading;
+      })
+      .addCase(fetchFavorites.fulfilled, (state: OffersState, action) => {
+        state.favoriteDataStatus = RequestStatus.Success;
+        state.favoritesData = action.payload;
+      })
+      .addCase(fetchFavorites.rejected, (state: OffersState) => {
+        state.favoriteDataStatus = RequestStatus.Failed;
+      })
+
       .addCase(postFavoriteStatus.pending, (state: OffersState) => {
         state.favoriteStatus = RequestStatus.Loading;
       })
@@ -93,6 +108,7 @@ const offersSlice = createSlice({
     status: (state) => state.status,
     offerStatus: (state) => state.offerStatus,
     nearStatus: (state) => state.nearStatus,
+    favorites: (state) => state.favoritesData,
   },
 });
 
