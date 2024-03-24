@@ -10,7 +10,10 @@ const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 const useActionCreators = <Actions extends ActionCreatorsMapObject>(actions: Actions) => {
   const dispatch = useAppDispatch();
 
-  return useMemo(() => bindActionCreators(actions, dispatch), [actions, dispatch]);
+  return useMemo(
+    () => bindActionCreators(actions, dispatch),
+    [actions, dispatch]
+  );
 };
 
 export {useAppDispatch, useAppSelector, useActionCreators};

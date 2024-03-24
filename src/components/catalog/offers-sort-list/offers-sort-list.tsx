@@ -1,6 +1,6 @@
 import {SORT_OPTIONS, SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {clsx} from 'clsx';
-import {useAppDispatch} from '@/hooks/store/store';
+import {useActionCreators} from '@/hooks/store/store';
 import {offersActions} from '@/store/slices/offers';
 
 type OffersSortListProps = {
@@ -10,11 +10,12 @@ type OffersSortListProps = {
 }
 
 export default function OffersSortList({sortOption, isOn, off}: OffersSortListProps): JSX.Element {
-  const dispatch = useAppDispatch();
+  const {setSortOption} = useActionCreators(offersActions);
 
   const clickOptionHandler = (option: SortOption): void => {
     off();
-    dispatch(offersActions.setSortOption(option));
+    //dispatch(offersActions.setSortOption(option));
+    setSortOption(option);
   };
 
   return (
