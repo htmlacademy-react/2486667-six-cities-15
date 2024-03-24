@@ -36,7 +36,7 @@ export const SORT_OPTION_DEFAULT = SortOption.Popular;
 export enum Endpoint {
   Offers = '/offers',
   Offer = '/offers/',
-  Nearby = '/offers/{offerId}/nearby',
+  Nearby = '/nearby',
   Favorite = '/favorite',
   FavoriteStatus = '/favorite/{offerId}/{status}',
   Comments = '/comments/{offerId}',
@@ -45,8 +45,8 @@ export enum Endpoint {
 }
 
 export const enum RequestStatus {
-  Idle,
-  Loading,
-  Success,
-  Failed,
+  Idle = 'Idle',
+  Loading = 'Loading',
+  Success = 'Success',
+  Failed = 'Failed',
 }

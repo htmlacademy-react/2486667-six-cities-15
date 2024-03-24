@@ -21,4 +21,13 @@ const fetchOffer = createAsyncThunk<Offer, string, { extra: AxiosInstance }>(
   },
 );
 
-export {fetchOffers, fetchOffer};
+const fetchNearOffers = createAsyncThunk<Offer[], string, { extra: AxiosInstance }>(
+  'data/fetchNearOffers',
+  async (offerId, { extra: api }) => {
+    const {data} = await api.get<Offer[]>(`${Endpoint.Offers }/${ offerId }${Endpoint.Nearby}`);
+
+    return data;
+  },
+);
+
+export {fetchOffers, fetchOffer, fetchNearOffers};

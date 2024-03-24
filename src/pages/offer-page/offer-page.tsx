@@ -8,16 +8,16 @@ import OfferGallary from '@/components/catalog/offer-gallary/offer-gallary';
 import OfferReviews from '@/components/catalog/offer-reviews/offer-reviews';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import {Review} from '@/types/reviews';
-import {Location} from '@/types/location';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
-import {getNearOffers} from '@/pages/offer-page/utils';
 import {City} from '@/types/city';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import OfferDescription from '@/components/catalog/offer-description/offer-description';
 import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
 import {offersSelectors} from '@/store/slices/offers';
-import {fetchOffer} from '@/store/thunks/offers';
+import {fetchNearOffers, fetchOffer} from '@/store/thunks/offers';
+import {RequestStatus} from '@/utils/const';
+import LoadingScreen from '@/pages/loading-screen/loading-screen';
 
 type OfferPageProps = {
   reviews: Review[];
@@ -26,34 +26,29 @@ type OfferPageProps = {
 export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const offers: Offer[] = useAppSelector(offersSelectors.offers);
+
   const offer: Offer | null = useAppSelector(offersSelectors.offer);
-  const [activePoint, setActivePoint] = useState<Location | null>(null);
+  const offerStatus = useAppSelector(offersSelectors.offerStatus);
+  const nearOffers = useAppSelector(offersSelectors.nearOffers).slice(0, 3);
 
   useEffect(() => {
     if (id) {
       dispatch(fetchOffer(id));
+      dispatch(fetchNearOffers(id));
     }
   }, [id, dispatch]);
 
-  useEffect(() => {
-    if (offer?.location) {
-      setActivePoint(offer.location);
-    }
-  }, [offer]);
+  if (offerStatus === RequestStatus.Loading) {
+    return <LoadingScreen />;
+  }
 
-  if (!offer) {
+  if (!offer || offerStatus === RequestStatus.Failed) {
     return <NotFoundPage type='offer' />;
   }
 
   const currentCity: City = offer.city;
+  const activePoint = offer.location;
 
-  const hoverHandler = (hoverId: Offer['id'] | null) => {
-    const point = offers.find((item) => item.id === hoverId)?.location || null;
-    setActivePoint(point);
-  };
-
-  const nearOffers = getNearOffers(currentCity, offers);
   const nearOffersPlusCurrent: Offer[] = [...nearOffers, offer];
   const nearPoints = nearOffersPlusCurrent.map((item) => item.location);
 
@@ -86,7 +81,7 @@ export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
             />
           </section>}
 
-        <OfferOtherPlaces offers={nearOffers} hoverHandler={hoverHandler} />
+        <OfferOtherPlaces offers={nearOffers} />
       </MainContainer>
     </Container>
   );
