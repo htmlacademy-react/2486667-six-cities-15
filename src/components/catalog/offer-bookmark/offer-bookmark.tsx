@@ -23,6 +23,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
       favStatus: +(!currentIsFavorite),
     };
     dispatch(postFavoriteStatus(postFavoriteStatusArgs));
+    //dispatch(fetchFavorites());
   };
 
   return (
