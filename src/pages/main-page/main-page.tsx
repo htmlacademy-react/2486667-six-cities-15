@@ -6,7 +6,6 @@ import OffersListEmpty from '@/components/catalog/offers-list-empty/offers-list-
 import Tabs from '@/components/common/tabs/tabs';
 import {City} from '@/types/city';
 import {useAppSelector} from '@/hooks/store/store';
-import {getCurrentOffers} from '@/pages/main-page/utils';
 import {offersSelectors} from '@/store/slices/offers';
 
 type MainPageProps = {
@@ -14,9 +13,8 @@ type MainPageProps = {
 }
 
 export default function MainPage({ cities }: MainPageProps): JSX.Element {
-  const offers = useAppSelector(offersSelectors.offers);
   const currentCity = useAppSelector(offersSelectors.city);
-  const currentOffers = getCurrentOffers(currentCity, offers);
+  const currentOffers = useAppSelector(offersSelectors.cityOffers);
 
   return (
     <Container extraClass="page--gray page--main">

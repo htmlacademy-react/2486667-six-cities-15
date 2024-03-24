@@ -1,7 +1,7 @@
 import {Offer} from '@/types/offer';
 import {City} from '@/types/city';
 import {DEFAULT_CITY, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {fetchFavorites, fetchNearOffers, fetchOffer, fetchOffers, postFavoriteStatus} from '@/store/thunks/offers';
 
@@ -113,6 +113,10 @@ const offersSlice = createSlice({
 });
 
 const offersActions = offersSlice.actions;
-const offersSelectors = offersSlice.selectors;
+const offersSelectors = {
+  ...offersSlice.selectors,
+  cityOffers: createSelector(offersSlice.selectors.offers, offersSlice.selectors.city, (allOffers, city) =>
+    allOffers.filter((item) => item.city.name === city.name))
+};
 
 export {offersActions, offersSelectors, offersSlice};
