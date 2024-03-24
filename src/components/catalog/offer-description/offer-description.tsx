@@ -18,7 +18,7 @@ export default function OfferDescription({ offer }: OfferDescriptionProps):JSX.E
         <h1 className="offer__name">
           {offer.title}
         </h1>
-        <OfferBookmark isFavorite={offer.isFavorite} block='offer' />
+        <OfferBookmark isFavorite={offer.isFavorite} offerId={offer.id} block='offer' />
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
