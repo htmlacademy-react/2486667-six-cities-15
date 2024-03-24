@@ -1,5 +1,5 @@
 import {clsx} from 'clsx';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {postFavoriteStatus} from '@/store/thunks/offers';
 import {useAppDispatch} from '@/hooks/store/store';
 import {PostFavoriteStatusArgs} from '@/types/favorites';
@@ -14,7 +14,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
   const dispatch = useAppDispatch();
   const [currentIsFavorite, setCurrentIsFavorite] = useState<boolean>(isFavorite);
 
-  const clickBookmarkHandle = (event: Event) => {
+  const clickBookmarkHandle = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
     setCurrentIsFavorite(!currentIsFavorite);
 
