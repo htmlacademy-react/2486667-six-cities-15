@@ -3,7 +3,7 @@ import {City} from '@/types/city';
 import {DEFAULT_CITY, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {SortOption} from '@/components/catalog/offers-sort/utils/const';
-import {fetchNearOffers, fetchOffer, fetchOffers} from '@/store/thunks/offers';
+import {fetchNearOffers, fetchOffer, fetchOffers, postFavoriteStatus} from '@/store/thunks/offers';
 
 interface OffersState {
   offersData: Offer[];
@@ -14,6 +14,7 @@ interface OffersState {
   status: RequestStatus;
   offerStatus: RequestStatus;
   nearStatus: RequestStatus;
+  favoriteStatus: RequestStatus;
 }
 
 const initialState: OffersState = {
@@ -25,6 +26,7 @@ const initialState: OffersState = {
   status: RequestStatus.Idle,
   offerStatus: RequestStatus.Idle,
   nearStatus: RequestStatus.Idle,
+  favoriteStatus: RequestStatus.Idle,
 };
 
 const offersSlice = createSlice({
@@ -61,6 +63,16 @@ const offersSlice = createSlice({
       })
       .addCase(fetchNearOffers.rejected, (state: OffersState) => {
         state.nearStatus = RequestStatus.Failed;
+      })
+
+      .addCase(postFavoriteStatus.pending, (state: OffersState) => {
+        state.favoriteStatus = RequestStatus.Loading;
+      })
+      .addCase(postFavoriteStatus.fulfilled, (state: OffersState) => {
+        state.favoriteStatus = RequestStatus.Success;
+      })
+      .addCase(postFavoriteStatus.rejected, (state: OffersState) => {
+        state.favoriteStatus = RequestStatus.Failed;
       }),
   initialState,
   name: 'offers',

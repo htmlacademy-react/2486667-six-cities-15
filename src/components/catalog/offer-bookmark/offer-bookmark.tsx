@@ -1,19 +1,39 @@
 import {clsx} from 'clsx';
+import {useState} from 'react';
+import {postFavoriteStatus} from '@/store/thunks/offers';
+import {useAppDispatch} from '@/hooks/store/store';
+import {PostFavoriteStatusArgs} from '@/types/favorites';
 
 type OfferBookmarkProps = {
   isFavorite: boolean;
+  offerId: string;
   block: string;
 }
 
-export default function OfferBookmark({ isFavorite, block }: OfferBookmarkProps): JSX.Element {
+export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const [currentIsFavorite, setCurrentIsFavorite] = useState<boolean>(isFavorite);
+
+  const clickBookmarkHandle = (event: Event) => {
+    event.preventDefault();
+    setCurrentIsFavorite(!currentIsFavorite);
+
+    const postFavoriteStatusArgs: PostFavoriteStatusArgs = {
+      offerId,
+      favStatus: +(!currentIsFavorite),
+    };
+    dispatch(postFavoriteStatus(postFavoriteStatusArgs));
+  };
+
   return (
     <button
       className={clsx(
         `${block}__bookmark-button`,
         'button',
-        isFavorite && `${block}__bookmark-button--active`
+        currentIsFavorite && `${block}__bookmark-button--active`
       )}
       type="button"
+      onClick={clickBookmarkHandle}
     >
       <svg
         className={`${block}__bookmark-icon`}
@@ -23,7 +43,7 @@ export default function OfferBookmark({ isFavorite, block }: OfferBookmarkProps)
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">
-        {isFavorite ? 'In bookmarks' : 'To bookmarks'}
+        {currentIsFavorite ? 'In bookmarks' : 'To bookmarks'}
       </span>
     </button>
   );
