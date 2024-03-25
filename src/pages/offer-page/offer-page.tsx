@@ -17,17 +17,19 @@ import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-othe
 import {offersActions, offersSelectors} from '@/store/slices/offers';
 import {RequestStatus} from '@/utils/const';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
+import {offerActions, offerSelectors} from '@/store/slices/offer';
 
 type OfferPageProps = {
   reviews: Review[];
 }
 
 export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
-  const { fetchOffer, fetchNearOffers } = useActionCreators(offersActions);
+  const { fetchOffer } = useActionCreators(offerActions);
+  const { fetchNearOffers } = useActionCreators(offersActions);
   const { id } = useParams();
 
-  const offer: Offer | null = useAppSelector(offersSelectors.offer);
-  const offerStatus = useAppSelector(offersSelectors.offerStatus);
+  const offer: Offer | null = useAppSelector(offerSelectors.offer);
+  const status = useAppSelector(offerSelectors.status);
   const nearOffers = useAppSelector(offersSelectors.nearOffers).slice(0, 3);
 
   useEffect(() => {
@@ -37,11 +39,11 @@ export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
     }
   }, [id, fetchOffer, fetchNearOffers]);
 
-  if (offerStatus === RequestStatus.Loading) {
+  if (status === RequestStatus.Loading) {
     return <LoadingScreen />;
   }
 
-  if (!offer || offerStatus === RequestStatus.Failed) {
+  if (!offer || status === RequestStatus.Failed) {
     return <NotFoundPage type='offer' />;
   }
 

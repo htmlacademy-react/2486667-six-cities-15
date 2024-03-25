@@ -3,17 +3,17 @@ import {City} from '@/types/city';
 import {DEFAULT_CITY, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {SortOption} from '@/components/catalog/offers-sort/utils/const';
-import {fetchFavorites, fetchNearOffers, fetchOffer, fetchOffers, postFavoriteStatus} from '@/store/thunks/offers';
+import {fetchFavorites, fetchNearOffers, fetchOffers, postFavoriteStatus} from '@/store/thunks/offers';
 
 interface OffersState {
   offersData: Offer[];
-  offerData: Offer | null;
+  //offerData: Offer | null;
   nearOffersData: Offer[];
   favoritesData: Offer[];
   currentCity: City;
   sortOption: SortOption;
   status: RequestStatus;
-  offerStatus: RequestStatus;
+  //offerStatus: RequestStatus;
   nearStatus: RequestStatus;
   favoriteDataStatus: RequestStatus;
   favoriteStatus: RequestStatus;
@@ -21,13 +21,11 @@ interface OffersState {
 
 const initialState: OffersState = {
   offersData: [],
-  offerData: null,
   nearOffersData: [],
   favoritesData: [],
   currentCity: DEFAULT_CITY,
   sortOption: SORT_OPTION_DEFAULT,
   status: RequestStatus.Idle,
-  offerStatus: RequestStatus.Idle,
   nearStatus: RequestStatus.Idle,
   favoriteDataStatus: RequestStatus.Idle,
   favoriteStatus: RequestStatus.Idle,
@@ -45,17 +43,6 @@ const offersSlice = createSlice({
       })
       .addCase(fetchOffers.rejected, (state: OffersState) => {
         state.status = RequestStatus.Failed;
-      })
-
-      .addCase(fetchOffer.pending, (state: OffersState) => {
-        state.offerStatus = RequestStatus.Loading;
-      })
-      .addCase(fetchOffer.fulfilled, (state: OffersState, action) => {
-        state.offerStatus = RequestStatus.Success;
-        state.offerData = action.payload;
-      })
-      .addCase(fetchOffer.rejected, (state: OffersState) => {
-        state.offerStatus = RequestStatus.Failed;
       })
 
       .addCase(fetchNearOffers.pending, (state: OffersState) => {
@@ -101,18 +88,16 @@ const offersSlice = createSlice({
   },
   selectors: {
     offers: (state: OffersState) => state.offersData,
-    offer: (state: OffersState) => state.offerData,
     nearOffers: (state: OffersState) => state.nearOffersData,
     city: (state: OffersState) => state.currentCity,
     sortOption: (state: OffersState) => state.sortOption,
     status: (state) => state.status,
-    offerStatus: (state) => state.offerStatus,
     nearStatus: (state) => state.nearStatus,
     favorites: (state) => state.favoritesData,
   },
 });
 
-const offersActions = {...offersSlice.actions, fetchOffers, fetchOffer, fetchNearOffers, postFavoriteStatus, fetchFavorites};
+const offersActions = {...offersSlice.actions, fetchOffers, fetchNearOffers, postFavoriteStatus, fetchFavorites};
 const offersSelectors = {
   ...offersSlice.selectors,
   cityOffers: createSelector(offersSlice.selectors.offers, offersSlice.selectors.city, (allOffers, city) =>
