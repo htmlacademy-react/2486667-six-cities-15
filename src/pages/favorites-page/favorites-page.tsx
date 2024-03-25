@@ -8,16 +8,16 @@ import MainContainer from '@/components/common/main-container/main-container';
 import FavoritesList from '@/components/catalog/favorites-list/favorites-list';
 import FavoritesListEmpty from '@/components/catalog/favorites-list-empty/favorites-list-empty';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
-import {offersActions, offersSelectors} from '@/store/slices/offers';
 import {useEffect} from 'react';
+import {favoritesActions, favoritesSelectors} from '@/store/slices/favorites';
 
 type FavoritesPagePops = {
   cities: City[];
 }
 
 export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Element {
-  const { fetchFavorites } = useActionCreators(offersActions);
-  const favorites = getFavoritesByLocation(useAppSelector(offersSelectors.favorites));
+  const { fetchFavorites } = useActionCreators(favoritesActions);
+  const favorites = getFavoritesByLocation(useAppSelector(favoritesSelectors.favorites));
 
   useEffect(()=> {
     fetchFavorites();

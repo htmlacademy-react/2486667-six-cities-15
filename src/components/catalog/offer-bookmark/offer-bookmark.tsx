@@ -2,7 +2,7 @@ import {clsx} from 'clsx';
 import React, {useState} from 'react';
 import {useActionCreators} from '@/hooks/store/store';
 import {PostFavoriteStatusArgs} from '@/types/favorites';
-import {offersActions} from '@/store/slices/offers';
+import {favoritesActions} from '@/store/slices/favorites';
 
 type OfferBookmarkProps = {
   isFavorite: boolean;
@@ -12,7 +12,7 @@ type OfferBookmarkProps = {
 
 export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.Element {
   const [currentIsFavorite, setCurrentIsFavorite] = useState<boolean>(isFavorite);
-  const { postFavoriteStatus } = useActionCreators(offersActions);
+  const { postFavoriteStatus } = useActionCreators(favoritesActions);
 
   const clickBookmarkHandle = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
