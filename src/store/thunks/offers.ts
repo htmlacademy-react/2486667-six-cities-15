@@ -13,24 +13,6 @@ const fetchOffers = createAsyncThunk<Offer[], undefined, { extra: AxiosInstance 
   },
 );
 
-/*const fetchOffer = createAsyncThunk<Offer, string, { extra: AxiosInstance }>(
-  'data/fetchOffer',
-  async (offerId, { extra: api }) => {
-    const {data} = await api.get<Offer>(Endpoint.Offer + offerId);
-
-    return data;
-  },
-);*/
-
-const fetchNearOffers = createAsyncThunk<Offer[], string, { extra: AxiosInstance }>(
-  'data/fetchNearOffers',
-  async (offerId, { extra: api }) => {
-    const {data} = await api.get<Offer[]>(`${Endpoint.Offers}/${offerId}${Endpoint.Nearby}`);
-
-    return data;
-  },
-);
-
 const postFavoriteStatus = createAsyncThunk<void, PostFavoriteStatusArgs, { extra: AxiosInstance }>(
   'data/postFavoriteStatus',
   async (args, { extra: api }) => {
@@ -48,4 +30,4 @@ const fetchFavorites = createAsyncThunk<Offer[], undefined, { extra: AxiosInstan
   },
 );
 
-export {fetchOffers, /*fetchOffer,*/ fetchNearOffers, postFavoriteStatus, fetchFavorites};
+export {fetchOffers, postFavoriteStatus, fetchFavorites};

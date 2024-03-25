@@ -14,10 +14,10 @@ import {City} from '@/types/city';
 import {useEffect} from 'react';
 import OfferDescription from '@/components/catalog/offer-description/offer-description';
 import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
-import {offersActions, offersSelectors} from '@/store/slices/offers';
 import {RequestStatus} from '@/utils/const';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
 import {offerActions, offerSelectors} from '@/store/slices/offer';
+import {nearbyActions, nearbySelectors} from '@/store/slices/nearby';
 
 type OfferPageProps = {
   reviews: Review[];
@@ -25,12 +25,12 @@ type OfferPageProps = {
 
 export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
   const { fetchOffer } = useActionCreators(offerActions);
-  const { fetchNearOffers } = useActionCreators(offersActions);
+  const { fetchNearOffers } = useActionCreators(nearbyActions);
   const { id } = useParams();
 
   const offer: Offer | null = useAppSelector(offerSelectors.offer);
   const status = useAppSelector(offerSelectors.status);
-  const nearOffers = useAppSelector(offersSelectors.nearOffers).slice(0, 3);
+  const nearOffers = useAppSelector(nearbySelectors.nearOffers).slice(0, 3);
 
   useEffect(() => {
     if (id) {
