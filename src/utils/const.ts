@@ -32,3 +32,20 @@ export const DEFAULT_CITY: City = {
 };
 
 export const SORT_OPTION_DEFAULT = SortOption.Popular;
+
+export enum Endpoint {
+  Offers = '/offers',
+  Offer = '/offers/',
+  Nearby = '/nearby',
+  Favorite = '/favorite',
+  Comments = '/comments/{offerId}',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+export const enum RequestStatus {
+  Idle = 'Idle',
+  Loading = 'Loading',
+  Success = 'Success',
+  Failed = 'Failed',
+}

@@ -1,5 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
-import {AppRoute} from '@/utils/const';
+import {AppRoute, AuthStatus, RequestStatus} from '@/utils/const';
 import {City} from '@/types/city';
 import MainPage from '@/pages/main-page/main-page';
 import LoginPage from '@/pages/login-page/login-page';
@@ -8,10 +8,14 @@ import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import OfferPage from '@/pages/offer-page/offer-page';
 import ProtectedRoute from '@/components/common/protected-route/protected-route';
 import {Review} from '@/types/reviews';
-import {useAppDispatch} from '@/hooks/store/store';
-import {useEffect} from 'react';
-import {fillingOffers} from '@/store/actions';
 import {CITIES} from '@/mocks/cities';
+import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
+import LoadingScreen from '@/pages/loading-screen/loading-screen';
+import {offersSelectors} from '@/store/slices/offers';
+import {usersSelectors} from '@/store/slices/users';
+import {useEffect} from 'react';
+import {fetchOffers} from '@/store/thunks/offers';
+import {checkAuth} from '@/store/thunks/users';
 
 type AppProps = {
   cities: City[];
@@ -22,8 +26,18 @@ export default function App({ cities, reviews }: AppProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fillingOffers());
+    dispatch(fetchOffers());
+    dispatch(checkAuth());
   }, [dispatch]);
+
+  const authStatus = useAppSelector(usersSelectors.status);
+  const status = useAppSelector(offersSelectors.status);
+
+  if (authStatus === AuthStatus.Unknown || status === RequestStatus.Loading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <Routes>

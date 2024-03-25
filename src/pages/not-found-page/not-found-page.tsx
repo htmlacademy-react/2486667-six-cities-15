@@ -16,7 +16,8 @@ type NotFoundPageProps = {
 }
 
 export default function NotFoundPage({ type }: NotFoundPageProps): JSX.Element {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const pathname = decodeURIComponent(location.pathname);
 
   return (
     <Container extraClass="page--gray page--main">

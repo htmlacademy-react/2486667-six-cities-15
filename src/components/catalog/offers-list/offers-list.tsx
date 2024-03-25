@@ -7,6 +7,7 @@ import {City} from '@/types/city';
 import OffersSort from '@/components/catalog/offers-sort/offers-sort';
 import {useAppSelector} from '@/hooks/store/store';
 import {getSortedOffers} from '@/components/catalog/offers-list/utils';
+import {offersSelectors} from '@/store/slices/offers';
 
 type OffersListProps = {
   offers: Offer[];
@@ -16,7 +17,7 @@ type OffersListProps = {
 
 export default function OffersList({ offers, currentCity, block }: OffersListProps): JSX.Element {
   const [activePoint, setActivePoint] = useState<Location | null>(null);
-  const sortOption = useAppSelector((state) => state.sortOption);
+  const sortOption = useAppSelector(offersSelectors.sortOption);
   const sortedOffers = getSortedOffers(sortOption, offers);
 
   const hoverHandler = (id: Offer['id'] | null) => {

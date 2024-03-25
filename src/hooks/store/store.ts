@@ -1,8 +1,19 @@
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import {AppDispatch, State} from '@/types/state';
+import {AppDispatch, RootState} from '@/types/store';
+import {ActionCreatorsMapObject, bindActionCreators} from '@reduxjs/toolkit';
+import {useMemo} from 'react';
 
-// Чтобы каждый раз не типизировать запросы к стору,
-// создадим типизированные версии хуков.
-// Будем использовать их для работы со стором.
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<State> = useSelector;
+// Чтобы каждый раз не типизировать запросы к стору
+const useAppDispatch = () => useDispatch<AppDispatch>();
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+const useActionCreators = <Actions extends ActionCreatorsMapObject>(actions: Actions) => {
+  const dispatch = useAppDispatch();
+
+  return useMemo(
+    () => bindActionCreators(actions, dispatch),
+    [actions, dispatch]
+  );
+};
+
+export {useAppDispatch, useAppSelector, useActionCreators};

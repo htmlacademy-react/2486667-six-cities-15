@@ -4,7 +4,7 @@ import {useEffect} from 'react';
 import {Location} from '@/types/location';
 import {Map} from 'leaflet';
 
-export default function useMapLeafletMarkers(map: Map, points: Location[], currentPoint: Location): void {
+export default function useMapLeafletMarkers(map: Map, points: Location[], currentPoint: Location | null): void {
   useEffect(() => {
     if (map) {
       const markerLayer = leaflet.layerGroup().addTo(map);

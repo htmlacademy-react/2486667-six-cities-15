@@ -48,7 +48,7 @@ export default function OfferCard({ offer, block, hoverHandler }: CardProps): JS
               <b className="place-card__price-value">&euro;{offer.price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <OfferBookmark isFavorite={offer.isFavorite} block='place-card' />
+            <OfferBookmark isFavorite={offer.isFavorite} offerId={offer.id} block='place-card' />
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">

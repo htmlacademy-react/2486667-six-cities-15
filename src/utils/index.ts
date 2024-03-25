@@ -18,20 +18,10 @@ export function getFavoritesByLocation(offers: Offer[]): Favorites {
 }
 
 export function getRatingWidth(rating: number): string {
-  return `${((rating / 5) * 100).toFixed(1) }%`;
+  return `${((Math.round(rating) / 5) * 100)}%`;
 }
 
-/*export const getCities = (offers: Offer[]): City[] => {
-  const cities = offers.map((offer) => offer.city);
-
-  return cities.filter((value, index, self) =>
-    index === self.findIndex((t) => (
-      t.name === value.name && t.name === value.name
-    ))
-  );
-};*/
-
-export function setAuthStatus(status: AuthStatus): boolean {
+export function getIsAuth(status: AuthStatus): boolean {
   return status === AuthStatus.Auth;
 }
 
