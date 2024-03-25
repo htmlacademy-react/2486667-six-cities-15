@@ -7,7 +7,6 @@ import MainContainer from '@/components/common/main-container/main-container';
 import OfferGallary from '@/components/catalog/offer-gallary/offer-gallary';
 import OfferReviews from '@/components/catalog/offer-reviews/offer-reviews';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
-import {Review} from '@/types/reviews';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {City} from '@/types/city';
@@ -18,26 +17,26 @@ import {RequestStatus} from '@/utils/const';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
 import {offerActions, offerSelectors} from '@/store/slices/offer';
 import {nearbyActions, nearbySelectors} from '@/store/slices/nearby';
+import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
 
-type OfferPageProps = {
-  reviews: Review[];
-}
-
-export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
+export default function OfferPage(): JSX.Element {
   const { fetchOffer } = useActionCreators(offerActions);
   const { fetchNearOffers } = useActionCreators(nearbyActions);
+  const { fetchReviews } = useActionCreators(reviewsActions);
   const { id } = useParams();
 
   const offer: Offer | null = useAppSelector(offerSelectors.offer);
   const status = useAppSelector(offerSelectors.status);
   const nearOffers = useAppSelector(nearbySelectors.nearOffers).slice(0, 3);
+  const reviews = useAppSelector(reviewsSelectors.reviews);
 
   useEffect(() => {
     if (id) {
       fetchOffer(id);
       fetchNearOffers(id);
+      fetchReviews(id);
     }
-  }, [id, fetchOffer, fetchNearOffers]);
+  }, [id, fetchOffer, fetchNearOffers, fetchReviews]);
 
   if (status === RequestStatus.Loading) {
     return <LoadingScreen />;

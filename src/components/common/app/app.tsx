@@ -7,7 +7,6 @@ import FavoritesPage from '@/pages/favorites-page/favorites-page';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import OfferPage from '@/pages/offer-page/offer-page';
 import ProtectedRoute from '@/components/common/protected-route/protected-route';
-import {Review} from '@/types/reviews';
 import {CITIES} from '@/mocks/cities';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
@@ -17,10 +16,9 @@ import {useEffect} from 'react';
 
 type AppProps = {
   cities: City[];
-  reviews: Review[];
 }
 
-export default function App({ cities, reviews }: AppProps): JSX.Element {
+export default function App({ cities }: AppProps): JSX.Element {
   const { fetchOffers } = useActionCreators(offersActions);
   const { checkAuth } = useActionCreators(usersActions);
 
@@ -58,7 +56,7 @@ export default function App({ cities, reviews }: AppProps): JSX.Element {
       />
       <Route
         path={`${AppRoute.Offer}/:id`}
-        element={<OfferPage reviews={reviews} />}
+        element={<OfferPage />}
       />
       <Route
         path={AppRoute.NotFound}

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './components/common/app/app';
 import { HelmetProvider } from 'react-helmet-async';
 import {CITIES} from './mocks/cities';
-import {REVIEWS} from '@/mocks/reviews';
 import ScrollToTop from './components/common/scroll-to-top/scroll-to-top';
 import {Provider} from 'react-redux';
 import {store} from '@/store';
@@ -23,7 +22,7 @@ root.render(
         <ScrollToTop />
         <Provider store={store}>
           <ToastContainer />
-          <App cities={CITIES} reviews={REVIEWS} />
+          <App cities={CITIES} />
         </Provider>
       </HistoryRouter>
     </HelmetProvider>

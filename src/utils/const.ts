@@ -38,7 +38,7 @@ export enum Endpoint {
   Offer = '/offers/',
   Nearby = '/nearby',
   Favorite = '/favorite',
-  Comments = '/comments/{offerId}',
+  Reviews = '/comments',
   Login = '/login',
   Logout = '/logout',
 }
