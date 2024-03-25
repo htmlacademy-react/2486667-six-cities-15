@@ -112,7 +112,7 @@ const offersSlice = createSlice({
   },
 });
 
-const offersActions = offersSlice.actions;
+const offersActions = {...offersSlice.actions, fetchOffers, fetchOffer, fetchNearOffers, postFavoriteStatus, fetchFavorites};
 const offersSelectors = {
   ...offersSlice.selectors,
   cityOffers: createSelector(offersSlice.selectors.offers, offersSlice.selectors.city, (allOffers, city) =>

@@ -31,7 +31,6 @@ const fetchNearOffers = createAsyncThunk<Offer[], string, { extra: AxiosInstance
   },
 );
 
-
 const postFavoriteStatus = createAsyncThunk<void, PostFavoriteStatusArgs, { extra: AxiosInstance }>(
   'data/postFavoriteStatus',
   async (args, { extra: api }) => {

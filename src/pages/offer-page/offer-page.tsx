@@ -9,13 +9,12 @@ import OfferReviews from '@/components/catalog/offer-reviews/offer-reviews';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import {Review} from '@/types/reviews';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
-import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
+import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {City} from '@/types/city';
 import {useEffect} from 'react';
 import OfferDescription from '@/components/catalog/offer-description/offer-description';
 import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
-import {offersSelectors} from '@/store/slices/offers';
-import {fetchNearOffers, fetchOffer} from '@/store/thunks/offers';
+import {offersActions, offersSelectors} from '@/store/slices/offers';
 import {RequestStatus} from '@/utils/const';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
 
@@ -24,7 +23,7 @@ type OfferPageProps = {
 }
 
 export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
-  const dispatch = useAppDispatch();
+  const { fetchOffer, fetchNearOffers } = useActionCreators(offersActions);
   const { id } = useParams();
 
   const offer: Offer | null = useAppSelector(offersSelectors.offer);
@@ -33,10 +32,10 @@ export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchOffer(id));
-      dispatch(fetchNearOffers(id));
+      fetchOffer(id);
+      fetchNearOffers(id);
     }
-  }, [id, dispatch]);
+  }, [id, fetchOffer, fetchNearOffers]);
 
   if (offerStatus === RequestStatus.Loading) {
     return <LoadingScreen />;

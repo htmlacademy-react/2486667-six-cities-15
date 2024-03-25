@@ -1,10 +1,10 @@
 import {FormEvent, useRef} from 'react';
-import {useAppDispatch} from '@/hooks/store/store';
+import {useActionCreators} from '@/hooks/store/store';
 import {AuthData} from '@/types/user';
-import {loginUser} from '@/store/thunks/users';
+import {usersActions} from '@/store/slices/users';
 
 export default function LoginForm() {
-  const dispatch = useAppDispatch();
+  const { loginUser } = useActionCreators(usersActions);
   const login = useRef<HTMLInputElement | null>(null);
   const password = useRef<HTMLInputElement | null>(null);
 
@@ -16,7 +16,7 @@ export default function LoginForm() {
         login: login.current?.value || '',
         password: password.current?.value || '',
       };
-      dispatch(loginUser(authData));
+      loginUser(authData);
     }
   };
 

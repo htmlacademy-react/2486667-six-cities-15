@@ -1,8 +1,8 @@
 import {clsx} from 'clsx';
 import React, {useState} from 'react';
-import {postFavoriteStatus} from '@/store/thunks/offers';
-import {useAppDispatch} from '@/hooks/store/store';
+import {useActionCreators} from '@/hooks/store/store';
 import {PostFavoriteStatusArgs} from '@/types/favorites';
+import {offersActions} from '@/store/slices/offers';
 
 type OfferBookmarkProps = {
   isFavorite: boolean;
@@ -11,8 +11,8 @@ type OfferBookmarkProps = {
 }
 
 export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.Element {
-  const dispatch = useAppDispatch();
   const [currentIsFavorite, setCurrentIsFavorite] = useState<boolean>(isFavorite);
+  const { postFavoriteStatus } = useActionCreators(offersActions);
 
   const clickBookmarkHandle = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
@@ -22,8 +22,8 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
       offerId,
       favStatus: +(!currentIsFavorite),
     };
-    dispatch(postFavoriteStatus(postFavoriteStatusArgs));
-    //dispatch(fetchFavorites());
+    postFavoriteStatus(postFavoriteStatusArgs);
+    //dispatch(fetchFavorites()); //TODO исправить обновление favorites в store
   };
 
   return (

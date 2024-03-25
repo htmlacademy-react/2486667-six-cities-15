@@ -68,7 +68,7 @@ const usersSlice = createSlice({
   },
 });
 
-const usersActions = usersSlice.actions;
+const usersActions = {...usersSlice.actions, checkAuth, loginUser, logoutUser};
 const usersSelectors = usersSlice.selectors;
 
 export {usersActions, usersSelectors, usersSlice};

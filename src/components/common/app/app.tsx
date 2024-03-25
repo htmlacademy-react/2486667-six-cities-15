@@ -9,13 +9,11 @@ import OfferPage from '@/pages/offer-page/offer-page';
 import ProtectedRoute from '@/components/common/protected-route/protected-route';
 import {Review} from '@/types/reviews';
 import {CITIES} from '@/mocks/cities';
-import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
+import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
-import {offersSelectors} from '@/store/slices/offers';
-import {usersSelectors} from '@/store/slices/users';
+import {offersActions, offersSelectors} from '@/store/slices/offers';
+import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useEffect} from 'react';
-import {fetchOffers} from '@/store/thunks/offers';
-import {checkAuth} from '@/store/thunks/users';
 
 type AppProps = {
   cities: City[];
@@ -23,12 +21,13 @@ type AppProps = {
 }
 
 export default function App({ cities, reviews }: AppProps): JSX.Element {
-  const dispatch = useAppDispatch();
+  const { fetchOffers } = useActionCreators(offersActions);
+  const { checkAuth } = useActionCreators(usersActions);
 
   useEffect(() => {
-    dispatch(fetchOffers());
-    dispatch(checkAuth());
-  }, [dispatch]);
+    fetchOffers();
+    checkAuth();
+  }, [fetchOffers, checkAuth]);
 
   const authStatus = useAppSelector(usersSelectors.status);
   const status = useAppSelector(offersSelectors.status);
