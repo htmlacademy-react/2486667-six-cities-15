@@ -4,13 +4,13 @@ import {createSlice} from '@reduxjs/toolkit';
 import {fetchFavorites, postFavoriteStatus} from '@/store/thunks/favorites';
 
 interface FavoritesState {
-  favoritesData: Offer[];
+  favorites: Offer[];
   getStatus: RequestStatus;
   postStatus: RequestStatus;
 }
 
 const initialState: FavoritesState = {
-  favoritesData: [],
+  favorites: [],
   getStatus: RequestStatus.Idle,
   postStatus: RequestStatus.Idle,
 };
@@ -23,7 +23,7 @@ const favoritesSlice = createSlice({
       })
       .addCase(fetchFavorites.fulfilled, (state: FavoritesState, action) => {
         state.getStatus = RequestStatus.Success;
-        state.favoritesData = action.payload;
+        state.favorites = action.payload;
       })
       .addCase(fetchFavorites.rejected, (state: FavoritesState) => {
         state.getStatus = RequestStatus.Failed;
@@ -42,13 +42,13 @@ const favoritesSlice = createSlice({
   name: 'favorites',
   reducers: {
     clear(state: FavoritesState) {
-      state.favoritesData = [];
+      state.favorites = [];
       state.getStatus = RequestStatus.Idle;
       state.postStatus = RequestStatus.Idle;
     }
   },
   selectors: {
-    favorites: (state) => state.favoritesData,
+    favorites: (state) => state.favorites,
   },
 });
 

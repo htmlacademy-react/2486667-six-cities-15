@@ -4,12 +4,12 @@ import {createSlice} from '@reduxjs/toolkit';
 import {fetchOffer} from '@/store/thunks/offer';
 
 interface OfferState {
-  offerData: Offer | null;
+  offer: Offer | null;
   status: RequestStatus;
 }
 
 const initialState: OfferState = {
-  offerData: null,
+  offer: null,
   status: RequestStatus.Idle,
 };
 
@@ -21,7 +21,7 @@ const offerSlice = createSlice({
       })
       .addCase(fetchOffer.fulfilled, (state: OfferState, action) => {
         state.status = RequestStatus.Success;
-        state.offerData = action.payload;
+        state.offer = action.payload;
       })
       .addCase(fetchOffer.rejected, (state: OfferState) => {
         state.status = RequestStatus.Failed;
@@ -30,11 +30,11 @@ const offerSlice = createSlice({
   name: 'offer',
   reducers: {
     clear(state: OfferState) {
-      state.offerData = null;
+      state.offer = null;
     }
   },
   selectors: {
-    offer: (state: OfferState) => state.offerData,
+    offer: (state: OfferState) => state.offer,
     status: (state: OfferState) => state.status,
   },
 });

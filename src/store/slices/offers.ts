@@ -6,15 +6,15 @@ import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {fetchOffers} from '@/store/thunks/offers';
 
 interface OffersState {
-  offersData: Offer[];
-  currentCity: City;
+  offers: Offer[];
+  city: City;
   sortOption: SortOption;
   status: RequestStatus;
 }
 
 const initialState: OffersState = {
-  offersData: [],
-  currentCity: DEFAULT_CITY,
+  offers: [],
+  city: DEFAULT_CITY,
   sortOption: SORT_OPTION_DEFAULT,
   status: RequestStatus.Idle,
 };
@@ -27,7 +27,7 @@ const offersSlice = createSlice({
       })
       .addCase(fetchOffers.fulfilled, (state: OffersState, action) => {
         state.status = RequestStatus.Success;
-        state.offersData = action.payload;
+        state.offers = action.payload;
       })
       .addCase(fetchOffers.rejected, (state: OffersState) => {
         state.status = RequestStatus.Failed;
@@ -36,15 +36,15 @@ const offersSlice = createSlice({
   name: 'offers',
   reducers: {
     setCity: (state, action: PayloadAction<City>) => {
-      state.currentCity = action.payload;
+      state.city = action.payload;
     },
     setSortOption: (state, action: PayloadAction<SortOption>) => {
       state.sortOption = action.payload;
     },
   },
   selectors: {
-    offers: (state: OffersState) => state.offersData,
-    city: (state: OffersState) => state.currentCity,
+    offers: (state: OffersState) => state.offers,
+    city: (state: OffersState) => state.city,
     sortOption: (state: OffersState) => state.sortOption,
     status: (state) => state.status,
   },

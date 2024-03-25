@@ -4,12 +4,12 @@ import {createSlice} from '@reduxjs/toolkit';
 import {fetchNearOffers} from '@/store/thunks/nearby';
 
 interface NearbyState {
-  nearOffersData: Offer[];
+  nearOffers: Offer[];
   status: RequestStatus;
 }
 
 const initialState: NearbyState = {
-  nearOffersData: [],
+  nearOffers: [],
   status: RequestStatus.Idle,
 };
 
@@ -21,7 +21,7 @@ const nearbySlice = createSlice({
       })
       .addCase(fetchNearOffers.fulfilled, (state: NearbyState, action) => {
         state.status = RequestStatus.Success;
-        state.nearOffersData = action.payload;
+        state.nearOffers = action.payload;
       })
       .addCase(fetchNearOffers.rejected, (state: NearbyState) => {
         state.status = RequestStatus.Failed;
@@ -30,11 +30,11 @@ const nearbySlice = createSlice({
   name: 'nearby',
   reducers: {
     clear(state: NearbyState) {
-      state.nearOffersData = [];
+      state.nearOffers = [];
     }
   },
   selectors: {
-    nearOffers: (state: NearbyState) => state.nearOffersData,
+    nearOffers: (state: NearbyState) => state.nearOffers,
     status: (state: NearbyState) => state.status,
   },
 });
