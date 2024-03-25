@@ -19,11 +19,10 @@ export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteP
   const authStatus = useAppSelector(usersSelectors.status);
   const isAuthenticate = getIsAuth(authStatus);
 
-  // Авторизованы и стр логина => переход на главную
+  // Авторизованы и стр логина => переход на главную или на предыдущую страницу
   if (isAuthenticate && onlyUnAuth) {
-    //const from = location.state?.from || { pathname: AppRoute.Root };
-    // По ТЗ переход всегда на главную
-    return <Navigate to={AppRoute.Root} />;
+    const from = location.state?.from || { pathname: AppRoute.Root };
+    return <Navigate to={from} />;
   }
 
   // Не авторизованы и не стр логина => переход на стр логина
