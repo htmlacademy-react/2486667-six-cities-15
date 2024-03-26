@@ -9,3 +9,8 @@ export type Offer = {
   bedrooms: number;
   maxAdults: number;
 } & OfferPreview;
+
+export type ConvertDate = {
+  monthYear: string;
+  fullDate: string;
+}

@@ -1,4 +1,4 @@
-import {Offer} from '@/types/offer';
+import {ConvertDate, Offer} from '@/types/offer';
 import {Favorites} from '@/types/favorites';
 import {AuthStatus} from './const';
 
@@ -25,7 +25,7 @@ export function getIsAuth(status: AuthStatus): boolean {
   return status === AuthStatus.Auth;
 }
 
-export const convertDate = (str: string) => {
+export const convertDate = (str: string): ConvertDate => {
   const date = new Date(str);
   const monthYear = `${date.toLocaleString('en-GB', { month: 'long' }) } ${ date.getFullYear()}`;
   const fullDate = str.slice(0, 10);

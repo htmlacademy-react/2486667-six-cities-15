@@ -25,10 +25,15 @@ export default function OfferPage(): JSX.Element {
   const { fetchReviews } = useActionCreators(reviewsActions);
   const { id } = useParams();
 
+  const offerStatus = useAppSelector(offerSelectors.status);
+  const nearStatus = useAppSelector(nearbySelectors.status);
+  const reviewsStatus = useAppSelector(reviewsSelectors.status);
+
   const offer: Offer | null = useAppSelector(offerSelectors.offer);
-  const status = useAppSelector(offerSelectors.status);
   const nearOffers = useAppSelector(nearbySelectors.nearOffers).slice(0, 3);
   const reviews = useAppSelector(reviewsSelectors.reviews);
+
+  //console.log(reviews) //TODO
 
   useEffect(() => {
     if (id) {
@@ -38,11 +43,13 @@ export default function OfferPage(): JSX.Element {
     }
   }, [id, fetchOffer, fetchNearOffers, fetchReviews]);
 
-  if (status === RequestStatus.Loading) {
+  if (offerStatus === RequestStatus.Loading ||
+      nearStatus === RequestStatus.Loading ||
+      reviewsStatus === RequestStatus.Loading) {
     return <LoadingScreen />;
   }
 
-  if (!offer || status === RequestStatus.Failed) {
+  if (!offer || offerStatus === RequestStatus.Failed) {
     return <NotFoundPage type='offer' />;
   }
 

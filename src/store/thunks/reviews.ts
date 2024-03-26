@@ -1,9 +1,8 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {AxiosInstance} from 'axios';
 import {Endpoint} from '@/utils/const';
 import {Review} from '@/types/reviews';
+import {createAppAsyncThunk} from '@/hooks/store/store';
 
-const fetchReviews = createAsyncThunk<Review[], string, { extra: AxiosInstance }>(
+const fetchReviews = createAppAsyncThunk<Review[], string>(
   'data/fetchFavorites',
   async (OfferId, { extra: api }) => {
     const {data} = await api.get<Review[]>(`${Endpoint.Reviews}/${OfferId}`);
@@ -12,7 +11,7 @@ const fetchReviews = createAsyncThunk<Review[], string, { extra: AxiosInstance }
   },
 );
 
-const postReview = createAsyncThunk<void, string, { extra: AxiosInstance }>(
+const postReview = createAppAsyncThunk<void, string>(
   'data/postFavoriteStatus',
   async (OfferId, { extra: api }) => {
     await api.post(`${Endpoint.Reviews}/${OfferId}`);

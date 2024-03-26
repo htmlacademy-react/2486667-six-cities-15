@@ -17,11 +17,13 @@ type FavoritesPagePops = {
 
 export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Element {
   const { fetchFavorites } = useActionCreators(favoritesActions);
-  const favorites = getFavoritesByLocation(useAppSelector(favoritesSelectors.favorites));
+  const favorites = useAppSelector(favoritesSelectors.favorites);
+  //console.log(favorites) //TODO
+  const favoritesByLocation = getFavoritesByLocation(favorites);
 
   useEffect(()=> {
     fetchFavorites();
-  }, [fetchFavorites]);
+  }, []);
 
   return (
     <Container>
@@ -31,8 +33,8 @@ export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Elemen
       <Header />
       <MainContainer extraClass="page__main--favorites">
         <div className="page__favorites-container container">
-          {Object.keys(favorites).length ?
-            <FavoritesList favorites={favorites} cities={cities} /> :
+          {Object.keys(favoritesByLocation).length ?
+            <FavoritesList favorites={favoritesByLocation} cities={cities} /> :
             <FavoritesListEmpty />}
         </div>
       </MainContainer>

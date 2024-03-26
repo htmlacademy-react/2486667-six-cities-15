@@ -11,8 +11,8 @@ const reducer = combineReducers({
   [offersSlice.name]: offersSlice.reducer,
   [offerSlice.name]: offerSlice.reducer,
   [nearbySlice.name]: nearbySlice.reducer,
-  [reviewsSlice.name]: reviewsSlice.reducer,
   [favoritesSlice.name]: favoritesSlice.reducer,
+  [reviewsSlice.name]: reviewsSlice.reducer,
   [usersSlice.name]: usersSlice.reducer,
 });
 

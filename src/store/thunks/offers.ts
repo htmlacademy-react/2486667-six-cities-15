@@ -1,9 +1,8 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {AxiosInstance} from 'axios';
 import {Offer} from '@/types/offer';
 import {Endpoint} from '@/utils/const';
+import {createAppAsyncThunk} from '@/hooks/store/store';
 
-const fetchOffers = createAsyncThunk<Offer[], undefined, { extra: AxiosInstance }>(
+const fetchOffers = createAppAsyncThunk<Offer[], undefined>(
   'data/fetchOffers',
   async (_arg, { extra: api }) => {
     const {data} = await api.get<Offer[]>(Endpoint.Offers);
