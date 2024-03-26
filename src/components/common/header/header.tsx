@@ -12,10 +12,6 @@ export default function Header(): JSX.Element {
   const name = user?.name;
   const {pathname} = useLocation();
 
-  const logout = () => {
-    logoutUser();
-  };
-
   return (
     <header className="header">
       <div className="container">
@@ -36,7 +32,7 @@ export default function Header(): JSX.Element {
                     </Link>
                   </li>
                   <li className="header__nav-item">
-                    <Link className="header__nav-link" to="#" onClick={logout}>
+                    <Link className="header__nav-link" to="#" onClick={logoutUser}>
                       <span className="header__signout">Sign out</span>
                     </Link>
                   </li>
