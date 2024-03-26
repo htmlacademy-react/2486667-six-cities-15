@@ -33,8 +33,6 @@ export default function OfferPage(): JSX.Element {
 
   const { id } = useParams();
 
-  //console.log(reviews) //TODO
-
   useEffect(() => {
     if (id) {
       Promise.all([fetchOffer(id), fetchNearOffers(id), fetchReviews(id)]);

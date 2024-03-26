@@ -13,7 +13,7 @@ import LoadingScreen from '@/pages/loading-screen/loading-screen';
 import {offersActions, offersSelectors} from '@/store/slices/offers';
 import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useEffect} from 'react';
-import {getToken} from "@/services/token";
+import {getToken} from '@/services/token';
 
 type AppProps = {
   cities: City[];

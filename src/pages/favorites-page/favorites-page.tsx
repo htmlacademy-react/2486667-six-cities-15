@@ -19,7 +19,6 @@ type FavoritesPagePops = {
 
 export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Element {
   const favorites = useAppSelector(favoritesSelectors.favorites);
-  //console.log(favorites) //TODO
   const status = useAppSelector(favoritesSelectors.status);
   const favoritesByLocation = getFavoritesByLocation(favorites);
 

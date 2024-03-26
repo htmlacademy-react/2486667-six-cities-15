@@ -4,7 +4,7 @@ export type Favorites = {
   [key: string]: Offer[];
 }
 
-export type PostFavoriteStatusArgs = {
+export type ChangeFavoriteArgs = {
   offerId: string;
   favStatus: number;
 }

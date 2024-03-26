@@ -1,15 +1,7 @@
 import {Offer} from '@/types/offer';
 import {Endpoint} from '@/utils/const';
-import {PostFavoriteStatusArgs} from '@/types/favorites';
+import {ChangeFavoriteArgs} from '@/types/favorites';
 import {createAppAsyncThunk} from '@/hooks/store/store';
-
-const postFavoriteStatus = createAppAsyncThunk<void, PostFavoriteStatusArgs>(
-  'data/postFavoriteStatus',
-  async (args, { extra: api }) => {
-
-    await api.post(`${Endpoint.Favorite}/${args.offerId}/${args.favStatus}`);
-  },
-);
 
 const fetchFavorites = createAppAsyncThunk<Offer[], undefined>(
   'data/fetchFavorites',
@@ -20,4 +12,12 @@ const fetchFavorites = createAppAsyncThunk<Offer[], undefined>(
   },
 );
 
-export {postFavoriteStatus, fetchFavorites};
+const changeFavorite = createAppAsyncThunk<void, ChangeFavoriteArgs>(
+  'data/changeFavorite',
+  async (args, { extra: api }) => {
+
+    await api.post(`${Endpoint.Favorite}/${args.offerId}/${args.favStatus}`);
+  },
+);
+
+export {fetchFavorites, changeFavorite};
