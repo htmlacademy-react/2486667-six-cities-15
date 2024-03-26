@@ -1,7 +1,7 @@
 import {clsx} from 'clsx';
 import React, {useState} from 'react';
 import {useActionCreators} from '@/hooks/store/store';
-import {ChangeFavoriteArgs} from '@/types/favorites';
+import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
 import {favoritesActions} from '@/store/slices/favorites';
 
 type OfferBookmarkProps = {
@@ -20,7 +20,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
 
     const changeFavoriteArgs: ChangeFavoriteArgs = {
       offerId,
-      favStatus: +(!currentIsFavorite),
+      status: currentIsFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
     };
     changeFavorite(changeFavoriteArgs);
   };
