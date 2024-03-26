@@ -40,7 +40,7 @@ export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Elemen
       <Header />
       <MainContainer extraClass="page__main--favorites">
         <div className="page__favorites-container container">
-          {Object.keys(favoritesByLocation).length ?
+          {favorites.length ?
             <FavoritesList favorites={favoritesByLocation} cities={cities} /> :
             <FavoritesListEmpty />}
         </div>
