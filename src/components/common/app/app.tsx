@@ -24,11 +24,8 @@ export default function App({ cities }: AppProps): JSX.Element {
 
   useEffect(() => {
     fetchOffers();
-  }, [fetchOffers]);
-
-  useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+  }, [fetchOffers, checkAuth]);
 
   const authStatus = useAppSelector(usersSelectors.status);
   const status = useAppSelector(offersSelectors.status);

@@ -65,7 +65,7 @@ const offersSlice = createSlice({
 const offersActions = {...offersSlice.actions, fetchOffers};
 const offersSelectors = {
   ...offersSlice.selectors,
-  cityOffers: createSelector(offersSlice.selectors.offers, offersSlice.selectors.city, (allOffers, city) =>
+  cityOffers: createSelector([offersSlice.selectors.offers, offersSlice.selectors.city], (allOffers, city) =>
     allOffers.filter((item) => item.city.name === city.name))
 };
 
