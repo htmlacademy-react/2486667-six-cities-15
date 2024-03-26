@@ -10,26 +10,27 @@ import FavoritesListEmpty from '@/components/catalog/favorites-list-empty/favori
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {useEffect} from 'react';
 import {favoritesActions, favoritesSelectors} from '@/store/slices/favorites';
-import {RequestStatus} from "@/utils/const";
-import LoadingScreen from "@/pages/loading-screen/loading-screen";
+import {RequestStatus} from '@/utils/const';
+import LoadingScreen from '@/pages/loading-screen/loading-screen';
 
 type FavoritesPagePops = {
   cities: City[];
 }
 
 export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Element {
-  const { fetchFavorites } = useActionCreators(favoritesActions);
   const favorites = useAppSelector(favoritesSelectors.favorites);
   //console.log(favorites) //TODO
   const status = useAppSelector(favoritesSelectors.status);
   const favoritesByLocation = getFavoritesByLocation(favorites);
 
+  const { fetchFavorites } = useActionCreators(favoritesActions);
+
   useEffect(()=> {
     fetchFavorites();
-  }, []);
+  }, [fetchFavorites]);
 
   if (status === RequestStatus.Loading) {
-    return <LoadingScreen />
+    return <LoadingScreen />;
   }
 
   return (
