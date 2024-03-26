@@ -14,7 +14,6 @@ export default function OffersSortList({sortOption, isOn, off}: OffersSortListPr
 
   const clickOptionHandler = (option: SortOption): void => {
     off();
-    //dispatch(offersActions.setSortOption(option));
     setSortOption(option);
   };
 

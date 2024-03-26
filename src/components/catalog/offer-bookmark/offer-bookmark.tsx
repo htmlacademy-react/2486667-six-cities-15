@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {useActionCreators} from '@/hooks/store/store';
 import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
 import {favoritesActions} from '@/store/slices/favorites';
+import {offersActions} from "@/store/slices/offers";
 
 type OfferBookmarkProps = {
   isFavorite: boolean;
@@ -13,6 +14,7 @@ type OfferBookmarkProps = {
 export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookmarkProps): JSX.Element {
   const [currentIsFavorite, setCurrentIsFavorite] = useState<boolean>(isFavorite);
   const { changeFavorite } = useActionCreators(favoritesActions);
+  const { updateFavoriteStatus } = useActionCreators(offersActions);
 
   const clickBookmarkHandle = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
@@ -23,6 +25,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
       status: currentIsFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
     };
     changeFavorite(changeFavoriteArgs);
+    updateFavoriteStatus(changeFavoriteArgs);
   };
 
   return (
