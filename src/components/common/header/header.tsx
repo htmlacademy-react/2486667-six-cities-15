@@ -11,7 +11,7 @@ export default function Header(): JSX.Element {
   const isAuthenticate = useAuth();
   const user = useAppSelector(usersSelectors.user);
   const {pathname} = useLocation();
-  const favoriteCount = useFavoriteCount();
+  const favoriteCount = isAuthenticate ? useFavoriteCount() : 0;
 
   const logoutClickHandler = () => {
     logoutUser();

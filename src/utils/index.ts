@@ -1,7 +1,8 @@
-import {ConvertDate, Offer} from '@/types/offer';
+import {ConvertDate} from '@/types/offer';
 import {Favorites} from '@/types/favorites';
+import {OfferPreview} from "@/types/offer-preview";
 
-export function getFavoritesByLocation(offers: Offer[]): Favorites {
+export function getFavoritesByLocation(offers: OfferPreview[]): Favorites {
   return offers.reduce<Favorites>((acc, current) => {
     const location = current.city.name;
 

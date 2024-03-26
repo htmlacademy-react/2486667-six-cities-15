@@ -25,7 +25,7 @@ export default function OfferBookmark({ isFavorite, offerId, block }: OfferBookm
       status: currentIsFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
     };
     changeFavorite(changeFavoriteArgs);
-    updateFavoriteStatus(changeFavoriteArgs);
+    updateFavoriteStatus(changeFavoriteArgs); // TODO сделать это в случае успеха изменения статуса
   };
 
   return (
