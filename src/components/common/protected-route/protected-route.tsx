@@ -22,7 +22,7 @@ export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteP
     return <Navigate to={from} />;
   }
 
-  // Не авторизованы и не стр логина => переход на стр логина
+  // Не авторизованы и не стр логина (стр избранных) => переход на стр логина
   if (!isAuthenticate && !onlyUnAuth) {
     return <Navigate to={AppRoute.Login} state={{from: location}} />;
   }
