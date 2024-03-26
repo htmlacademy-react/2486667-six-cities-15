@@ -1,6 +1,5 @@
 import {ConvertDate, Offer} from '@/types/offer';
 import {Favorites} from '@/types/favorites';
-import {AuthStatus} from './const';
 
 export function getFavoritesByLocation(offers: Offer[]): Favorites {
   return offers.reduce<Favorites>((acc, current) => {
@@ -19,10 +18,6 @@ export function getFavoritesByLocation(offers: Offer[]): Favorites {
 
 export function getRatingWidth(rating: number): string {
   return `${((Math.round(rating) / 5) * 100)}%`;
-}
-
-export function getIsAuth(status: AuthStatus): boolean {
-  return status === AuthStatus.Auth;
 }
 
 export const convertDate = (str: string): ConvertDate => {

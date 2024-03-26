@@ -3,17 +3,14 @@ import {Link} from 'react-router-dom';
 import OfferReviewList from '@/components/catalog/offer-review-list/offer-review-list';
 import OfferReviewForm from '@/components/catalog/offer-review-form/offer-review-form';
 import {Review} from '@/types/reviews';
-import {getIsAuth} from '@/utils';
-import {useAppSelector} from '@/hooks/store/store';
-import {usersSelectors} from '@/store/slices/users';
+import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
 
 type OfferReviewsProps = {
   reviews: Review[];
 }
 
 export default function OfferReviews({ reviews }: OfferReviewsProps): JSX.Element {
-  const authStatus = useAppSelector(usersSelectors.status);
-  const isAuthenticate = getIsAuth(authStatus);
+  const isAuthenticate = useAuth();
 
   return (
     <section className="offer__reviews reviews">
