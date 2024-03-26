@@ -4,7 +4,7 @@ import HeaderLogo from '@/components/common/header-logo/header-logo';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
-import {useFavoriteCount} from '@/hooks/use-favorite-count';
+import {useFavoriteCount} from '@/hooks/use-favorite-count/use-favorite-count';
 
 export default function Header(): JSX.Element {
   const { logoutUser } = useActionCreators(usersActions);
