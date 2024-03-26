@@ -13,6 +13,7 @@ import LoadingScreen from '@/pages/loading-screen/loading-screen';
 import {offersActions, offersSelectors} from '@/store/slices/offers';
 import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useEffect} from 'react';
+import {getToken} from "@/services/token";
 
 type AppProps = {
   cities: City[];
@@ -24,8 +25,14 @@ export default function App({ cities }: AppProps): JSX.Element {
 
   useEffect(() => {
     fetchOffers();
-    checkAuth();
-  }, [fetchOffers, checkAuth]);
+  }, [fetchOffers]);
+
+  const token = getToken();
+  useEffect(() => {
+    if (token) {
+      checkAuth();
+    }
+  }, [token, checkAuth]);
 
   const authStatus = useAppSelector(usersSelectors.status);
   const status = useAppSelector(offersSelectors.status);
