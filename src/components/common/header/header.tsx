@@ -4,12 +4,14 @@ import HeaderLogo from '@/components/common/header-logo/header-logo';
 import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
+import {useFavoriteCount} from '@/hooks/use-favorite-count';
 
 export default function Header(): JSX.Element {
   const { logoutUser } = useActionCreators(usersActions);
   const isAuthenticate = useAuth();
   const user = useAppSelector(usersSelectors.user);
   const {pathname} = useLocation();
+  const favoriteCount = useFavoriteCount();
 
   const logoutClickHandler = () => {
     logoutUser();
@@ -31,7 +33,7 @@ export default function Header(): JSX.Element {
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
                       <span className="header__user-name user__name">{user?.email}</span>
-                      <span className="header__favorite-count">3</span>
+                      <span className="header__favorite-count">{favoriteCount}</span>
                     </Link>
                   </li>
                   <li className="header__nav-item">
