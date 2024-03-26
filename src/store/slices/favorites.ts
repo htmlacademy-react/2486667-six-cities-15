@@ -49,6 +49,7 @@ const favoritesSlice = createSlice({
   },
   selectors: {
     favorites: (state: FavoritesState) => state.favorites,
+    status: (state: FavoritesState) => state.getStatus,
   },
 });
 
