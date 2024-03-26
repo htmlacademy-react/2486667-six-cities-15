@@ -1,5 +1,5 @@
 import {Offer} from './offer';
-import {OfferPreview} from "@/types/offer-preview";
+import {OfferPreview} from '@/types/offer-preview';
 
 export type Favorites = {
   [key: string]: Offer[];

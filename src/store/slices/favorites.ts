@@ -1,8 +1,8 @@
 import {RequestStatus} from '@/utils/const';
 import {createSlice} from '@reduxjs/toolkit';
 import {changeFavorite, fetchFavorites} from '@/store/thunks/favorites';
-import {FavoriteStatus} from "@/types/favorites";
-import {OfferPreview} from "@/types/offer-preview";
+import {FavoriteStatus} from '@/types/favorites';
+import {OfferPreview} from '@/types/offer-preview';
 
 interface FavoritesState {
   favorites: OfferPreview[];

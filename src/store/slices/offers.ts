@@ -4,7 +4,7 @@ import {DEFAULT_CITY, RequestStatus, SORT_OPTION_DEFAULT} from '@/utils/const';
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {SortOption} from '@/components/catalog/offers-sort/utils/const';
 import {fetchOffers} from '@/store/thunks/offers';
-import {ChangeFavoriteArgs} from "@/types/favorites";
+import {ChangeFavoriteArgs} from '@/types/favorites';
 
 interface OffersState {
   offers: Offer[];
@@ -48,10 +48,10 @@ const offersSlice = createSlice({
           return {
             ...item,
             isFavorite: !!action.payload.status,
-          }
+          };
         }
         return item;
-      })
+      });
     }
   },
   selectors: {

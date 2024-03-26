@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {useActionCreators} from '@/hooks/store/store';
 import {ChangeFavoriteArgs, FavoriteStatus} from '@/types/favorites';
 import {favoritesActions} from '@/store/slices/favorites';
-import {offersActions} from "@/store/slices/offers";
+import {offersActions} from '@/store/slices/offers';
 
 type OfferBookmarkProps = {
   isFavorite: boolean;
