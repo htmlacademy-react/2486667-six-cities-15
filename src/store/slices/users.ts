@@ -2,8 +2,6 @@ import {AuthStatus, RequestStatus} from '@/utils/const';
 import {UserData} from '@/types/user';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {checkAuth, loginUser, logoutUser} from '@/store/thunks/users';
-import {dropToken, saveToken} from '@/services/token';
-
 
 interface UsersState {
   user: UserData | null;
@@ -21,6 +19,12 @@ function processLoading(state: UsersState) {
   state.requestStatus = RequestStatus.Loading;
 }
 
+function processFulfilled(state: UsersState, action: PayloadAction<UserData>) {
+  state.user = action.payload;
+  state.status = AuthStatus.Auth;
+  state.requestStatus = RequestStatus.Success;
+}
+
 function processFailed(state: UsersState) {
   state.status = AuthStatus.NoAuth;
   state.requestStatus = RequestStatus.Failed;
@@ -30,27 +34,17 @@ const usersSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(checkAuth.pending, processLoading)
-      .addCase(checkAuth.fulfilled, (state: UsersState, action) => {
-        state.user = action.payload;
-        state.status = AuthStatus.Auth;
-        state.requestStatus = RequestStatus.Success;
-      })
+      .addCase(checkAuth.fulfilled, processFulfilled)
       .addCase(checkAuth.rejected, processFailed)
 
       .addCase(loginUser.pending, processLoading)
-      .addCase(loginUser.fulfilled, (state: UsersState, action) => {
-        state.user = action.payload;
-        state.status = AuthStatus.Auth;
-        saveToken(action.payload.token);
-        state.requestStatus = RequestStatus.Success;
-      })
+      .addCase(loginUser.fulfilled, processFulfilled)
       .addCase(loginUser.rejected, processFailed)
 
       .addCase(logoutUser.pending, processLoading)
       .addCase(logoutUser.fulfilled, (state: UsersState) => {
         state.user = null;
         state.status = AuthStatus.NoAuth;
-        dropToken();
         state.requestStatus = RequestStatus.Success;
       })
       .addCase(logoutUser.rejected, (state: UsersState) => {
