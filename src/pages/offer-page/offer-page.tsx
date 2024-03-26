@@ -20,26 +20,24 @@ import {nearbyActions, nearbySelectors} from '@/store/slices/nearby';
 import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
 
 export default function OfferPage(): JSX.Element {
+  const offer = useAppSelector(offerSelectors.offer);
+  const offerStatus = useAppSelector(offerSelectors.status);
+  const reviews = useAppSelector(reviewsSelectors.reviews);
+  const reviewsStatus = useAppSelector(reviewsSelectors.status);
+  const nearOffers = useAppSelector(nearbySelectors.nearOffers).slice(0, 3);
+  const nearStatus = useAppSelector(nearbySelectors.status);
+
   const { fetchOffer } = useActionCreators(offerActions);
   const { fetchNearOffers } = useActionCreators(nearbyActions);
   const { fetchReviews } = useActionCreators(reviewsActions);
+
   const { id } = useParams();
-
-  const offerStatus = useAppSelector(offerSelectors.status);
-  const nearStatus = useAppSelector(nearbySelectors.status);
-  const reviewsStatus = useAppSelector(reviewsSelectors.status);
-
-  const offer: Offer | null = useAppSelector(offerSelectors.offer);
-  const nearOffers = useAppSelector(nearbySelectors.nearOffers).slice(0, 3);
-  const reviews = useAppSelector(reviewsSelectors.reviews);
 
   //console.log(reviews) //TODO
 
   useEffect(() => {
     if (id) {
-      fetchOffer(id);
-      fetchNearOffers(id);
-      fetchReviews(id);
+      Promise.all([fetchOffer(id), fetchNearOffers(id), fetchReviews(id)]);
     }
   }, [id, fetchOffer, fetchNearOffers, fetchReviews]);
 
