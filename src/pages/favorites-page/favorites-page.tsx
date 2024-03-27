@@ -7,9 +7,8 @@ import Footer from '@/components/common/footer/footer';
 import MainContainer from '@/components/common/main-container/main-container';
 import FavoritesList from '@/components/catalog/favorites-list/favorites-list';
 import FavoritesListEmpty from '@/components/catalog/favorites-list-empty/favorites-list-empty';
-import {useActionCreators, useAppSelector} from '@/hooks/store/store';
-import {useEffect} from 'react';
-import {favoritesActions, favoritesSelectors} from '@/store/slices/favorites';
+import {useAppSelector} from '@/hooks/store/store';
+import {favoritesSelectors} from '@/store/slices/favorites';
 import {RequestStatus} from '@/utils/const';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
 
@@ -21,12 +20,6 @@ export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Elemen
   const favorites = useAppSelector(favoritesSelectors.favorites);
   const status = useAppSelector(favoritesSelectors.status);
   const favoritesByLocation = getFavoritesByLocation(favorites);
-
-  const { fetchFavorites } = useActionCreators(favoritesActions);
-
-  useEffect(()=> {
-    fetchFavorites();
-  }, [fetchFavorites]);
 
   if (status === RequestStatus.Loading) {
     return <LoadingScreen />;
