@@ -57,7 +57,7 @@ const usersSlice = createSlice({
       state.user = action.payload;
     },
     requireAuth: (state, action: PayloadAction<AuthStatus>) => {
-      state.status = action.payload;
+      state.authorizationStatus = action.payload;
     },
   },
   selectors: {

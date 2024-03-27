@@ -1,10 +1,9 @@
-import {Offer} from '@/types/offer';
 import {Endpoint} from '@/utils/const';
 import {ChangeFavoriteArgs, ChangeFavoriteResponse} from '@/types/favorites';
 import {createAppAsyncThunk} from '@/hooks/store/store';
 import {OfferPreview} from '@/types/offer-preview';
 
-const fetchFavorites = createAppAsyncThunk<Offer[], undefined>(
+const fetchFavorites = createAppAsyncThunk<OfferPreview[], undefined>(
   'data/fetchFavorites',
   async (_arg, { extra: api }) => {
     const {data} = await api.get<OfferPreview[]>(Endpoint.Favorite);

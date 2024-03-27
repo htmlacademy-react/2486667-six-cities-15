@@ -1,8 +1,7 @@
-import {Offer} from './offer';
 import {OfferPreview} from '@/types/offer-preview';
 
 export type Favorites = {
-  [key: string]: Offer[];
+  [key: string]: OfferPreview[];
 }
 
 export enum FavoriteStatus {
