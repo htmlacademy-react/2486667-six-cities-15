@@ -7,6 +7,7 @@ import Tabs from '@/components/common/tabs/tabs';
 import {City} from '@/types/city';
 import {useAppSelector} from '@/hooks/store/store';
 import {offersSelectors} from '@/store/slices/offers';
+import HelmetComponent from '@/components/common/helmet-component/helmet';
 
 type MainPageProps = {
   cities: City[];
@@ -18,6 +19,7 @@ export default function MainPage({ cities }: MainPageProps): JSX.Element {
 
   return (
     <Container extraClass="page--gray page--main">
+      <HelmetComponent title="6 cities" />
       <Header />
       <MainContainer extraClass="page__main--index">
         <h1 className="visually-hidden">Cities</h1>

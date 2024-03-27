@@ -1,7 +1,7 @@
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import {getToken} from './token';
-import {StatusCodes} from 'http-status-codes';
 import {toast} from 'react-toastify';
+import {AUTH_ERROR, NOT_LOGGED, StatusCodeMapping} from '@/services/const';
 
 const BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities';
 const REQUEST_TIMEOUT = 5000;
@@ -10,12 +10,6 @@ type DetailMessageType = {
   type: string;
   message: string;
 }
-
-const StatusCodeMapping: Record<number, boolean> = {
-  [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
-  [StatusCodes.NOT_FOUND]: true
-};
 
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
@@ -41,8 +35,22 @@ export const createAPI = (): AxiosInstance => {
     (error: AxiosError<DetailMessageType>) => {
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
+        const status = (error.response.status);
+        const message = detailMessage.message;
 
-        toast.warn(detailMessage.message);
+        if (detailMessage && status && message) {
+          switch (status) {
+            case 400:
+              toast.error(AUTH_ERROR);
+              break;
+            case 401:
+              toast.warn(NOT_LOGGED);
+              break;
+            default:
+              toast.warn(message);
+              break;
+          }
+        }
       }
 
       throw error;

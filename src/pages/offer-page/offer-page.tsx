@@ -1,4 +1,3 @@
-import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
 import {Offer} from '@/types/offer';
 import Container from '@/components/common/container/container';
@@ -7,38 +6,42 @@ import MainContainer from '@/components/common/main-container/main-container';
 import OfferGallary from '@/components/catalog/offer-gallary/offer-gallary';
 import OfferReviews from '@/components/catalog/offer-reviews/offer-reviews';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
-import {Review} from '@/types/reviews';
 import MapLeaflet from '@/components/common/map-leaflet/map-leaflet';
-import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
+import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {City} from '@/types/city';
 import {useEffect} from 'react';
 import OfferDescription from '@/components/catalog/offer-description/offer-description';
 import OfferOtherPlaces from '@/components/catalog/offer-other-places/offer-other-places';
-import {offersSelectors} from '@/store/slices/offers';
-import {fetchNearOffers, fetchOffer} from '@/store/thunks/offers';
 import {RequestStatus} from '@/utils/const';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
+import {offerActions, offerSelectors} from '@/store/slices/offer';
+import {nearbyActions, nearbySelectors} from '@/store/slices/nearby';
+import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
+import HelmetComponent from '@/components/common/helmet-component/helmet';
 
-type OfferPageProps = {
-  reviews: Review[];
-}
+export default function OfferPage(): JSX.Element {
+  const offer = useAppSelector(offerSelectors.offer);
+  const offerStatus = useAppSelector(offerSelectors.status);
+  const reviews = useAppSelector(reviewsSelectors.reviews);
+  const reviewsStatus = useAppSelector(reviewsSelectors.status);
+  const nearOffers = useAppSelector(nearbySelectors.nearOffers).slice(0, 3);
+  const nearStatus = useAppSelector(nearbySelectors.status);
 
-export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
-  const dispatch = useAppDispatch();
+  const { fetchOffer } = useActionCreators(offerActions);
+  const { fetchNearOffers } = useActionCreators(nearbyActions);
+  const { fetchReviews } = useActionCreators(reviewsActions);
+
   const { id } = useParams();
-
-  const offer: Offer | null = useAppSelector(offersSelectors.offer);
-  const offerStatus = useAppSelector(offersSelectors.offerStatus);
-  const nearOffers = useAppSelector(offersSelectors.nearOffers).slice(0, 3);
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchOffer(id));
-      dispatch(fetchNearOffers(id));
+      Promise.all([fetchOffer(id), fetchNearOffers(id), fetchReviews(id)]);
     }
-  }, [id, dispatch]);
+  }, [id, fetchOffer, fetchNearOffers, fetchReviews]);
 
-  if (offerStatus === RequestStatus.Loading) {
+  if (offerStatus === RequestStatus.Loading ||
+      nearStatus === RequestStatus.Loading ||
+      reviewsStatus === RequestStatus.Loading) {
     return <LoadingScreen />;
   }
 
@@ -54,9 +57,7 @@ export default function OfferPage({ reviews }: OfferPageProps): JSX.Element {
 
   return (
     <Container>
-      <Helmet>
-        <title>6 cities: offer</title>
-      </Helmet>
+      <HelmetComponent title="6 cities: offer" />
 
       <Header />
 

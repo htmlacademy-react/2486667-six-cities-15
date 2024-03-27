@@ -1,8 +1,8 @@
-import {Offer} from '@/types/offer';
+import {ConvertDate} from '@/types/offer';
 import {Favorites} from '@/types/favorites';
-import {AuthStatus} from './const';
+import {OfferPreview} from '@/types/offer-preview';
 
-export function getFavoritesByLocation(offers: Offer[]): Favorites {
+export function getFavoritesByLocation(offers: OfferPreview[]): Favorites {
   return offers.reduce<Favorites>((acc, current) => {
     const location = current.city.name;
 
@@ -21,11 +21,7 @@ export function getRatingWidth(rating: number): string {
   return `${((Math.round(rating) / 5) * 100)}%`;
 }
 
-export function getIsAuth(status: AuthStatus): boolean {
-  return status === AuthStatus.Auth;
-}
-
-export const convertDate = (str: string) => {
+export const convertDate = (str: string): ConvertDate => {
   const date = new Date(str);
   const monthYear = `${date.toLocaleString('en-GB', { month: 'long' }) } ${ date.getFullYear()}`;
   const fullDate = str.slice(0, 10);

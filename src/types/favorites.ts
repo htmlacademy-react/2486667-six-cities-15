@@ -1,10 +1,21 @@
-import {Offer} from './offer';
+import {OfferPreview} from '@/types/offer-preview';
 
 export type Favorites = {
-  [key: string]: Offer[];
+  [key: string]: OfferPreview[];
 }
 
-export type PostFavoriteStatusArgs = {
+export enum FavoriteStatus {
+  Add = 1,
+  Remove = 0,
+}
+
+
+export type ChangeFavoriteArgs = {
   offerId: string;
-  favStatus: number;
+  status: FavoriteStatus;
+}
+
+export type ChangeFavoriteResponse = {
+  offer: OfferPreview;
+  status: FavoriteStatus;
 }

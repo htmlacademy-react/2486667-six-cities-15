@@ -7,30 +7,27 @@ import FavoritesPage from '@/pages/favorites-page/favorites-page';
 import NotFoundPage from '@/pages/not-found-page/not-found-page';
 import OfferPage from '@/pages/offer-page/offer-page';
 import ProtectedRoute from '@/components/common/protected-route/protected-route';
-import {Review} from '@/types/reviews';
 import {CITIES} from '@/mocks/cities';
-import {useAppDispatch, useAppSelector} from '@/hooks/store/store';
+import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
-import {offersSelectors} from '@/store/slices/offers';
-import {usersSelectors} from '@/store/slices/users';
+import {offersActions, offersSelectors} from '@/store/slices/offers';
+import {usersActions, usersSelectors} from '@/store/slices/users';
 import {useEffect} from 'react';
-import {fetchOffers} from '@/store/thunks/offers';
-import {checkAuth} from '@/store/thunks/users';
 
 type AppProps = {
   cities: City[];
-  reviews: Review[];
 }
 
-export default function App({ cities, reviews }: AppProps): JSX.Element {
-  const dispatch = useAppDispatch();
+export default function App({ cities }: AppProps): JSX.Element {
+  const { fetchOffers } = useActionCreators(offersActions);
+  const { checkAuth } = useActionCreators(usersActions);
 
   useEffect(() => {
-    dispatch(fetchOffers());
-    dispatch(checkAuth());
-  }, [dispatch]);
+    fetchOffers();
+    checkAuth();
+  }, [fetchOffers, checkAuth]);
 
-  const authStatus = useAppSelector(usersSelectors.status);
+  const authStatus = useAppSelector(usersSelectors.authorizationStatus);
   const status = useAppSelector(offersSelectors.status);
 
   if (authStatus === AuthStatus.Unknown || status === RequestStatus.Loading) {
@@ -59,7 +56,7 @@ export default function App({ cities, reviews }: AppProps): JSX.Element {
       />
       <Route
         path={`${AppRoute.Offer}/:id`}
-        element={<OfferPage reviews={reviews} />}
+        element={<OfferPage />}
       />
       <Route
         path={AppRoute.NotFound}

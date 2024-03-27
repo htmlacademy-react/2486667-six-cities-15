@@ -1,9 +1,9 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AuthData, UserData} from '@/types/user';
-import {AxiosInstance} from 'axios';
 import {Endpoint} from '@/utils/const';
+import {createAppAsyncThunk} from '@/hooks/store/store';
+import {dropToken, saveToken} from '@/services/token';
 
-const checkAuth = createAsyncThunk<UserData, undefined, { extra: AxiosInstance }>(
+const checkAuth = createAppAsyncThunk<UserData, undefined>(
   'user/checkAuth',
   async (_arg, {extra: api}) => {
     const {data} = await api.get<UserData>(Endpoint.Login);
@@ -12,19 +12,21 @@ const checkAuth = createAsyncThunk<UserData, undefined, { extra: AxiosInstance }
   },
 );
 
-const loginUser = createAsyncThunk<UserData, AuthData, { extra: AxiosInstance }>(
+const loginUser = createAppAsyncThunk<UserData, AuthData>(
   'user/login',
   async ({login: email, password}, {extra: api}) => {
     const {data} = await api.post<UserData>(Endpoint.Login, {email, password});
+    saveToken(data.token);
 
     return data;
   },
 );
 
-const logoutUser = createAsyncThunk<void, undefined, { extra: AxiosInstance }>(
+const logoutUser = createAppAsyncThunk<void, undefined>(
   'user/logout',
   async (_arg, {extra: api}) => {
     await api.delete(Endpoint.Logout);
+    dropToken();
   },
 );
 
