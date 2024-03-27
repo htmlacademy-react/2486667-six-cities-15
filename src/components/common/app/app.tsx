@@ -27,7 +27,7 @@ export default function App({ cities }: AppProps): JSX.Element {
     checkAuth();
   }, [fetchOffers, checkAuth]);
 
-  const authStatus = useAppSelector(usersSelectors.status);
+  const authStatus = useAppSelector(usersSelectors.authorizationStatus);
   const status = useAppSelector(offersSelectors.status);
 
   if (authStatus === AuthStatus.Unknown || status === RequestStatus.Loading) {

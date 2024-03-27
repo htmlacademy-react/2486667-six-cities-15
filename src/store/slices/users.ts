@@ -5,13 +5,13 @@ import {checkAuth, loginUser, logoutUser} from '@/store/thunks/users';
 
 interface UsersState {
   user: UserData | null;
-  status: AuthStatus;
+  authorizationStatus: AuthStatus;
   requestStatus: RequestStatus;
 }
 
 const initialState: UsersState = {
   user: null,
-  status: AuthStatus.Unknown,
+  authorizationStatus: AuthStatus.Unknown,
   requestStatus: RequestStatus.Idle,
 };
 
@@ -21,12 +21,12 @@ function processLoading(state: UsersState) {
 
 function processFulfilled(state: UsersState, action: PayloadAction<UserData>) {
   state.user = action.payload;
-  state.status = AuthStatus.Auth;
+  state.authorizationStatus = AuthStatus.Auth;
   state.requestStatus = RequestStatus.Success;
 }
 
 function processFailed(state: UsersState) {
-  state.status = AuthStatus.NoAuth;
+  state.authorizationStatus = AuthStatus.NoAuth;
   state.requestStatus = RequestStatus.Failed;
 }
 
@@ -44,7 +44,7 @@ const usersSlice = createSlice({
       .addCase(logoutUser.pending, processLoading)
       .addCase(logoutUser.fulfilled, (state: UsersState) => {
         state.user = null;
-        state.status = AuthStatus.NoAuth;
+        state.authorizationStatus = AuthStatus.NoAuth;
         state.requestStatus = RequestStatus.Success;
       })
       .addCase(logoutUser.rejected, (state: UsersState) => {
@@ -62,7 +62,7 @@ const usersSlice = createSlice({
   },
   selectors: {
     user: (state: UsersState) => state.user,
-    status: (state: UsersState) => state.status,
+    authorizationStatus: (state: UsersState) => state.authorizationStatus,
   },
 });
 
