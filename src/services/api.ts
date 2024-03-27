@@ -39,11 +39,13 @@ export const createAPI = (): AxiosInstance => {
         const message = detailMessage.message;
 
         if (detailMessage && status && message) {
-
-          if (status === 401) {
-            toast.warn(NOT_LOGGED);
-          } else {
-            toast.warn(message);
+          switch (status) {
+            case 401:
+              toast.warn(NOT_LOGGED);
+              break;
+            default:
+              toast.warn(message);
+              break;
           }
         }
       }
