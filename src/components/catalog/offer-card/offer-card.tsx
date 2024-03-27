@@ -4,9 +4,10 @@ import {AppRoute} from '@/utils/const';
 import {clsx} from 'clsx';
 import {getRatingWidth} from '@/utils';
 import OfferBookmark from '@/components/catalog/offer-bookmark/offer-bookmark';
+import {OfferPreview} from "@/types/offer-preview";
 
 type CardProps = {
-  offer: Offer;
+  offer: Offer | OfferPreview;
   block: string;
   hoverHandler?: (id: Offer['id'] | null) => void;
 }
