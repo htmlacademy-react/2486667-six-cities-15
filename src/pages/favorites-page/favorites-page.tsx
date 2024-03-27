@@ -1,4 +1,3 @@
-import {Helmet} from 'react-helmet-async';
 import {City} from '@/types/city';
 import {getFavoritesByLocation} from '@/utils';
 import Header from '@/components/common/header/header';
@@ -11,6 +10,7 @@ import {useAppSelector} from '@/hooks/store/store';
 import {favoritesSelectors} from '@/store/slices/favorites';
 import {RequestStatus} from '@/utils/const';
 import LoadingScreen from '@/pages/loading-screen/loading-screen';
+import HelmetComponent from '@/components/common/helmet-component/helmet';
 
 type FavoritesPagePops = {
   cities: City[];
@@ -27,9 +27,7 @@ export default function FavoritesPage({ cities }: FavoritesPagePops): JSX.Elemen
 
   return (
     <Container>
-      <Helmet>
-        <title>6 cities: favorites</title>
-      </Helmet>
+      <HelmetComponent title="6 cities: favorites" />
       <Header />
       <MainContainer extraClass="page__main--favorites">
         <div className="page__favorites-container container">

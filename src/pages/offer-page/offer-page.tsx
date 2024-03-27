@@ -1,4 +1,3 @@
-import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
 import {Offer} from '@/types/offer';
 import Container from '@/components/common/container/container';
@@ -18,6 +17,7 @@ import LoadingScreen from '@/pages/loading-screen/loading-screen';
 import {offerActions, offerSelectors} from '@/store/slices/offer';
 import {nearbyActions, nearbySelectors} from '@/store/slices/nearby';
 import {reviewsActions, reviewsSelectors} from '@/store/slices/reviews';
+import HelmetComponent from '@/components/common/helmet-component/helmet';
 
 export default function OfferPage(): JSX.Element {
   const offer = useAppSelector(offerSelectors.offer);
@@ -57,9 +57,7 @@ export default function OfferPage(): JSX.Element {
 
   return (
     <Container>
-      <Helmet>
-        <title>6 cities: offer</title>
-      </Helmet>
+      <HelmetComponent title="6 cities: offer" />
 
       <Header />
 

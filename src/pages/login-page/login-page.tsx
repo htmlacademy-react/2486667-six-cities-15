@@ -1,17 +1,15 @@
-import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '@/utils/const';
 import Header from '@/components/common/header/header';
 import Container from '@/components/common/container/container';
 import MainContainer from '@/components/common/main-container/main-container';
 import LoginForm from '@/components/common/login-form/login-form';
+import HelmetComponent from '@/components/common/helmet-component/helmet';
 
 export default function LoginPage() {
   return (
     <Container extraClass="page--gray page--login">
-      <Helmet>
-        <title>6 cities: authorization</title>
-      </Helmet>
+      <HelmetComponent title="6 cities: authorization" />
       <Header />
       <MainContainer extraClass="page__main--login">
         <div className="page__login-container container">
