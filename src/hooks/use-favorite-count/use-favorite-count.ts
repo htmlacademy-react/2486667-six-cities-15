@@ -2,7 +2,6 @@ import {useActionCreators, useAppSelector} from '@/hooks/store/store';
 import {favoritesActions, favoritesSelectors} from '@/store/slices/favorites';
 import {useEffect} from 'react';
 import {RequestStatus} from '@/utils/const';
-import {useAuth} from "@/hooks/user-authorisation/user-authorisation";
 
 export function useFavoriteCount() {
   const status = useAppSelector(favoritesSelectors.status);

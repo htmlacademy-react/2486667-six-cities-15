@@ -1,6 +1,6 @@
 import {ConvertDate} from '@/types/offer';
 import {Favorites} from '@/types/favorites';
-import {OfferPreview} from "@/types/offer-preview";
+import {OfferPreview} from '@/types/offer-preview';
 
 export function getFavoritesByLocation(offers: OfferPreview[]): Favorites {
   return offers.reduce<Favorites>((acc, current) => {
