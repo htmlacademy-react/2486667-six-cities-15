@@ -14,17 +14,17 @@ type FromState = {
 
 export default function ProtectedRoute({ onlyUnAuth, children }: ProtectedRouteProps): JSX.Element {
   const location = useLocation() as Location<FromState>;
-  const isAuthenticate = useAuth();
+  const isAuth = useAuth();
 
   // Авторизованы и стр логина => переход на главную или на предыдущую страницу
   // onlyUnAuth - флаг "страница только для неавторизованных"
-  if (isAuthenticate && onlyUnAuth) {
+  if (isAuth && onlyUnAuth) {
     const from = location.state?.from || { pathname: AppRoute.Root };
     return <Navigate to={from} />;
   }
 
   // Не авторизованы и не стр логина (стр избранных) => переход на стр логина
-  if (!isAuthenticate && !onlyUnAuth) {
+  if (!isAuth && !onlyUnAuth) {
     return <Navigate to={AppRoute.Login} state={{from: location}} />;
   }
 

@@ -6,7 +6,7 @@ import HeaderAuth from '@/components/common/header/header-auth';
 import HeaderNoAuth from '@/components/common/header/header-no-auth';
 
 export default function Header(): JSX.Element {
-  const isAuthenticate = useAuth();
+  const isAuth = useAuth();
   const {pathname} = useLocation();
 
   return (
@@ -18,9 +18,9 @@ export default function Header(): JSX.Element {
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
-              {isAuthenticate &&
+              {isAuth &&
                 <HeaderAuth />}
-              {!isAuthenticate && (pathname as AppRoute !== AppRoute.Login as AppRoute) &&
+              {!isAuth && (pathname as AppRoute !== AppRoute.Login as AppRoute) &&
                 <HeaderNoAuth />}
             </ul>
           </nav>
