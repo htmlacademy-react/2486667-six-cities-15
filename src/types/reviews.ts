@@ -7,3 +7,9 @@ export type Review = {
   rating: number;
   user: User;
 }
+
+export type PostReviewArg = {
+  offerId: string;
+  comment: string;
+  rating: number;
+}

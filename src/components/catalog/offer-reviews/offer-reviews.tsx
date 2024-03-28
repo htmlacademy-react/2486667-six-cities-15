@@ -4,6 +4,7 @@ import OfferReviewList from '@/components/catalog/offer-review-list/offer-review
 import OfferReviewForm from '@/components/catalog/offer-review-form/offer-review-form';
 import {Review} from '@/types/reviews';
 import {useAuth} from '@/hooks/user-authorisation/user-authorisation';
+import {useRef} from 'react';
 
 type OfferReviewsProps = {
   reviews: Review[];
@@ -11,14 +12,19 @@ type OfferReviewsProps = {
 
 export default function OfferReviews({ reviews }: OfferReviewsProps): JSX.Element {
   const isAuth = useAuth();
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+
+  const scrollToTitle = () => {
+    titleRef.current?.scrollIntoView();
+  };
 
   return (
     <section className="offer__reviews reviews">
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+      <h2 className="reviews__title" ref={titleRef}>Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
-      <OfferReviewList reviews={reviews} />
+      <OfferReviewList reviews={reviews} scrollToTitle={scrollToTitle} />
 
-      {isAuth && <OfferReviewForm />}
+      {isAuth && <OfferReviewForm scrollToTitle={scrollToTitle} />}
       {!isAuth &&
         <div style={{textAlign: 'center', borderTop: '1px solid #efefef'}}>
           <p>Только авторизированные пользователи могут оставлять комменатрии.</p>

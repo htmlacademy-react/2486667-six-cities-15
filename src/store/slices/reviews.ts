@@ -32,8 +32,9 @@ const reviewsSlice = createSlice({
       .addCase(postReview.pending, (state: ReviewsState) => {
         state.postStatus = RequestStatus.Loading;
       })
-      .addCase(postReview.fulfilled, (state: ReviewsState) => {
+      .addCase(postReview.fulfilled, (state: ReviewsState, action) => {
         state.postStatus = RequestStatus.Success;
+        state.reviews.push(action.payload);
       })
       .addCase(postReview.rejected, (state: ReviewsState) => {
         state.postStatus = RequestStatus.Failed;
@@ -45,11 +46,11 @@ const reviewsSlice = createSlice({
       state.reviews = [];
       state.getStatus = RequestStatus.Idle;
       state.postStatus = RequestStatus.Idle;
-    }
+    },
   },
   selectors: {
-    reviews: (state) => state.reviews,
-    status: (state) => state.getStatus,
+    reviews: (state: ReviewsState) => state.reviews,
+    status: (state: ReviewsState) => state.getStatus,
   },
 });
 

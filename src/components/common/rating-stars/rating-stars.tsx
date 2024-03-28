@@ -5,19 +5,21 @@ type TFieldChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElem
 
 type RatingStarsProps = {
   fieldChangeHandler: TFieldChangeHandler;
+  rating: number;
 }
 
-export default function RatingStars({ fieldChangeHandler }: RatingStarsProps) {
+export default function RatingStars({ fieldChangeHandler, rating }: RatingStarsProps) {
   return (
     <>
       {RATING.map(({value, title}) => (
         <Fragment key={value}>
           <input className="form__rating-input visually-hidden"
             name="rating"
-            defaultValue={value}
             id={`${value}-stars`}
             type="radio"
+            value={value}
             onChange={fieldChangeHandler}
+            checked={Number(rating) === Number(value) && Number(rating) !== 0}
           />
           <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
             <svg className="form__star-image" width="37" height="33">
