@@ -25,7 +25,7 @@ export default function OfferReviewItem({ review }: OfferReviewItemProps) {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <p className="reviews__text">
+        <p className="reviews__text" style={{wordBreak: 'break-all'}}>
           {review.comment}
         </p>
         <time className="reviews__time" dateTime={fullDate}>{monthYear}</time>
