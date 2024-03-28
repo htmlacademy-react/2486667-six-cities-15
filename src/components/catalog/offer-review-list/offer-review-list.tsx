@@ -11,7 +11,7 @@ type OfferReviewListProps = {
 }
 
 export default function OfferReviewList({ reviews, scrollToTitle }: OfferReviewListProps): JSX.Element {
-  const sortedReviews = reviews.toSorted((a, b) => new Date(b.date) - new Date(a.date));
+  const sortedReviews = reviews.toSorted((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
   const sortedVisibleReviews = sortedReviews.slice(0, MAX_VISIBLE_REVIEWS);
   const sortedHiddenReviews = sortedReviews.slice(MAX_VISIBLE_REVIEWS);
   const hiddenListRef = useRef<HTMLUListElement | null>(null);
